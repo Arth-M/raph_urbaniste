@@ -84,7 +84,7 @@ export const jsonLdData = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className='font-general bg-gray-50'>
+      <body className='font-general'>
         <Navbar/>
         {children}
         </body>

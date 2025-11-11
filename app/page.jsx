@@ -35,8 +35,8 @@ export default function Home() {
       <div className="w-screen mt-30">
         <div className="flex mr-0 ml-auto ">
           <div className="flex text-justify flex-col md:pl-30 md:pr-7 w-2/3 my-auto mx-auto">
-            <div className="rounded-full border-2 border-copperfield-500 w-25 p-4 h-25 mx-auto">
-              <h2 className="text-center text-xl font-semibold mb-5">Nos valeurs</h2>
+            <div className="rounded-full border-2 border-copperfield-500 w-36 h-36 py-14 mx-auto mb-3">
+              <h2 className="text-center text-xl font-semibold my-auto">Nos valeurs</h2>
             </div>
             <p>
               NOVURBA est une entreprise avant toute chose proche de la réalité de
@@ -108,5 +108,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+
   );
 }

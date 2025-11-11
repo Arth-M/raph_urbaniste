@@ -1,5 +1,6 @@
 import './globals.css'
 import Navbar from './_components/navbar.jsx'
+import Footer from './_components/footer.jsx'
 
 // Métadonnées principales - OUTSIDE the component
 export const metadata = {
@@ -87,6 +88,7 @@ export default function RootLayout({ children }) {
       <body className='font-general'>
         <Navbar/>
         {children}
+        <Footer />
         </body>
     </html>
   )

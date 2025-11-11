@@ -93,9 +93,9 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify(jsonLdData),
           }}
         />
-        <link rel="icon" type="image/svg+xml" href="./images/office.svg"></link>
+        <link rel="icon" type="image/svg+xml" href="./images/cityN.svg"></link>
       </head>
-      <body className='font-general'>
+      <body className='font-general h-screen'>
         <Navbar/>
         {children}
         <Footer />

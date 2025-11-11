@@ -1,35 +1,11 @@
 import Image from "next/image";
 import ArrowUp from "../_components/arrowUp.jsx";
 
-export default function Entreprise() {
+export default function Contact() {
   return (
     <div className="mt-30 w-full">
-      <div className="flex flex-wrap mx-auto px-4 md:px-20">
 
-        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-5 mb-8">
-          <h1 className="tacking-wide text-3xl text-center font-bold">Novurba, qu'ès aco ?</h1>
-          <Image
-            src={`/images/raph.jpg`}
-            alt="Image du fondateur de Novurba, Raphaël Sinet"
-            width="150"
-            height="150"
-            preload="true"
-            className="object-scale-down text-start col-span z-10 rounded-full mx-auto"
-          />
-          <p className="tacking-wide font-light max-w-[65%] self-center">
-            NOVURBA est une entreprise créée par Raphael SINET, urbaniste
-            diplômé de l'Institut d'Urbanisme Régional d'Aix-en-Provence en
-            2014. L'ensemble de son parcours professionnel en régions
-            Provence-Alpes-Côte d'Azur et Occitanie, au sein de structures
-            privées et publiques, l'a mené à une nouvelle réflexion et est
-            convaincu aujourd'hui que l'urbanisme et l'aménagement du territoire
-            doivent changer de cap. Son expertise se concilie avec ses
-            convictions pour un monde plus sobre, résilient et basé sur
-            l'équilibre entre l'humain et la nature.
-          </p>
-        </div>
-
-        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-5 mb-8">
+        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-5 mb-8 mx-auto">
           <h2 className="text-3xl text-center font-bold">
             Comment nous contacter ?
           </h2>
@@ -75,6 +51,6 @@ export default function Entreprise() {
 
         </div>
       </div>
-    </div>
+
   );
 }

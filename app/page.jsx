@@ -1,44 +1,49 @@
 import Image from "next/image";
+import ArrowUp from './_components/arrowUp.jsx'
 
 export default function Home() {
+
   return (
-    <div className="mt-50 w-full">
-      <h1 className="text-center text-6xl font-bold">L'urbanisme qui se vit</h1>
+    <div className="mt-30 w-full">
+      <div className="not-arrow-up">
+        <h1 className="text-center text-6xl font-bold">L'urbanisme qui se vit</h1>
 
-      <div className="flex flex-wrap justify-start mx-auto w-fit my-20">
-        <p className="max-w-150 text-wrap px-5 sm:px-1 my-5 sm:my-0">
-          NOVURBA, ce n'est pas qu'un bureau d'études qui vous propose de
-          simples prestations en urbanisme et aménagement. A travers les
-          prestations et compétences sur la planification, le projet urbain et
-          la stratégie foncière, NOVURBA c'est aussi et surtout du conseil dans
-          une nouvelle façon de voir et concevoir l'urbanisme et l'aménagement,
-          avec comme mots d'ordre : résilience, bas carbone, sobriété.
-        </p>
+        <div className="flex flex-wrap justify-start mx-auto w-fit my-20">
+          <p className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-lg">
+            NOVURBA, ce n'est pas qu'un bureau d'études qui vous propose de
+            simples prestations en urbanisme et aménagement. A travers les
+            prestations et compétences sur la planification, le projet urbain et
+            la stratégie foncière, NOVURBA c'est aussi et surtout du conseil dans
+            une nouvelle façon de voir et concevoir l'urbanisme et l'aménagement,
+            avec comme mots d'ordre : résilience, bas carbone, sobriété.
+          </p>
 
-        <div className="flex flex-nowrap w-90 justify-center align-center items-center">
-          <Image
-            src={`/images/raph.jpg`}
-            alt=""
-            width="150"
-            height="150"
-            preload="true"
-            className={`object-scale-down text-start col-span z-10 rounded-full`}
-          />
-          <div className="flex h-full items-end justify-end">
-            <p className="text-2xl text-nowrap md:text-2xl font-lg -ml-2">
-              Raphaël Sinet
-            </p>
+
+          <div className="flex flex-nowrap w-90 justify-center align-center items-center">
+            <Image
+              src={`/images/raph.jpg`}
+              alt="Image du fondateur de Novurba, Raphaël Sinet"
+              width="150"
+              height="150"
+              preload="true"
+              className="object-scale-down text-start col-span z-10 rounded-full"
+            />
+            <div className="flex h-full items-end justify-end">
+              <p className="text-2xl text-nowrap md:text-2xl font-lg -ml-2">
+                Raphaël Sinet
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="w-screen mt-30">
-        <div className="flex mr-0 ml-auto ">
-          <div className="flex text-justify flex-col md:pl-30 md:pr-7 w-2/3 my-auto mx-auto">
-            <div className="rounded-full border-2 border-copperfield-500 w-36 h-36 py-14 mx-auto mb-3">
-              <h2 className="text-center text-xl font-semibold my-auto">Nos valeurs</h2>
+        <div className="md:mr-0 md:ml-auto md:flex grid grid-cols-1 gap-y-6 md:gap-y-0">
+          <div className="flex flex-col text-justify px-8 md:pl-30 md:pr-7 md:w-2/3 my-auto mx-auto">
+            <div className="rounded-full border-2 border-copperfield-500 w-36 h-36 py-13 mx-auto mb-3">
+              <h2 className="text-center text-2xl font-semibold my-auto">Nos valeurs</h2>
             </div>
-            <p>
+            <p className="tracking-wide font-light text-lg">
               NOVURBA est une entreprise avant toute chose proche de la réalité de
               chaque territoire, car nous sommes bien conscient des différences
               entre chaque département, intercommunalité, commune et même
@@ -62,7 +67,7 @@ export default function Home() {
             height="446"
             preload="true"
             priority="true"
-            className="object-cover h-fit rounded-l-xl"
+            className="object-cover h-fit rounded-l-xl w-[90%] md:w-fit justify-self-end"
             // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
           />
         </div>
@@ -79,7 +84,7 @@ export default function Home() {
             width="500"
             height="153"
             loading="lazy"
-            className="w-[250px] h-[76px]"
+            className="w-[250px] h-[76px] lg:my-0 my-6"
           />
           <Image
             src={`/images/essence_urbanisme.jpeg`}
@@ -87,7 +92,7 @@ export default function Home() {
             width="200"
             height="200"
             loading="lazy"
-            className="w-[200px] h-[200px]"
+            className="w-[200px] h-[200px] lg:my-0 my-6"
           />
           <Image
             src={`/images/Montpellier_Méditerranée_Métropole.png`}
@@ -95,7 +100,7 @@ export default function Home() {
             width="500"
             height="500"
             loading="lazy"
-            className="w-[180px] h-[180px]"
+            className="w-[180px] h-[180px] lg:my-0 mt-6"
           />
           <Image
             src={`/images/naturae_groupelamo.jpeg`}
@@ -103,10 +108,11 @@ export default function Home() {
             width="200"
             height="200"
             loading="lazy"
-            className="w-[200px] h-[200px]"
+            className="w-[200px] h-[200px] lg:my-0 my-0"
           />
         </div>
       </div>
+      <ArrowUp />
     </div>
 
   );

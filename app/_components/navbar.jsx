@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className='w-screen fixed top-0 right-0 left-0 z-90 py-3 bg-transparent'
+      className='w-screen py-3 bg-transparent tracking-wide text-lg'
       ref={menuRef}
     >
       <div id='nav-div' className="mx-auto w-screen px-2 md:px-10">

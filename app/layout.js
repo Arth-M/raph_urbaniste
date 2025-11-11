@@ -84,7 +84,16 @@ export const jsonLdData = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="fr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdData),
+          }}
+        />
+        <link rel="icon" type="image/svg" href="./images/office.svg"></link>
+      </head>
       <body className='font-general'>
         <Navbar/>
         {children}

@@ -4,11 +4,11 @@ import ArrowUp from "../_components/arrowUp.jsx";
 export default function Contact() {
   return (
     <div className="mt-30 w-full">
-
+        <div className="flex items-center flex-wrap">
         <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-5 mb-8 mx-auto">
-          <h2 className="text-3xl text-center font-bold">
+          <h1 className="text-3xl text-center font-bold">
             Comment nous contacter ?
-          </h2>
+          </h1>
           {/* téléphone */}
           {/* <div className="flex flex-nowrap gap-x-4 my-2 mx-auto"> */}
           <div className="grid grid-cols-[1fr_3fr] w-[80%] mx-auto md:w-[40%] gap-x-3 gap-y-5">
@@ -47,9 +47,18 @@ export default function Contact() {
           </div>
            <a href="https://www.linkedin.com/company/novurba/" className="text-start text-lg select-all align-self-start">company/novurba/</a>
           </div>
-
-
         </div>
+
+        <Image
+            src={`/images/village_photo.jpg`}
+            alt="Photographie d'un village du sud de la France"
+            width="4896"
+            height="2760"
+            preload="true"
+            className="object-scale-down mr-0 ml-auto w-[100%] md:mx-auto md:w-[50%] h-fit"
+          />
+        </div>
+
       </div>
 
   );

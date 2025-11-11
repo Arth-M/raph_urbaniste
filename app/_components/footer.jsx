@@ -6,7 +6,7 @@ export default function Footer() {
             <hr className="my-6 border-gray-300 mx-auto  lg:my-8" />
           </div>
             <div className="flex flex-col">
-              <ul className="flex flex-row gap-x-8 mx-auto tracking-wide">
+              <ul className="flex flex-row flex-wrap gap-x-8 mx-auto tracking-wide">
                 <li>
                   <a href="/contact">Contact</a>
                 </li>

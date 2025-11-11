@@ -1,4 +1,5 @@
 import './globals.css'
+import Script from "next/script"
 import Navbar from './_components/navbar.jsx'
 import Footer from './_components/footer.jsx'
 
@@ -40,7 +41,7 @@ export const metadata = {
   },
   // Lien canonique
   alternates: {
-    canonical: 'https://novurba.fr', // à remplacer
+    canonical: 'https://novurba.fr/', // à remplacer
   },
 }
 
@@ -86,13 +87,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <head>
-        <script
+        <Script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLdData),
           }}
         />
-        <link rel="icon" type="image/svg" href="./images/office.svg"></link>
+        <link rel="icon" type="image/svg+xml" href="./images/up.svg"></link>
       </head>
       <body className='font-general'>
         <Navbar/>

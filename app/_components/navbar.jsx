@@ -28,26 +28,45 @@ export default function Navbar() {
 
   return (
     <nav
-      className='w-screen fixed top-0 right-0 left-0 z-5 py-3 bg-transparent'
+      className='w-screen fixed top-0 right-0 left-0 z-90 py-3 bg-transparent'
       ref={menuRef}
     >
-      <div id='nav-div' className="mx-auto opacity-70 w-screen px-2 md:px-5">
+      <div id='nav-div' className="mx-auto w-screen px-2 md:px-10">
         <div className="relative w-full flex flex-nowrap items-center justify-between px-4 mx-auto">
-          <div className="inset-y-0 left-0 flex items-center" id="doctolibButton">
-            <span className="sr-only">Rendez-vous Doctolib</span>
+          <div className="inset-y-0 left-0 flex items-center" id="novurbaButton">
+            <span className="sr-only">Logo de Novurba</span>
             <a
               href="/"
               rel="keep-params"
-              className="rounded-3xl md:rounded-4xl bg-[url('/images/child3.svg')] sm:w-25 sm:h-11 w-18 h-8 bg-contain bg-no-repeat lg:mx-auto"
-            ></a>
+            >
+              <Image
+              src="/images/6410514c268519ca04980d2a_Logo essai 3.png"
+              alt="Logo de Novurba"
+              width="463"
+              height="452"
+              preload="true"
+              priority="true"
+              className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
+              // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
+            />
+            </a>
           </div>
 
-          <div className="hidden lg:flex items-center justify-end min-w-[500px]">
-            <div className="space-x-4 justify-end items-center">
+          <div className="hidden lg:flex items-center justify-end min-w-[500px] ">
+            {/*  */}
+            {/* https://www.linkedin.com/public-profile/in/raphaël-sinet-1a917a86/
+            */}
+            <a href="https://www.linkedin.com/company/novurba/" className=" hover:animate-pulse dark:hover:text-white" target="_blank" rel="noopener noreferrer" title="Voir le profil LinkedIn de Raphaël Sinet">
+              <svg className="w-6 h-fit text-copperfield-600 mr-10 my-auto pb-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM2 21h6V9H2v12ZM8.5 21h5.5v-6.6c0-1.5.3-2.9 2-2.9 1.7 0 1.7 1.4 1.7 2.8V21H24v-7.1c0-4-2.1-5.9-5-5.9-2.3 0-3.3 1.3-3.8 2.2h.1V9H8.5c.1 1.2 0 12 0 12Z" clipRule="evenodd"/>
+                </svg>
+              <span className="sr-only">LinkedIn profile</span>
+            </a>
+            <div className="space-x-2 justify-end items-center text-copperfield-500">
               <a
                 href="/"
                 className={`rounded-md font-light text-md   ${
-                  ' text-gray-900  hover:text-gray-600 hover:bg-gray-100 px-2 py-1'
+                  'hover:bg-copperfield-50 hover:text-copperfield-500 px-2 py-1'
                 }`}
               >
                 Accueil
@@ -55,7 +74,7 @@ export default function Navbar() {
               <a
                 href="/notre-expertise"
                 className={`rounded-md font-light text-md   ${
-                  ' text-gray-900  hover:text-gray-600 hover:bg-gray-100 px-2 py-1'
+                  '   hover:text-copperfield-500 hover:bg-copperfield-50 px-2 py-1'
                 }`}
               >
                 Notre expertise
@@ -63,7 +82,7 @@ export default function Navbar() {
               <a
                 href="/nos-realisations"
                 className={`rounded-md font-light text-md  ${
-                  ' text-gray-900  hover:text-gray-600 hover:bg-gray-100 px-2 py-1'
+                  '   hover:text-copperfield-500 hover:bg-copperfield-50 px-2 py-1'
                 }`}
               >
                 Nos réalisations
@@ -71,13 +90,14 @@ export default function Navbar() {
               <a
                 href="/entreprise"
                 className={`rounded-md font-light text-md  ${
-                 ' text-gray-900  hover:text-gray-600 hover:bg-gray-100 px-2 py-1'
+                 '  hover:text-copperfield-500 hover:bg-copperfield-50 px-2 py-1'
                 }`}
               >
                 L'entreprise
               </a>
 
             </div>
+
           </div>
 
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="mt-50 w-full">
-      <h1 className="text-nowrap text-center text-6xl font-bold">
+      <h1 className="text-center text-6xl font-bold">
         L'urbanisme qui se vit
       </h1>
       <div className="flex w-full justify-start px-40 my-20">
@@ -16,12 +16,12 @@ export default function Home() {
             preload="true"
             className={`object-scale-down text-start col-span z-10`}
           />
-          <p className="text-2xl font-lg">Raphaël Sinet</p>
+          <p className="text-2xl md:text-3xl font-lg">Raphaël Sinet</p>
         </div>
       </div>
       <div className="container mt-35 p-5 mx-auto">
-        <h2 className="text-center text-4xl font-md">Ils font confiance à Novurba </h2>
-        <div className="w-full flex flex-wrap items-center gap-x-30 justify-center mt-5">
+        <h2 className="text-center text-2xl md:text-3xl font-md">Ils font confiance à Novurba </h2>
+        <div className="w-full flex flex-wrap items-center gap-x-30 gap-y-5 justify-center mt-5">
           <Image
             src={`/images/Atelier_Chibaudel.png`}
             alt=""

@@ -45,7 +45,7 @@ export default function Contact() {
             <span className="sr-only">LinkedIn profile</span>
             </a>
           </div>
-           <a href="https://www.linkedin.com/company/novurba/" className="text-start text-lg select-all align-self-start">company/novurba/</a>
+           <a href="https://www.linkedin.com/company/novurba/" target="_blank" className="text-start text-lg select-all align-self-start">company/novurba/</a>
           </div>
         </div>
 

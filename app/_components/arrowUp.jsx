@@ -15,7 +15,7 @@ export default function ArrowUp() {
         // When section1 is NOT visible, show the arrow
         setShowArrow(!entry.isIntersecting)
       },
-      { threshold: 1 } // Adjust sensitivity: 0 = any pixel, 1 = fully visible
+      { threshold: 0.3 } // Adjust sensitivity: 0 = any pixel, 1 = fully visible
     )
 
     observer.observe(section1)
@@ -29,9 +29,9 @@ export default function ArrowUp() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-30 right-6 z-90 p-3 rounded-xl shadow transition-all duration-300
+      className={`fixed bottom-15 md:bottom-30 -right-7 z-90 p-3 rounded-xl shadow transition-all duration-300
         bg-copperfield-500 hover:bg-copperfield-700
-        ${showArrow ? "opacity-100 translate-y-0" : "hidden"}`}
+        ${showArrow ? "opacity-100 -translate-x-10 duration-300 ease-in" : "translate-x-0 invisible"}`}
       aria-label="Retour en haut"
     >
       <Image
@@ -39,9 +39,8 @@ export default function ArrowUp() {
         alt="Logo de Novurba"
         width="15"
         height="15"
-        preload="true"
-        priority="true"
-        className="object-cover h-fit rounded-l-xl text-copperfield-500"
+        loading="lazy"
+        className="object-cover h-fit rounded-l-xl text-copperfield-400"
         // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
       />
     </button>

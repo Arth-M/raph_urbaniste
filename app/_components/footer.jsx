@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Footer() {
   return (
-    <footer className="relative bottom-0 bg-transparent">
+    <footer className="relative bottom-0 bg-transparent mt-8">
         <div className="mx-auto w-screen px-4 py-2">
           <div className="px-15">
             <hr className=" mb-3 border-gray-300 mx-auto lg:mb-8" />
@@ -64,7 +64,7 @@ export default function Footer() {
 
               <div className="w-full flex justify-end mt-5 md:-mt-5">
               <div className="w-fit">
-                <hr className="my-2 border-gray-300 mx-auto lg:my-3" />
+                <hr className="my-2 border-gray-300 mx-auto md:my-3" />
                 <p className="text-xs text-end tracking-wider">Réalisé par <a href="http://www.atuweb.fr" className="text-xs text-center" target="_blank">ATU-Web</a></p>
               </div>
               </div>

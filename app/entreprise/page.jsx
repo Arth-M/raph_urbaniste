@@ -3,9 +3,9 @@ import ArrowUp from "../_components/arrowUp.jsx";
 
 export default function Entreprise() {
   return (
-    <div className="mt-30 w-full">
+    <div className="mt-15 md:mt-20 w-full">
       <div className="flex flex-wrap mx-auto px-4 md:px-20">
-        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-5 mb-8">
+        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-4 md:gap-y-5 mb-8">
           <h1 className="tacking-wide text-3xl text-center font-bold">
             Novurba, qu'ès aco ?
           </h1>
@@ -17,12 +17,12 @@ export default function Entreprise() {
             preload="true"
             className="object-scale-down text-start col-span z-10 rounded-full mx-auto"
           />
-          <p className="tacking-wide font-light text-lg max-w-[65%] self-center">
+          <p className="tacking-wide font-light text-lg pt-1 px-5 md:max-w-[70%] md:p-1 self-center">
             NOVURBA est une entreprise créée par Raphael SINET, urbaniste
             diplômé de l'Institut d'Urbanisme Régional d'Aix-en-Provence en
             2014. L'ensemble de son parcours professionnel en régions
             Provence-Alpes-Côte d'Azur et Occitanie, au sein de structures
-            privées et publiques, l'a mené à une nouvelle réflexion et est
+            privées et publiques, l'a mené à une nouvelle réflexion et il est
             convaincu aujourd'hui que l'urbanisme et l'aménagement du territoire
             doivent changer de cap. Son expertise se concilie avec ses
             convictions pour un monde plus sobre, résilient et basé sur
@@ -30,7 +30,7 @@ export default function Entreprise() {
           </p>
         </div>
 
-        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-5 mb-8">
+        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-3 md:gap-y-5 mb-8 mt-5 md:mt-0">
           <h2 className="text-3xl text-center font-bold mb-7">
             Comment nous contacter ?
           </h2>
@@ -106,33 +106,38 @@ export default function Entreprise() {
       <h2 className="text-xl text-center font-bold uppercase mt-15 mb-6">
         Références professionnelles
       </h2>
-      <div className="flex flex-col gap-y-4 items-center max-w-[70%] mx-auto text-lg">
-        <p>
+      <div className="flex flex-col gap-y-4 items-center w-full px-5 md:max-w-[70%] mx-auto text-lg">
+        <p className="text-center">
           Cabinet LUYTON (TOULON) - Planification et urbanisme pré-opérationnel
         </p>
-        <p>ALTEREO (VENELLES) - Planification</p>
-        <p>
+        <hr className="text-gray-300 w-[40%] md:hidden"/>
+        <p className="text-center">ALTEREO (VENELLES) - Planification</p>
+        <hr className="text-gray-300 w-[40%] md:hidden"/>
+        <p className="text-center">
           LKSPATIALIST (MONTPELLIER) - Expertise en planification et
           développement de nouvelles technologies liées au domaine de
           l'aménagement
         </p>
-        <p>METROPOLE de MONTPELLIER - Projet urbain</p>
-        <p>
+        <hr className="text-gray-300 w-[40%] md:hidden"/>
+        <p className="text-center">METROPOLE de MONTPELLIER - Projet urbain</p>
+        <hr className="text-gray-300 w-[40%] md:hidden"/>
+        <p className="text-center">
           EPF OCCITANIE (MONTPELLIER) - Projets et stratégie fonciers /
           Négociation
         </p>
+
       </div>
 
       <h2 className="text-xl text-center font-bold uppercase mt-15 mb-6">
         Études achevées ou en cours
       </h2>
       <div className="flex flex-col gap-y-4 items-center max-w-[70%] mx-auto text-lg">
-        <p>Plan Local d'Urbanisme de QUISSAC (Gard) - 2024</p>
-        <p>
+        <p className="text-center">Plan Local d'Urbanisme de QUISSAC (Gard) - 2024</p>
+        <p className="text-center">
           Etude urbaine pour le schéma directeur de la gestion des eaux de
           MONTPELLIER MEDITERRANEE METROPOLE - 2024/2025
         </p>
-        <p>
+        <p className="text-center">
           Missions réglementaires et SIG en appui de bureaux d'études -
           2024/2025
         </p>

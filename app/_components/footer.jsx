@@ -51,7 +51,7 @@ export default function Footer() {
 
               </ul>
 
-                  <a href="/" className="hidden md:flex mx-auto -mt-12">
+                  <a href="/" className="hidden md:flex mx-auto -mt-12 w-fit">
                     <Image
                       src="/images/6410514c268519ca04980d2a_Logo essai 3.png"
                       alt="Logo de Novurba"

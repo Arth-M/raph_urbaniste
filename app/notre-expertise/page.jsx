@@ -1,24 +1,45 @@
 "use client";
 import Carousel from "../_components/carousel";
-import { useRef, useState } from "react";
+import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 
 export default function Expertise() {
   const carouselData = [
     {
       image: "planification.jpg",
       text: "Planification / Projet urbain",
+      ref: "planification",
     },
     {
       image: "cadastre.png",
       text: "Stratégie foncière",
+      ref: "strategie-fonciere",
     },
     {
       image: "cartographie.jpg",
       text: "Cartographie",
+      ref: "cartographie",
     },
   ];
 
   const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const [activeCard, setActiveCard] = useState(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      // If no card is active, nothing to do
+      if (!activeCard) return;
+
+      // If card is clicked, keep it open
+      if (e.target.closest(".expertise-card")) return;
+
+      // Otherwise → close it
+      setActiveCard(null);
+    }
+
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
+  }, [activeCard]);
 
   return (
     <div className="mt-10 md:mt-15 w-full">
@@ -27,13 +48,23 @@ export default function Expertise() {
           activeItemIndex={activeItemIndex}
           setActiveItemIndex={setActiveItemIndex}
           carouselData={carouselData}
+           setActiveCard={setActiveCard}
+           activeCard={activeCard}
         />
       </div>
 
-      <div className="flex flex-wrap mt-10 md:px-30 px-5 gap-y-6 mx-auto justify-around">
-        <div className="flex flex-col md:w-[250px] min-w-[250px]">
-          <h2 className="text-xl font-semibold mb-2">Planification / Projet urbain</h2>
-          <p className="text-justify font-light tracking-wide text-lg">
+      <div className="flex flex-wrap mt-15 md:px-30 px-5 gap-y-12 mx-auto justify-around">
+        <div
+          id="planification"
+          className={`scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+            activeCard === "planification" ? "scale-110" : ""
+          }`}
+          onClick={() => setActiveCard("planification")}
+          >
+          <h2 className="text-xl font-semibold mb-2">
+            Planification / Projet urbain
+          </h2>
+          <p className="text-justify font-light tracking-wide text-lg mb-8">
             NOVURBA vous accompagne et vous conseille dans vos projets de
             planification (Conseil à la rédaction de vos documents d'urbanisme,
             que cela soit PLU ou cartes communales), et vous accompagne dans la
@@ -41,8 +72,31 @@ export default function Expertise() {
             d'un territoire, via la réalisation d'études urbaines (diagnostic
             urbain, prospective, études de capacité ...)
           </p>
+          <div className="">
+            <Image
+                src="/images/check-circle.svg"
+                alt="Icone de téléphone pour indiquer le numéro de téléphone"
+                width="50"
+                height="50"
+                loading='lazy'
+                className="object-scale-down text-start justify-self-center"
+              />
+          <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+            <li>Etudes urbaines spécifiques</li>
+            <li>Etudes pré-opérationnelles</li>
+            <li>Conseil en planification (PLU/ CC)</li>
+            <li>Prospective urbaine</li>
+            <li>Diagnostic urbain</li>
+          </ul>
+          </div>
         </div>
-        <div className="flex flex-col md:w-[250px] min-w-[250px]">
+        <div
+          id="strategie-fonciere"
+          className={`scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+            activeCard === "strategie-fonciere" ? "scale-110" : ""
+          }`}
+          onClick={() => setActiveCard("strategie-fonciere")}
+          >
           <h2 className="text-xl font-semibold mb-2">Stratégie foncière</h2>
           <p className="text-justify font-light tracking-wide text-lg">
             NOVURBA vous conseille et vous accompagne dans vos projets
@@ -51,8 +105,31 @@ export default function Expertise() {
             foncière) ou bien en aval (suivi de procédure d'acquisition,
             mobilisation du foncier ...)
           </p>
+          <div className="md:absolute md:bottom-6 mt-8 md:mt-0">
+            <Image
+                src="/images/check-circle.svg"
+                alt="Icone de téléphone pour indiquer le numéro de téléphone"
+                width="50"
+                height="50"
+                loading='lazy'
+                className="object-scale-down text-start justify-self-center"
+              />
+          <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+            <li>Analyse des gisements fonciers</li>
+            <li>Analyse de la dureté foncière</li>
+            <li>Analyse de la mutabilité foncière</li>
+            <li>Etudes de densification foncière</li>
+            <li>Politique ZAN</li>
+          </ul>
+          </div>
         </div>
-        <div className="flex flex-col md:w-[250px] min-w-[250px]">
+        <div
+          id="cartographie"
+          className={`scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+            activeCard === "cartographie" ? "scale-110" : ""
+          }`}
+          onClick={() => setActiveCard("cartographie")}
+          >
           <h2 className="text-xl font-semibold mb-2">Cartographie</h2>
           <p className="text-justify font-light tracking-wide text-lg">
             NOVURBA propose de vous accompagner dans la réalisation de
@@ -60,6 +137,28 @@ export default function Expertise() {
             planification à la stratégie foncière en passant par le projet
             urbain.
           </p>
+          <div className="md:absolute md:bottom-6 mt-8 md:mt-0">
+            <Image
+                src="/images/check-circle.svg"
+                alt="Icone de téléphone pour indiquer le numéro de téléphone"
+                width="50"
+                height="50"
+                loading='lazy'
+                className="object-scale-down text-start justify-self-center"
+              />
+          <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+
+            <li>Cartographie SIG</li>
+
+            <li>Cartographie en dessin vectoriel</li>
+
+            <li>Réalisations de schémas et plans</li>
+
+            <li>Montage d'atlas cartographiques</li>
+
+            <li className="invisible"> coucou</li>
+          </ul>
+          </div>
         </div>
       </div>
     </div>

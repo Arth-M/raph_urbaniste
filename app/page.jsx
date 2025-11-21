@@ -5,9 +5,11 @@ export default function Home() {
   return (
     <div className="md:mt-20 mt-15 w-full">
       <div className="not-arrow-up">
-        <h1 className="text-center text-6xl font-bold tracking-wide">L'urbanisme c'est la vie</h1>
+        <h1 className="text-center text-6xl font-bold tracking-wide px-5">
+          L'urbanisme c'est la vie
+        </h1>
 
-        <div className="flex flex-wrap justify-start mx-auto w-fit my-20">
+        <div className="flex flex-wrap justify-start mx-auto w-fit my-20 px-5 gap-y-5">
           <p className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-lg">
             NOVURBA, ce n'est pas qu'un bureau d'études qui vous propose de
             simples prestations en urbanisme et aménagement. A travers les
@@ -75,7 +77,6 @@ export default function Home() {
       </div>
 
       <div className="w-screen my-10 bg-[url(/images/herault.jpg)] bg-fixed h-100 bg-size-[230%_100%] md:bg-size-[100%_auto] bg-center bg-origin-border bg-no-repeat"></div>
-
 
       <div className="container mt-15 p-5 mx-auto">
         {/* Ils nous font confiance part */}

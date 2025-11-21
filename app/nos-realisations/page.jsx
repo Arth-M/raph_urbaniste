@@ -4,31 +4,31 @@ export default function Realisation() {
   return (
     <div className="mt-15 w-full">
       <h1 className="text-center text-3xl font-semibold">Nos réalisations</h1>
-      <div className="flex justify-around w-[85%] md:w-[60%] mx-auto mt-10 gap-x-2 ">
+      <div className="flex justify-around w-4/5 md:w-1/2 mx-auto mt-10 gap-x-2 ">
         <a
           href="#plu"
-          className="text-xl border border-gray-300 rounded px-4 py-1 hover:bg-gray-200"
+          className="text-xl border border-copperfield-300/40 rounded px-4 py-1 hover:bg-copperfield-300/40"
         >
           PLU
         </a>
         <a
           href="#plans-urbains"
-          className="text-xl border border-gray-300 rounded px-4 py-1 hover:bg-gray-200"
+          className="text-xl border border-copperfield-300/40 rounded px-4 py-1 hover:bg-copperfield-300/40"
         >
           Plans urbains
         </a>
         <a
           href="#sig"
-          className="text-xl border border-gray-300 rounded px-4 py-1 hover:bg-gray-200"
+          className="text-xl border border-copperfield-300/40 rounded px-4 py-1 hover:bg-copperfield-300/40"
         >
           SIG
         </a>
       </div>
-      <div className="flex flex-col gap-y-10 mt-8">
+      <div className="flex flex-col gap-y-20 mt-20">
         <section id="plu" className="md:scroll-mt-15 scroll-mt-18">
           <div className="flex flex-wrap w-full justify-between">
             <div className="flex flex-col md:w-[50%] mr-2 ml-auto min-w-[360px] px-5">
-            <h1 className="text-xl font-semibold">PLU</h1>
+            <h1 className="text-xl text-end font-semibold">PLU</h1>
 
              <p className="text-justify">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -90,9 +90,9 @@ export default function Realisation() {
           </div>
         </section>
         <section id="sig" className="md:scroll-mt-15 scroll-mt-18">
-          <div className="flex flex-wrap ] w-full justify-between">
+          <div className="flex flex-wrap ] w-full justify-between mb-20">
             <div className="flex flex-col md:w-[50%] mr-2 ml-auto min-w-[360px] px-5">
-            <h1 className="text-xl font-semibold">SIG</h1>
+            <h1 className="text-xl text-end font-semibold">SIG</h1>
              <p className="text-justify">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

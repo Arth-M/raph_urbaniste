@@ -30,7 +30,7 @@ export default function Entreprise() {
           </p>
         </div>
 
-        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-3 md:gap-y-5 mb-8 mt-5 md:mt-0">
+        <div className="flex flex-col md:max-w-[50%] md:w-[50%] mx-auto gap-y-3 md:gap-y-5 mb-8 mt-5 md:mt-0">
           <h2 className="text-3xl text-center font-bold mb-7">
             Comment nous contacter ?
           </h2>
@@ -44,7 +44,15 @@ export default function Entreprise() {
                 width="30"
                 height="30"
                 loading="lazy"
-                className="object-scale-down text-start col-span align-self-end"
+                className="absolute animate-[ping_800ms_ease-in-out_1_500ms] object-scale-down text-start col-span align-self-end"
+              />
+              <Image
+                src="/images/phone-receiver-silhouette.svg"
+                alt="Icone de téléphone pour indiquer le numéro de téléphone"
+                width="30"
+                height="30"
+                loading="lazy"
+                className="relative duration-700 object-scale-down text-start col-span align-self-end"
               />
             </div>
             <a
@@ -61,7 +69,15 @@ export default function Entreprise() {
                 width="30"
                 height="30"
                 loading="lazy"
-                className="object-scale-down text-start col-span align-self-end"
+                className="absolute animate-[ping_800ms_ease-in-out_1_1500ms] object-scale-down text-start col-span align-self-end"
+              />
+              <Image
+                src="/images/mail.svg"
+                alt="Icone de téléphone pour indiquer le numéro de téléphone"
+                width="30"
+                height="30"
+                loading="lazy"
+                className="relative object-scale-down text-start col-span align-self-end"
               />
             </div>
             <a
@@ -71,7 +87,28 @@ export default function Entreprise() {
               raphael.sinet@gmail.com
             </a>
 
-            <div className="flex gap-x-2 justify-end">
+            <div className="flex gap-x-2 justify-end relative">
+              <a
+                href="https://www.linkedin.com/company/novurba/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Voir le profil LinkedIn de Raphaël Sinet"
+              >
+                <svg
+                  className="w-7 h-fit text-black"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM2 21h6V9H2v12ZM8.5 21h5.5v-6.6c0-1.5.3-2.9 2-2.9 1.7 0 1.7 1.4 1.7 2.8V21H24v-7.1c0-4-2.1-5.9-5-5.9-2.3 0-3.3 1.3-3.8 2.2h.1V9H8.5c.1 1.2 0 12 0 12Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="sr-only">LinkedIn profile</span>
+              </a>
+            <div className="flex gap-x-2 justify-end absolute animate-[ping_800ms_ease-in-out_1_2500ms]">
               <a
                 href="https://www.linkedin.com/company/novurba/"
                 target="_blank"
@@ -93,15 +130,18 @@ export default function Entreprise() {
                 <span className="sr-only">LinkedIn profile</span>
               </a>
             </div>
+            </div>
             <a
               href="https://www.linkedin.com/company/novurba/"
               className="text-start text-lg select-all align-self-start"
+              target="_blank"
             >
               company/novurba/
             </a>
           </div>
         </div>
       </div>
+
 
       <h2 className="text-xl text-center font-bold uppercase mt-15 mb-6">
         Références professionnelles
@@ -110,17 +150,17 @@ export default function Entreprise() {
         <p className="text-center">
           Cabinet LUYTON (TOULON) - Planification et urbanisme pré-opérationnel
         </p>
-        <hr className="text-gray-300 w-[40%] md:hidden"/>
+        <hr className="text-copperfield-400 w-[40%] md:hidden"/>
         <p className="text-center">ALTEREO (VENELLES) - Planification</p>
-        <hr className="text-gray-300 w-[40%] md:hidden"/>
+        <hr className="text-copperfield-400 w-[40%] md:hidden"/>
         <p className="text-center">
           LKSPATIALIST (MONTPELLIER) - Expertise en planification et
           développement de nouvelles technologies liées au domaine de
           l'aménagement
         </p>
-        <hr className="text-gray-300 w-[40%] md:hidden"/>
+        <hr className="text-copperfield-400 w-[40%] md:hidden"/>
         <p className="text-center">METROPOLE de MONTPELLIER - Projet urbain</p>
-        <hr className="text-gray-300 w-[40%] md:hidden"/>
+        <hr className="text-copperfield-400 w-[40%] md:hidden"/>
         <p className="text-center">
           EPF OCCITANIE (MONTPELLIER) - Projets et stratégie fonciers /
           Négociation

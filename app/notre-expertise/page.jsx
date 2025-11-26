@@ -2,6 +2,7 @@
 import Carousel from "../_components/carousel";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
+import ArrowUp from "../_components/arrowUp.jsx";
 
 export default function Expertise() {
   const carouselData = [
@@ -161,6 +162,7 @@ export default function Expertise() {
           </div>
         </div>
       </div>
+      <ArrowUp />
     </div>
   );
 }

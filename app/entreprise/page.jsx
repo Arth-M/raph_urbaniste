@@ -44,7 +44,7 @@ export default function Entreprise() {
                 width="30"
                 height="30"
                 loading="lazy"
-                className="absolute animate-[ping_800ms_ease-in-out_1_500ms] object-scale-down text-start col-span align-self-end"
+                className="absolute animate-[ping_700ms_ease-in-out_1_500ms] object-scale-down text-start col-span align-self-end"
               />
               <Image
                 src="/images/phone-receiver-silhouette.svg"
@@ -69,7 +69,7 @@ export default function Entreprise() {
                 width="30"
                 height="30"
                 loading="lazy"
-                className="absolute animate-[ping_800ms_ease-in-out_1_1500ms] object-scale-down text-start col-span align-self-end"
+                className="absolute animate-[ping_700ms_ease-in-out_1_1100ms] object-scale-down text-start col-span align-self-end"
               />
               <Image
                 src="/images/mail.svg"
@@ -108,7 +108,7 @@ export default function Entreprise() {
                 </svg>
                 <span className="sr-only">LinkedIn profile</span>
               </a>
-            <div className="flex gap-x-2 justify-end absolute animate-[ping_800ms_ease-in-out_1_2500ms]">
+            <div className="flex gap-x-2 justify-end absolute animate-[ping_700ms_ease-in-out_1_1800ms]">
               <a
                 href="https://www.linkedin.com/company/novurba/"
                 target="_blank"
@@ -182,6 +182,7 @@ export default function Entreprise() {
           2024/2025
         </p>
       </div>
+      <ArrowUp />
     </div>
   );
 }

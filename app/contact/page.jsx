@@ -4,7 +4,7 @@ import ArrowUp from "../_components/arrowUp.jsx";
 export default function Contact() {
   return (
     <div className="mt-30 w-full">
-        <div className="flex items-center flex-wrap">
+        <div className="flex items-center flex-wrap mb-30">
         <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-5 mb-8 mx-auto">
           <h1 className="text-3xl text-center font-bold">
             Comment nous contacter ?
@@ -55,10 +55,10 @@ export default function Contact() {
             width="4896"
             height="2760"
             preload="true"
-            className="object-scale-down mr-0 ml-auto w-[100%] md:mx-auto md:w-[50%] h-fit"
+            className="object-scale-down mr-0 ml-auto w-[100%] md:mx-auto md:w-[50%] h-fit mt-10 md:mt-0"
           />
         </div>
-
+        <ArrowUp />
       </div>
 
   );

@@ -76,7 +76,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-screen my-10 bg-[url(/images/herault.jpg)] bg-fixed h-100 bg-size-[230%_100%] md:bg-size-[100%_auto] bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="w-screen mt-20 bg-[url(/images/herault.jpg)] bg-fixed h-120 bg-size-[230%_100%] md:bg-size-[100%_auto] bg-center bg-origin-border bg-no-repeat"></div>
 
       <div className="container mt-15 p-5 mx-auto">
         {/* Ils nous font confiance part */}

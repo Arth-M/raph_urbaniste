@@ -95,7 +95,7 @@ export default function Entreprise() {
                 title="Voir le profil LinkedIn de Raphaël Sinet"
               >
                 <svg
-                  className="w-7 h-fit text-black"
+                  className="w-7 h-7 text-black"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -116,7 +116,7 @@ export default function Entreprise() {
                 title="Voir le profil LinkedIn de Raphaël Sinet"
               >
                 <svg
-                  className="w-7 h-fit text-black"
+                  className="w-7 h-7 text-black"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"

@@ -81,10 +81,10 @@ export default function Entreprise() {
               />
             </div>
             <a
-              href="mailto:raphael.sinet@gmail.com"
+              href="mailto:raphael.sinet@novurba.fr"
               className="text-start text-lg select-all align-self-start"
             >
-              raphael.sinet@gmail.com
+              raphael.sinet@novurba.fr
             </a>
 
             <div className="flex gap-x-2 justify-end relative">

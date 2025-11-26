@@ -5,8 +5,8 @@ export default function Contact() {
   return (
     <div className="mt-30 w-full">
         <div className="flex items-center flex-wrap mb-30">
-        <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-5 mb-8 mx-auto">
-          <h1 className="text-3xl text-center font-bold">
+        <div className="md:max-w-[50%] md:w-[50%] mb-8 mx-auto">
+          <h1 className="text-3xl text-center font-bold mb-8">
             Comment nous contacter ?
           </h1>
           {/* téléphone */}
@@ -35,7 +35,7 @@ export default function Contact() {
                 className="object-scale-down text-start col-span align-self-end"
               />
             </div>
-           <a href="mailto:raphael.sinet@gmail.com" className="text-start text-lg select-all align-self-start">raphael.sinet@gmail.com</a>
+           <a href="mailto:raphael.sinet@novurba.fr" className="text-start text-lg select-all align-self-start">raphael.sinet@novurba.fr</a>
 
           <div className="flex gap-x-2 justify-end">
             <a href="https://www.linkedin.com/company/novurba/" target="_blank" rel="noopener noreferrer" title="Voir le profil LinkedIn de Raphaël Sinet">

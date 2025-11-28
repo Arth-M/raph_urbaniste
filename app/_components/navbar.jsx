@@ -100,7 +100,7 @@ export default function Navbar() {
           </div>
 
 
-          <div className="absolute inset-y-0 right-0 flex items-center justify-center pr-2 lg:static lg:inset-auto lg:ml-6 lg:pr-0 lg:hidden">
+          <div className="absolute inset-y-0 right-0 flex items-center justify-center pr-2 lg:hidden">
             {/* Mobile menu button with hamburger icon */}
             <button
               type="button"
@@ -136,7 +136,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} flex justify-end`}
+        className={`lg:hidden absolute shadow rounded border border-gray-200 right-0 max-w-2/3 ${isMobileMenuOpen ? 'block' : 'hidden'} flex justify-end`}
       >
         <div className="space-y-1 px-2 pt-2 pb-3 bg-gray-50 w-fit">
           <a

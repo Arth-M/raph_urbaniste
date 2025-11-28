@@ -16,10 +16,10 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    title: 'Raphaël Sinet - Urbaniste en Occitanie',
+    title: "L'urbanisme avec comme mots d'ordre: résilience, bas carbone, sobriété",
     description:
-      'Urbaniste diplômé basé à Montpellier, dirigeant de Novurba. Accompagnement des communes, métropoles, mairies pour la réalisation de plans financiers, PLU ou nouveaux projets.',
-    siteName: 'Raphaël Sinet - Urbaniste',
+      'Urbaniste diplômé basé à Montpellier, Raphaël Sinet est le dirigeant de Novurba. Il accompagnement les communes, métropoles, et mairies pour la réalisation de plans financiers, PLU ou nouveaux projets.',
+    siteName: 'Novurba - Urbanisme en occitanie',
     url: 'https://novurba.fr',
     images: [
       {
@@ -33,8 +33,8 @@ export const metadata = {
   // Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'Raphaël Sinet - Urbaniste en Occitanie',
-    description: 'Accompagnement des métropoles, communes et mairies - NovUrba.',
+    title: 'Novurba - Urbanisme en Occitanie',
+    description: 'Accompagnement des métropoles, communes et mairies.',
     images: [
       'https://media.licdn.com/dms/image/v2/C4E0BAQG70Y3ZqeWGqQ/company-logo_200_200/company-logo_200_200/0/1678785499189?e=2147483647&v=beta&t=ZU4eGSYK1ZBKuX5rrXqULVpQnSn_bfO6VwIUOlEd4XY',
     ],

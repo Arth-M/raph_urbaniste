@@ -69,7 +69,6 @@ export default function Home() {
             width="669"
             height="446"
             preload="true"
-            priority="true"
             className="object-cover h-fit rounded-l-xl w-[90%] md:max-w-[40%] md:min-h-[700px] lg:min-h-[520px] justify-self-end"
             // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
           />

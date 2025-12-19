@@ -98,7 +98,7 @@ export default function RootLayout({ children }) {
           @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
         </style>
       </head>
-      <body className='oswald h-screen'>
+      <body className='oswald  h-screen'>
         <Navbar/>
         {children}
         <Footer />

@@ -94,8 +94,11 @@ export default function RootLayout({ children }) {
           }}
         /> */}
         <link rel="icon" type="image/svg+xml" href="./images/cityN.svg"></link>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+        </style>
       </head>
-      <body className='font-general h-screen'>
+      <body className='oswald h-screen'>
         <Navbar/>
         {children}
         <Footer />

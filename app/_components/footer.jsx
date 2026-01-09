@@ -64,7 +64,7 @@ export default function Footer() {
 
               <div className="w-full flex justify-end mt-5 md:-mt-5">
               <div className="w-fit">
-                <p className="text-sm text-end ">2025 - Tous droits réservés</p>
+                <p className="text-sm text-end ">2026 - Tous droits réservés</p>
                 <hr className="my-1 border-gray-300 mx-auto md:my-1" />
                 <p className="text-sm text-end tracking-wider">Réalisé par <a href="http://www.atuweb.fr" className="text-xs text-center" target="_blank">ATU-Web</a></p>
               </div>

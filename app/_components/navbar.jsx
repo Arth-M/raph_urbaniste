@@ -136,9 +136,9 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden absolute shadow rounded border border-gray-200 right-0 max-w-2/3 ${isMobileMenuOpen ? 'block' : 'hidden'} flex justify-end`}
+        className={`z-90 lg:hidden absolute shadow rounded border border-gray-200 right-0 max-w-2/3 ${isMobileMenuOpen ? 'block' : 'hidden'} flex justify-end`}
       >
-        <div className="space-y-1 px-2 pt-2 pb-3 bg-gray-50 w-fit">
+        <div className="z-90 space-y-1 px-2 pt-2 pb-3 bg-gray-50 w-fit">
           <a
             href="/"
             className="block font-light rounded-md px-3 py-2 text-base text-gray-700  hover:text-gray-950 hover:text-lg text-right whitespace-nowrap"

@@ -57,7 +57,7 @@ export default function Expertise() {
       <div className="flex flex-wrap mt-15 md:px-30 px-5 gap-y-12 mx-auto justify-around">
         <div
           id="planification"
-          className={`scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+          className={`min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
             activeCard === "planification" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("planification")}
@@ -93,11 +93,12 @@ export default function Expertise() {
         </div>
         <div
           id="strategie-fonciere"
-          className={`scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+          className={`min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
             activeCard === "strategie-fonciere" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("strategie-fonciere")}
           >
+            <div>
           <h2 className="text-xl font-semibold mb-2">Stratégie foncière</h2>
           <p className="text-justify font-light tracking-wide text-lg">
             NOVURBA vous conseille et vous accompagne dans vos projets
@@ -106,6 +107,7 @@ export default function Expertise() {
             foncière) ou bien en aval (suivi de procédure d'acquisition,
             mobilisation du foncier ...)
           </p>
+          </div>
           <div className="md:absolute md:bottom-6 mt-8 md:mt-0">
             <Image
                 src="/images/check-circle.svg"
@@ -126,11 +128,12 @@ export default function Expertise() {
         </div>
         <div
           id="cartographie"
-          className={`scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+          className={`min-h-[570px]  scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
             activeCard === "cartographie" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("cartographie")}
           >
+            <div>
           <h2 className="text-xl font-semibold mb-2">Cartographie</h2>
           <p className="text-justify font-light tracking-wide text-lg">
             NOVURBA propose de vous accompagner dans la réalisation de
@@ -138,6 +141,7 @@ export default function Expertise() {
             planification à la stratégie foncière en passant par le projet
             urbain.
           </p>
+          </div>
           <div className="md:absolute md:bottom-6 mt-8 md:mt-0">
             <Image
                 src="/images/check-circle.svg"
@@ -157,7 +161,7 @@ export default function Expertise() {
 
             <li>Montage d'atlas cartographiques</li>
 
-            <li className="invisible"> coucou</li>
+            <li className="hidden lg:block lg:invisible"> coucou</li>
           </ul>
           </div>
         </div>

@@ -13,5 +13,8 @@
     "react-dom": "^19.2.3",
     "react-icons": "^5.5.0",
     "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "baseline-browser-mapping": "^2.9.19"
   }
 }

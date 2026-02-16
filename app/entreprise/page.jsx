@@ -37,7 +37,7 @@ export default function Entreprise() {
           {/* téléphone */}
           {/* <div className="flex flex-nowrap gap-x-4 my-2 mx-auto"> */}
           <div className="grid grid-cols-[1fr_3fr] w-[80%] mx-auto md:w-[40%] gap-x-3 gap-y-5">
-            <div className="flex gap-x-2 justify-end">
+            <div className="flex gap-x-2 justify-end relative">
               <Image
                 src="/images/phone-receiver-silhouette.svg"
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
@@ -52,17 +52,18 @@ export default function Entreprise() {
                 width="30"
                 height="30"
                 loading="lazy"
-                className="relative duration-700 object-scale-down text-start col-span align-self-end"
+                className="duration-700 object-scale-down text-start col-span align-self-end"
               />
             </div>
             <a
-              href="tel:+33676382568"
+              href="tel:+33665728130"
               className="text-start text-lg select-all align-self-start"
             >
-              +33 676382568
+              +33 6-65-72-81-30
+
             </a>
 
-            <div className="flex gap-x-2 justify-end">
+            <div className="flex gap-x-2 justify-end relative">
               <Image
                 src="/images/mail.svg"
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
@@ -77,7 +78,7 @@ export default function Entreprise() {
                 width="30"
                 height="30"
                 loading="lazy"
-                className="relative object-scale-down text-start col-span align-self-end"
+                className=" object-scale-down text-start col-span align-self-end"
               />
             </div>
             <a
@@ -172,15 +173,12 @@ export default function Entreprise() {
         Études achevées ou en cours
       </h2>
       <div className="flex flex-col gap-y-4 items-center max-w-[70%] mx-auto text-lg">
-        <p className="text-center">Plan Local d'Urbanisme de QUISSAC (Gard) - 2024</p>
+        <p className="text-center">Plans Locaux d’Urbanisme de trois communes gardoises – En cours</p>
+        <p className="text-center">Etude urbaine pour MONTPELLIER MEDITERRANEE METROPOLE – 2024/2026</p>
         <p className="text-center">
-          Etude urbaine pour le schéma directeur de la gestion des eaux de
-          MONTPELLIER MEDITERRANEE METROPOLE - 2024/2025
+          Diverses missions réglementaires et SIG en appui de bureaux d'études.
         </p>
-        <p className="text-center">
-          Missions réglementaires et SIG en appui de bureaux d'études -
-          2024/2025
-        </p>
+        <p className="text-center">Plan Local d'Urbanisme de QUISSAC (Gard) - Achevée en 2024</p>
       </div>
       <ArrowUp />
     </div>

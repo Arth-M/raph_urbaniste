@@ -75,7 +75,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-screen mt-20 bg-[url(/images/fond.png)] md:bg-fixed h-120 bg-size-[230%_auto] md:bg-size-[100%_auto] bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="w-screen mt-20 bg-[url(/images/fond.png)] md:bg-fixed h-120 bg-size-[230%_auto] lg:bg-size-[185%_auto] md:bg-size-[205%_auto] bg-center bg-origin-border bg-no-repeat"></div>
 
       <div className="container mt-15 p-5 mx-auto">
         {/* Ils nous font confiance part */}

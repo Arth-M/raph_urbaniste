@@ -25,8 +25,16 @@ export default function Realisation() {
           SIG
         </a>
       </div>
-      <div className="flex flex-col gap-y-20 mt-20">
-        <section id="plu" className="md:scroll-mt-15 scroll-mt-18">
+      <div className="flex flex-col md:gap-y-20 mt-20 relative ">
+        <Image
+          src={`/images/PLU.png`}
+          alt="Image du fondateur de Novurba, Raphaël Sinet"
+          width="1240"
+          height="514"
+          preload="true"
+          className="object-scale-down w-[40%] ml-0 mr-auto h-fit md:hidden absolute sm:-top-10 left-0"
+        />
+        <section id="plu" className="md:scroll-mt-15 scroll-mt-18 mb-15 md:mb-0 mt-15 md:mt-0">
           <div className="flex flex-wrap w-full justify-between">
             <div className="flex flex-col md:w-[50%] mr-2 ml-auto min-w-[360px] px-5">
             <h1 className="text-xl text-end font-semibold">PLU</h1>
@@ -54,12 +62,20 @@ export default function Realisation() {
               />
           </div>
         </section>
-        <section id="strat-fonciere" className="md:scroll-mt-15 scroll-mt-18">
+        <Image
+          src={`/images/strat-fonc-realisations.png`}
+          alt=""
+          width="1240"
+          height="514"
+          preload="true"
+          className="object-scale-down w-full ml-0 mr-auto h-fit md:hidden"
+        />
+        <section id="strat-fonciere" className="md:scroll-mt-15 scroll-mt-18 bg-copperfield-100/70 text-copperfield-950 md:bg-white py-15 md:py-0">
           <div className="flex flex-wrap w-full justify-between">
 
             <Image
                 src={`/images/strat-fonc-realisations.png`}
-                alt="Image du fondateur de Novurba, Raphaël Sinet"
+                alt=""
                 width="1240"
                 height="514"
                 preload="true"
@@ -82,6 +98,14 @@ export default function Realisation() {
             </div>
           </div>
         </section>
+        <Image
+          src={`/images/sig.png`}
+          alt=""
+          width="1240"
+          height="514"
+          preload="true"
+          className="object-scale-down w-full h-fit mr-0 ml-auto md:hidden mb-15"
+        />
         <section id="sig" className="md:scroll-mt-15 scroll-mt-18">
           <div className="flex flex-wrap ] w-full justify-between mb-20">
             <div className="flex flex-col md:w-[50%] mr-2 ml-auto min-w-[360px] px-5">
@@ -102,7 +126,7 @@ export default function Realisation() {
             </div>
             <Image
                 src={`/images/sig.png`}
-                alt="Image du fondateur de Novurba, Raphaël Sinet"
+                alt=""
                 width="1240"
                 height="514"
                 preload="true"

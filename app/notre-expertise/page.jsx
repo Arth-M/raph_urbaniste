@@ -12,7 +12,7 @@ export default function Expertise() {
       ref: "planification",
     },
     {
-      image: "cadastre.png",
+      image: "strat_fonciere.png",
       text: "Stratégie foncière",
       ref: "strategie-fonciere",
     },

@@ -6,7 +6,7 @@ export default function Home() {
     <div className="md:mt-20 mt-15 w-full">
       <div className="not-arrow-up">
         <h1 className="text-center text-6xl font-bold tracking-wide px-5">
-          L'urbanisme c'est la vie
+          L'urbanisme par le terrain
         </h1>
 
         <div className="flex flex-wrap justify-start mx-auto w-fit my-20 px-5 gap-y-5">
@@ -75,7 +75,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-screen mt-20 bg-[url(/images/herault.jpg)] md:bg-fixed h-120 bg-size-[230%_auto] md:bg-size-[100%_auto] bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="w-screen mt-20 bg-[url(/images/fond.png)] md:bg-fixed h-120 bg-size-[230%_auto] md:bg-size-[100%_auto] bg-center bg-origin-border bg-no-repeat"></div>
 
       <div className="container mt-15 p-5 mx-auto">
         {/* Ils nous font confiance part */}

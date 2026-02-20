@@ -9,7 +9,7 @@ export default function Home() {
           L'urbanisme par le terrain
         </h1>
 
-        <div className="flex flex-wrap justify-start mx-auto w-fit my-20 px-5 gap-y-5">
+        <div className="flex flex-wrap justify-center mx-auto w-fit my-20 px-5 gap-y-5">
           <p className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-lg">
             NOVURBA, ce n'est pas qu'un bureau d'études qui vous propose de
             simples prestations en urbanisme et aménagement. A travers les
@@ -75,9 +75,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-screen mt-20 bg-[url(/images/fond.png)] md:bg-fixed h-120 bg-size-[230%_auto] lg:bg-size-[185%_auto] md:bg-size-[205%_auto] bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="w-screen sm:mt-20 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[100%_auto] md:bg-size-[100%_auto] bg-center bg-origin-border bg-no-repeat"></div>
 
-      <div className="container mt-15 p-5 mx-auto">
+      <div className="container sm:mt-15 p-5 mx-auto">
         {/* Ils nous font confiance part */}
         {/* 1 design pattern for large screens (>md) */}
         <div className="md:flex md:flex-col hidden mt-15">

@@ -79,7 +79,7 @@ export default function Expertise() {
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
                 width="50"
                 height="50"
-                loading='lazy'
+                loading={lazy}
                 className="object-scale-down text-start justify-self-center"
               />
           <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
@@ -114,7 +114,7 @@ export default function Expertise() {
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
                 width="50"
                 height="50"
-                loading='lazy'
+                loading={lazy}
                 className="object-scale-down text-start justify-self-center"
               />
           <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
@@ -148,7 +148,7 @@ export default function Expertise() {
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
                 width="50"
                 height="50"
-                loading='lazy'
+                loading={lazy}
                 className="object-scale-down text-start justify-self-center"
               />
           <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">

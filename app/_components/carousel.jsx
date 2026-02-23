@@ -68,9 +68,9 @@ export default function Carousel({
         <Image
           src={`/images/${carouselData[activeItemIndex].image}`}
           alt="Images de cartographie, stratégie foncière, et planification"
-          width="800"
-          height="533"
-          preload="true"
+          width={800}
+          height={533}
+          preload={true}
           className="object-scale-down z-0 object-center w-full h-full rounded-xl"
         />
       </div>

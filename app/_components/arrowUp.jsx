@@ -36,10 +36,10 @@ export default function ArrowUp() {
     >
       <Image
         src="/images/up.svg"
-        alt="Logo de Novurba"
+        alt="Flèche pour remonter en haut de la page"
         width="15"
         height="15"
-        loading="lazy"
+        loading={lazy}
         className="object-cover h-fit rounded-l-xl text-copperfield-400"
         // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
       />

@@ -42,9 +42,9 @@ export default function Navbar() {
               <Image
               src="/images/6410514c268519ca04980d2a_Logo essai 3.png"
               alt="Logo de Novurba"
-              width="463"
-              height="452"
-              preload="true"
+              width={463}
+              height={452}
+              preload={true}
               className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
               // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
             />

@@ -29,9 +29,9 @@ export default function Realisation() {
         <Image
           src={`/images/PLU.png`}
           alt="Image du fondateur de Novurba, Raphaël Sinet"
-          width="1240"
-          height="514"
-          preload="true"
+          width={1240}
+          height={514}
+          preload={true}
           className="object-scale-down w-[40%] ml-0 mr-auto h-fit md:hidden absolute sm:-top-10 left-0"
         />
         <section id="plu" className="md:scroll-mt-15 scroll-mt-18 mb-15 md:mb-0 mt-15 md:mt-0">
@@ -55,9 +55,9 @@ export default function Realisation() {
               <Image
                 src={`/images/PLU.png`}
                 alt="Image du fondateur de Novurba, Raphaël Sinet"
-                width="1240"
-                height="514"
-                preload="true"
+                width={1240}
+                height={514}
+                preload={true}
                 className="object-scale-down w-[40%] h-fit hidden md:flex"
               />
           </div>
@@ -65,9 +65,9 @@ export default function Realisation() {
         <Image
           src={`/images/strat-fonc-realisations.png`}
           alt=""
-          width="1240"
-          height="514"
-          preload="true"
+          width={1240}
+          height={514}
+          preload={true}
           className="object-scale-down w-full ml-0 mr-auto h-fit md:hidden"
         />
         <section id="strat-fonciere" className="md:scroll-mt-15 scroll-mt-18 bg-copperfield-100/70 text-copperfield-950 md:bg-white py-15 md:py-0">
@@ -76,9 +76,9 @@ export default function Realisation() {
             <Image
                 src={`/images/strat-fonc-realisations.png`}
                 alt=""
-                width="1240"
-                height="514"
-                preload="true"
+                width={1240}
+                height={514}
+                preload={true}
                 className="object-scale-down w-[40%] h-fit hidden md:flex"
               />
               <div className="flex flex-col md:w-[50%] ml-2 mr-auto min-w-[360px] px-5">
@@ -101,9 +101,9 @@ export default function Realisation() {
         <Image
           src={`/images/sig.png`}
           alt=""
-          width="1240"
-          height="514"
-          preload="true"
+          width={1240}
+          height={514}
+          preload={true}
           className="object-scale-down w-full h-fit mr-0 ml-auto md:hidden mb-15"
         />
         <section id="sig" className="md:scroll-mt-15 scroll-mt-18">
@@ -127,9 +127,9 @@ export default function Realisation() {
             <Image
                 src={`/images/sig.png`}
                 alt=""
-                width="1240"
-                height="514"
-                preload="true"
+                width={1240}
+                height={514}
+                preload={true}
                 className="object-scale-down w-[40%] h-fit hidden md:flex"
               />
           </div>

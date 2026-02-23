@@ -47,9 +47,9 @@ export default function Home() {
             <Image
               src={`/images/raph.jpg`}
               alt="Image du fondateur de Novurba, Raphaël Sinet"
-              width="150"
-              height="150"
-              preload="true"
+              width={150}
+              height={150}
+              preload={true}
               className="object-scale-down text-start col-span z-10 rounded-full"
             />
             <div className="flex h-full items-end justify-end">
@@ -89,9 +89,9 @@ export default function Home() {
           <Image
             src="/images/montpellier.jpg"
             alt="Image d'une ville du sud"
-            width="669"
-            height="446"
-            preload="true"
+            width={669}
+            height={446}
+            preload={true}
             className="object-cover h-fit rounded-l-xl w-[90%] md:max-w-[40%] md:min-h-[700px] lg:min-h-[520px] justify-self-end"
             // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
           />
@@ -107,10 +107,10 @@ export default function Home() {
           <div className="flex mx-auto gap-x-10 items-center">
             <Image
               src={`/images/essence_urbanisme.jpeg`}
-              alt=""
+              alt="image d'un sponsor"
               width="200"
               height="200"
-              loading="lazy"
+              loading={lazy}
               className="w-[200px] h-[200px] lg:my-0 my-6"
             />
             <h2 className="text-center text-2xl md:text-3xl font-md">
@@ -118,28 +118,28 @@ export default function Home() {
             </h2>
             <Image
               src={`/images/Montpellier_Méditerranée_Métropole.png`}
-              alt=""
+              alt="image d'un sponsor"
               width="500"
               height="500"
-              loading="lazy"
+              loading={lazy}
               className="w-[180px] h-[180px] lg:my-0 mt-6"
             />
           </div>
           <div className="flex mx-auto gap-x-35 items-center">
             <Image
               src={`/images/Atelier_Chibaudel.png`}
-              alt=""
+              alt="image d'un sponsor"
               width="500"
               height="153"
-              loading="lazy"
+              loading={lazy}
               className="w-[200px] h-[60px] lg:my-0 my-6"
             />
             <Image
               src={`/images/naturae_groupelamo.jpeg`}
-              alt=""
+              alt="image d'un sponsor"
               width="200"
               height="200"
-              loading="lazy"
+              loading={lazy}
               className="w-[200px] h-[200px] lg:my-0 my-0"
             />
           </div>
@@ -153,34 +153,34 @@ export default function Home() {
           <div className="w-full flex flex-wrap items-center gap-x-30 gap-y-5 justify-center mt-5">
             <Image
               src={`/images/Atelier_Chibaudel.png`}
-              alt=""
+              alt="image d'un sponsor"
               width="500"
               height="153"
-              loading="lazy"
+              loading={lazy}
               className="w-[250px] h-[76px] lg:my-0 my-6"
             />
             <Image
               src={`/images/essence_urbanisme.jpeg`}
-              alt=""
+              alt="image d'un sponsor"
               width="200"
               height="200"
-              loading="lazy"
+              loading={lazy}
               className="w-[200px] h-[200px] lg:my-0 my-6"
             />
             <Image
               src={`/images/Montpellier_Méditerranée_Métropole.png`}
-              alt=""
+              alt="image d'un sponsor"
               width="500"
               height="500"
-              loading="lazy"
+              loading={lazy}
               className="w-[180px] h-[180px] lg:my-0 mt-6"
             />
             <Image
               src={`/images/naturae_groupelamo.jpeg`}
-              alt=""
+              alt="image d'un sponsor"
               width="200"
               height="200"
-              loading="lazy"
+              loading={lazy}
               className="w-[200px] h-[200px] lg:my-0 my-0"
             />
           </div>

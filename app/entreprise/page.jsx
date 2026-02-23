@@ -12,9 +12,9 @@ export default function Entreprise() {
           <Image
             src={`/images/raph.jpg`}
             alt="Image du fondateur de Novurba, Raphaël Sinet"
-            width="150"
-            height="150"
-            preload="true"
+            width={150}
+            height={150}
+            preload={true}
             className="object-scale-down text-start col-span z-10 rounded-full mx-auto"
           />
           <p className="tacking-wide font-light text-lg pt-1 px-5 md:max-w-[70%] md:p-1 self-center">
@@ -43,7 +43,7 @@ export default function Entreprise() {
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
                 width="30"
                 height="30"
-                loading="lazy"
+                loading={lazy}
                 className="absolute animate-[ping_700ms_ease-in-out_1_500ms] object-scale-down text-start col-span align-self-end"
               />
               <Image
@@ -51,7 +51,7 @@ export default function Entreprise() {
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
                 width="30"
                 height="30"
-                loading="lazy"
+                loading={lazy}
                 className="duration-700 object-scale-down text-start col-span align-self-end"
               />
             </div>
@@ -69,7 +69,7 @@ export default function Entreprise() {
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
                 width="30"
                 height="30"
-                loading="lazy"
+                loading={lazy}
                 className="absolute animate-[ping_700ms_ease-in-out_1_1100ms] object-scale-down text-start col-span align-self-end"
               />
               <Image
@@ -77,7 +77,7 @@ export default function Entreprise() {
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
                 width="30"
                 height="30"
-                loading="lazy"
+                loading={lazy}
                 className=" object-scale-down text-start col-span align-self-end"
               />
             </div>

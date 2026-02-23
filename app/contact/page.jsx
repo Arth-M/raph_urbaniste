@@ -18,7 +18,7 @@ export default function Contact() {
                 alt="Icone de téléphone pour indiquer le numéro de téléphone"
                 width="30"
                 height="30"
-                loading='lazy'
+                loading={lazy}
                 className="object-scale-down text-start col-span align-self-end"
               />
             </div>
@@ -28,10 +28,10 @@ export default function Contact() {
             <div className="flex gap-x-2 justify-end">
               <Image
                 src="/images/mail.svg"
-                alt="Icone de téléphone pour indiquer le numéro de téléphone"
+                alt="Icone de mail pour indiquer le numéro de mail"
                 width="30"
                 height="30"
-                loading='lazy'
+                loading={lazy}
                 className="object-scale-down text-start col-span align-self-end"
               />
             </div>
@@ -54,7 +54,7 @@ export default function Contact() {
             alt="Photographie d'un village du sud de la France"
             width="4896"
             height="2760"
-            preload="true"
+            preload={true}
             className="object-scale-down mr-0 ml-auto w-[100%] md:mx-auto md:w-[50%] h-fit mt-10 md:mt-0"
           />
         </div>

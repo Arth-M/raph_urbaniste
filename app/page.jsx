@@ -72,7 +72,7 @@ export default function Home() {
                 Nos <span className="text-copperfield-500/90">valeurs</span>
               </h2>
             </div>
-            <p className="tracking-wide font-light text-xl min-w-[370px]">
+            <p className="tracking-wide font-light text-xl w-[90%] md:w-[50%] min-w-[310px]">
               <span className="font-normal">NOVURBA</span> est une entreprise
               avant toute chose proche de la réalité de chaque territoire, car
               nous sommes bien conscient des différences entre chaque
@@ -96,7 +96,7 @@ export default function Home() {
             width={669}
             height={446}
             preload={true}
-            className="object-cover h-fit rounded-l-xl w-[90%] min-w-[370px] md:max-w-[40%] md:min-h-[700px] lg:min-h-[520px] justify-self-end"
+            className="object-cover h-fit rounded-l-xl w-[85%] min-w-[300px] md:max-w-[40%] md:min-h-[700px] lg:min-h-[520px] justify-self-end"
             // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
           />
         </div>

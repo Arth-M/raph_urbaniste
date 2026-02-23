@@ -36,7 +36,7 @@ export default function Realisation() {
             width={35}
             height={35}
             loading="lazy"
-            className="object-scale-down inline pb-3 mr-0 -rotate{50}
+            className="object-scale-down inline pb-3 mr-0 -rotate{50}"
           />
           <a href="/notre-expertise" className="underline text-blue-600 inline">Notre expertise</a>
         </li>

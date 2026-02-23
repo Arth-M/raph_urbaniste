@@ -2,17 +2,17 @@
 
 @theme {
   --font-general: 'Oswald';
-  --color-copperfield-50: #fdf5ef;
-  --color-copperfield-100: #fbe6d9;
-  --color-copperfield-200: #f5cbb3;
-  --color-copperfield-300: #efa882;
-  --color-copperfield-400: #e9845c;
-  --color-copperfield-500: #e2592d;
-  --color-copperfield-600: #d34223;
-  --color-copperfield-700: #af311f;
-  --color-copperfield-800: #8c2920;
-  --color-copperfield-900: #71241d;
-  --color-copperfield-950: #3d100d;
+  --color-copperfield-50: #fdf4ef;
+  --color-copperfield-100: #fae6da;
+  --color-copperfield-200: #f3cbb5;
+  --color-copperfield-300: #eba786;
+  --color-copperfield-400: #e37d58;
+  --color-copperfield-500: #dc5933;
+  --color-copperfield-600: #cd4329;
+  --color-copperfield-700: #ab3223;
+  --color-copperfield-800: #892a23;
+  --color-copperfield-900: #6e2620;
+  --color-copperfield-950: #3b100f;
 }
 
 

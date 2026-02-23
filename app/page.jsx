@@ -3,22 +3,45 @@ import ArrowUp from "./_components/arrowUp.jsx";
 
 export default function Home() {
   return (
-    <div className="md:mt-20 mt-15 w-full">
+    <div className="md:mt-15 mt-15 w-full">
       <div className="not-arrow-up">
-        <h1 className="text-center text-6xl font-bold tracking-wide px-5">
-          L'urbanisme par le terrain
-        </h1>
+        <div className="w-fit relative mx-auto z-10">
+          <Image
+              src={`/images/reseauOk.png`}
+              alt="Image de réseau"
+              width={1536}
+              height={1024}
+              preload={true}
+              className="absolute w-full object-cover top-18 opacity-20 sm:top-10 sm:left-3 -z-10"
+              style={{
+                maskImage: 'linear-gradient(to top, black 50%, transparent 90%)',
+                WebkitMaskImage: 'linear-gradient(to top, black 30%, transparent 100%)',
+              }}
+            />
+          <h1 className="z-10 w-fit text-center mx-auto text-6xl font-bold tracking-wide px-5">
+            L'urbanisme par le <span className="text-copperfield-500 z-10">terrain</span>
+          </h1>
+        </div>
 
-        <div className="flex flex-wrap justify-center mx-auto w-fit my-20 px-5 gap-y-5">
-          <p className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-lg">
-            NOVURBA, ce n'est pas qu'un bureau d'études qui vous propose de
-            simples prestations en urbanisme et aménagement. A travers les
-            prestations et compétences sur la planification, le projet urbain et
-            la stratégie foncière, NOVURBA c'est aussi et surtout du conseil
-            dans une nouvelle façon de voir et concevoir l'urbanisme et
-            l'aménagement, avec comme mots d'ordre : résilience, bas carbone,
-            sobriété.
-          </p>
+        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-20 sm:mt-38 px-5 gap-y-5">
+
+            <span className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-lg">
+              <span className="font-normal text-copperfield-500/90">NOVURBA</span>, ce n'est pas qu'un bureau d'études qui vous propose de
+              simples prestations en urbanisme et aménagement. A travers les
+              prestations et compétences sur la <span className="font-normal">planification</span>, le <span className="font-normal">projet urbain</span> et
+              la <span className="font-normal">stratégie foncière</span>, NOVURBA c'est aussi et surtout du conseil
+              dans une nouvelle façon de voir et concevoir l'urbanisme et
+              l'aménagement, avec comme mots d'ordre <span>: </span>
+
+              <div className="inline-flex items-center gap-2 text-lg font-normal">
+                <span className="text-copperfield-500/90"> résilience</span>
+                <div className="w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></div>
+                <span className="text-copperfield-500/90">bas carbone</span>
+                <div className="w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></div>
+                <span className="text-copperfield-500/90">sobriété</span>
+              </div>
+            </span>
+
 
           <div className="flex flex-nowrap w-90 justify-center align-center items-center">
             <Image
@@ -41,13 +64,13 @@ export default function Home() {
       <div className="w-screen md:mt-30 mt-25">
         <div className="md:mr-0 md:ml-auto md:flex grid grid-cols-1 gap-y-6 md:gap-y-0 h-fit">
           <div className="flex flex-col text-justify px-8 lg:pl-30 md:pr-7 lg:w-2/3 my-auto mx-auto">
-            <div className="rounded-full border-2 border-copperfield-500 w-36 h-36 py-13 mx-auto mb-3">
+            <div className="rounded-full border-2 border-copperfield-400 w-36 h-36 py-13 mx-auto mb-3">
               <h2 className="text-center text-2xl font-semibold my-auto">
-                Nos valeurs
+                Nos <span className="text-copperfield-500/90">valeurs</span>
               </h2>
             </div>
             <p className="tracking-wide font-light text-lg min-w-[45%]">
-              NOVURBA est une entreprise avant toute chose proche de la réalité
+              <span className="font-normal">NOVURBA</span> est une entreprise avant toute chose proche de la réalité
               de chaque territoire, car nous sommes bien conscient des
               différences entre chaque département, intercommunalité, commune et
               même quartier. Par ailleurs, à l'heure du dérèglement climatique
@@ -91,7 +114,7 @@ export default function Home() {
               className="w-[200px] h-[200px] lg:my-0 my-6"
             />
             <h2 className="text-center text-2xl md:text-3xl font-md">
-              Ils font confiance à Novurba
+              Ils font confiance à <span className="text-copperfield-500/90">Novurba</span>
             </h2>
             <Image
               src={`/images/Montpellier_Méditerranée_Métropole.png`}

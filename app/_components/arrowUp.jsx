@@ -31,7 +31,7 @@ export default function ArrowUp() {
       onClick={scrollToTop}
       className={`fixed bottom-15 md:bottom-25 -right-7 z-90 p-3 rounded-xl shadow transition-all duration-300
         bg-copperfield-300 hover:bg-copperfield-500
-        ${showArrow ? "opacity-100 -translate-x-10 duration-300 ease-in" : "translate-x-0 invisible"}`}
+        ${showArrow ? "opacity-100 sm:-translate-x-10 -translate-x-15 duration-300 ease-in" : "translate-x-0 invisible"}`}
       aria-label="Retour en haut"
     >
       <Image

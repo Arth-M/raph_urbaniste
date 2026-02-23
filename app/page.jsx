@@ -12,7 +12,7 @@ export default function Home() {
               width={1536}
               height={1024}
               preload={true}
-              className="absolute w-full object-cover top-18 opacity-20 sm:top-10 sm:left-3 -z-10"
+              className="absolute w-full object-cover top-18 opacity-20 md:opacity-80 md:top-10 sm:left-3 -z-10"
               style={{
                 maskImage: 'linear-gradient(to top, black 50%, transparent 90%)',
                 WebkitMaskImage: 'linear-gradient(to top, black 30%, transparent 100%)',

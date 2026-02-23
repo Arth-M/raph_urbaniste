@@ -12,7 +12,7 @@ export default function Home() {
               width={1536}
               height={1024}
               preload={true}
-              className="absolute w-full object-cover top-18 opacity-20 md:opacity-80 md:top-10 sm:left-3 -z-10"
+              className="absolute w-full object-cover top-25 opacity-20 md:opacity-80 md:top-10 sm:left-3 -z-10"
               style={{
                 maskImage: 'linear-gradient(to top, black 50%, transparent 90%)',
                 WebkitMaskImage: 'linear-gradient(to top, black 30%, transparent 100%)',
@@ -23,7 +23,7 @@ export default function Home() {
           </h1>
         </div>
 
-        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-20 sm:mt-38 px-5 gap-y-5">
+        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-25 sm:mt-38 px-5 gap-y-5">
 
             <span className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-lg">
               <span className="font-normal text-copperfield-500/90">NOVURBA</span>, ce n'est pas qu'un bureau d'études qui vous propose de

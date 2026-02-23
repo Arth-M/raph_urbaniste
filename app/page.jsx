@@ -148,7 +148,7 @@ export default function Home() {
         {/* Ils nous font confiance : 1 design pattern for small screens (<md) */}
         <div className="md:hidden">
           <h2 className="text-center text-2xl md:text-3xl font-md">
-            Ils font confiance à Novurba
+            Ils font confiance à <span className="text-copperfield-500/90">Novurba</span>
           </h2>
           <div className="w-full flex flex-wrap items-center gap-x-30 gap-y-5 justify-center mt-5">
             <Image

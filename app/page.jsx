@@ -46,7 +46,7 @@ export default function Home() {
             </div>
           </span>
 
-          <div className="flex flex-nowrap w-90 justify-center align-center items-center">
+          <div className="flex flex-nowrap w-fit md:w-90 justify-center align-center items-center">
             <Image
               src={`/images/raph.jpg`}
               alt="Image du fondateur de Novurba, Raphaël Sinet"
@@ -65,14 +65,14 @@ export default function Home() {
       </div>
 
       <div className="w-full md:mt-30 mt-25">
-        <div className="md:mr-0 md:ml-auto md:flex grid grid-cols-1 gap-y-6 md:gap-y-0 h-fit">
+        <div className="md:mr-0 md:ml-auto md:flex grid grid-cols-1 w-full gap-y-6 md:gap-y-0 h-fit">
           <div className="flex flex-col text-justify px-8 lg:pl-30 md:pr-7 lg:w-2/3 my-auto mx-auto">
             <div className="rounded-full border-2 border-copperfield-400 w-36 h-36 py-13 mx-auto mb-3">
               <h2 className="text-center text-2xl font-semibold my-auto">
                 Nos <span className="text-copperfield-500/90">valeurs</span>
               </h2>
             </div>
-            <p className="tracking-wide font-light text-xl w-[90%] md:w-[50%] min-w-[310px]">
+            <p className="tracking-wide font-light text-xl sm:min-w-[250px]">
               <span className="font-normal">NOVURBA</span> est une entreprise
               avant toute chose proche de la réalité de chaque territoire, car
               nous sommes bien conscient des différences entre chaque
@@ -96,13 +96,13 @@ export default function Home() {
             width={669}
             height={446}
             preload={true}
-            className="object-cover h-fit rounded-l-xl w-[85%] min-w-[300px] md:max-w-[40%] md:min-h-[700px] lg:min-h-[520px] justify-self-end"
+            className="object-cover h-fit rounded-l-xl w-[90%] md:min-w-[370px] md:max-w-[40%] md:min-h-[700px] lg:min-h-[520px] justify-self-end"
             // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
           />
         </div>
       </div>
 
-      <div className="hidden md:block w-screen sm:mt-20 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="hidden md:block w-full sm:mt-20 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
 
       <div className="container sm:mt-15 p-5 mx-auto">
         {/* Ils nous font confiance part */}
@@ -192,7 +192,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-90 md:hidden block w-screen sm:mt-20 -mb-22 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="z-90 md:hidden block w-full sm:mt-20 -mb-22 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
 
       <ArrowUp />
     </div>

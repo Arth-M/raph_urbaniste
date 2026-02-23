@@ -64,7 +64,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-screen md:mt-30 mt-25">
+      <div className="w-full md:mt-30 mt-25">
         <div className="md:mr-0 md:ml-auto md:flex grid grid-cols-1 gap-y-6 md:gap-y-0 h-fit">
           <div className="flex flex-col text-justify px-8 lg:pl-30 md:pr-7 lg:w-2/3 my-auto mx-auto">
             <div className="rounded-full border-2 border-copperfield-400 w-36 h-36 py-13 mx-auto mb-3">

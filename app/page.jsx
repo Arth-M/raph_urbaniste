@@ -152,11 +152,11 @@ export default function Home() {
 
         {/* Ils nous font confiance : 1 design pattern for small screens (<md) */}
         <div className="md:hidden">
-          <h2 className="text-center text-4xl md:text-4xl font-md tracking-wide">
+          <h2 className="text-center text-4xl md:text-4xl mt-20 font-md tracking-wide">
             Ils font confiance à{" "}
             <span className="text-copperfield-500/90 font-bold">Novurba</span>
           </h2>
-          <div className="w-full flex flex-wrap items-center gap-x-30 gap-y-5 justify-center mt-5">
+          <div className="w-full flex flex-wrap items-center gap-x-25 gap-y-5 justify-center mt-5">
             <Image
               src={`/images/Atelier_Chibaudel.png`}
               alt="image d'un sponsor"
@@ -192,7 +192,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-90 md:hidden block w-full sm:mt-20 -mb-22 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="z-90 md:hidden block w-full -mt-20 sm:mt-5 -mb-30 sm:-mb-29 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
 
       <ArrowUp />
     </div>

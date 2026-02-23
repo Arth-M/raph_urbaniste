@@ -49,8 +49,8 @@ export default function Expertise() {
           activeItemIndex={activeItemIndex}
           setActiveItemIndex={setActiveItemIndex}
           carouselData={carouselData}
-           setActiveCard={setActiveCard}
-           activeCard={activeCard}
+          setActiveCard={setActiveCard}
+          activeCard={activeCard}
         />
       </div>
 
@@ -61,7 +61,7 @@ export default function Expertise() {
             activeCard === "planification" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("planification")}
-          >
+        >
           <h2 className="text-xl font-semibold mb-2">
             Planification / Projet urbain
           </h2>
@@ -75,20 +75,20 @@ export default function Expertise() {
           </p>
           <div className="">
             <Image
-                src="/images/check-circle.svg"
-                alt="Icone de téléphone pour indiquer le numéro de téléphone"
-                width="50"
-                height="50"
-                loading={lazy}
-                className="object-scale-down text-start justify-self-center"
-              />
-          <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
-            <li>Etudes urbaines spécifiques</li>
-            <li>Etudes pré-opérationnelles</li>
-            <li>Conseil en planification (PLU/ CC)</li>
-            <li>Prospective urbaine</li>
-            <li>Diagnostic urbain</li>
-          </ul>
+              src="/images/check-circle.svg"
+              alt="Icone de téléphone pour indiquer le numéro de téléphone"
+              width="50"
+              height="50"
+              loading="lazy"
+              className="object-scale-down text-start justify-self-center"
+            />
+            <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+              <li>Etudes urbaines spécifiques</li>
+              <li>Etudes pré-opérationnelles</li>
+              <li>Conseil en planification (PLU/ CC)</li>
+              <li>Prospective urbaine</li>
+              <li>Diagnostic urbain</li>
+            </ul>
           </div>
         </div>
         <div
@@ -97,33 +97,33 @@ export default function Expertise() {
             activeCard === "strategie-fonciere" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("strategie-fonciere")}
-          >
-            <div>
-          <h2 className="text-xl font-semibold mb-2">Stratégie foncière</h2>
-          <p className="text-justify font-light tracking-wide text-lg">
-            NOVURBA vous conseille et vous accompagne dans vos projets
-            nécessitant le développement d'une stratégie foncière qu'elle soit
-            en amont (étude de gisements fonciers, analyse de la dureté
-            foncière) ou bien en aval (suivi de procédure d'acquisition,
-            mobilisation du foncier ...)
-          </p>
+        >
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Stratégie foncière</h2>
+            <p className="text-justify font-light tracking-wide text-lg">
+              NOVURBA vous conseille et vous accompagne dans vos projets
+              nécessitant le développement d'une stratégie foncière qu'elle soit
+              en amont (étude de gisements fonciers, analyse de la dureté
+              foncière) ou bien en aval (suivi de procédure d'acquisition,
+              mobilisation du foncier ...)
+            </p>
           </div>
           <div className="md:absolute md:bottom-6 mt-8 md:mt-0">
             <Image
-                src="/images/check-circle.svg"
-                alt="Icone de téléphone pour indiquer le numéro de téléphone"
-                width="50"
-                height="50"
-                loading={lazy}
-                className="object-scale-down text-start justify-self-center"
-              />
-          <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
-            <li>Analyse des gisements fonciers</li>
-            <li>Analyse de la dureté foncière</li>
-            <li>Analyse de la mutabilité foncière</li>
-            <li>Etudes de densification foncière</li>
-            <li>Politique ZAN</li>
-          </ul>
+              src="/images/check-circle.svg"
+              alt="Icone de téléphone pour indiquer le numéro de téléphone"
+              width="50"
+              height="50"
+              loading="lazy"
+              className="object-scale-down text-start justify-self-center"
+            />
+            <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+              <li>Analyse des gisements fonciers</li>
+              <li>Analyse de la dureté foncière</li>
+              <li>Analyse de la mutabilité foncière</li>
+              <li>Etudes de densification foncière</li>
+              <li>Politique ZAN</li>
+            </ul>
           </div>
         </div>
         <div
@@ -132,37 +132,36 @@ export default function Expertise() {
             activeCard === "cartographie" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("cartographie")}
-          >
-            <div>
-          <h2 className="text-xl font-semibold mb-2">Cartographie</h2>
-          <p className="text-justify font-light tracking-wide text-lg">
-            NOVURBA propose de vous accompagner dans la réalisation de
-            cartographies, plans et schémas divers dans tous vos projets, de la
-            planification à la stratégie foncière en passant par le projet
-            urbain.
-          </p>
+        >
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Cartographie</h2>
+            <p className="text-justify font-light tracking-wide text-lg">
+              NOVURBA propose de vous accompagner dans la réalisation de
+              cartographies, plans et schémas divers dans tous vos projets, de
+              la planification à la stratégie foncière en passant par le projet
+              urbain.
+            </p>
           </div>
           <div className="md:absolute md:bottom-6 mt-8 md:mt-0">
             <Image
-                src="/images/check-circle.svg"
-                alt="Icone de téléphone pour indiquer le numéro de téléphone"
-                width="50"
-                height="50"
-                loading={lazy}
-                className="object-scale-down text-start justify-self-center"
-              />
-          <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+              src="/images/check-circle.svg"
+              alt="Icone de téléphone pour indiquer le numéro de téléphone"
+              width="50"
+              height="50"
+              loading="lazy"
+              className="object-scale-down text-start justify-self-center"
+            />
+            <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+              <li>Cartographie SIG</li>
 
-            <li>Cartographie SIG</li>
+              <li>Cartographie en dessin vectoriel</li>
 
-            <li>Cartographie en dessin vectoriel</li>
+              <li>Réalisations de schémas et plans</li>
 
-            <li>Réalisations de schémas et plans</li>
+              <li>Montage d'atlas cartographiques</li>
 
-            <li>Montage d'atlas cartographiques</li>
-
-            <li className="hidden lg:block lg:invisible"> coucou</li>
-          </ul>
+              <li className="hidden lg:block lg:invisible"> coucou</li>
+            </ul>
           </div>
         </div>
       </div>

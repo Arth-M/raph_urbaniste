@@ -1,30 +1,30 @@
-"use client"
+"use client";
 import Image from "next/image";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export default function ArrowUp() {
-  const [showArrow, setShowArrow] = useState(false)
+  const [showArrow, setShowArrow] = useState(false);
 
   useEffect(() => {
-    const section1 = document.querySelector(".not-arrow-up")
-    if (!section1) return
+    const section1 = document.querySelector(".not-arrow-up");
+    if (!section1) return;
 
     // Observe when section1 leaves the viewport
     const observer = new IntersectionObserver(
       ([entry]) => {
         // When section1 is NOT visible, show the arrow
-        setShowArrow(!entry.isIntersecting)
+        setShowArrow(!entry.isIntersecting);
       },
-      { threshold: 0.3 } // Adjust sensitivity: 0 = any pixel, 1 = fully visible
-    )
+      { threshold: 0.3 }, // Adjust sensitivity: 0 = any pixel, 1 = fully visible
+    );
 
-    observer.observe(section1)
-    return () => observer.disconnect()
-  }, [])
+    observer.observe(section1);
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <button
@@ -39,10 +39,10 @@ export default function ArrowUp() {
         alt="Flèche pour remonter en haut de la page"
         width="15"
         height="15"
-        loading={lazy}
+        loading="lazy"
         className="object-cover h-fit rounded-l-xl text-copperfield-400"
         // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
       />
     </button>
-  )
+  );
 }

@@ -24,7 +24,7 @@ export default function Contact() {
             </div>
             <a
               href="tel:+33676382568"
-              className="text-start text-lg select-all align-self-start"
+              className="text-start text-xl select-all align-self-start"
             >
               +33 676382568
             </a>
@@ -41,7 +41,7 @@ export default function Contact() {
             </div>
             <a
               href="mailto:raphael.sinet@novurba.fr"
-              className="text-start text-lg select-all align-self-start"
+              className="text-start text-xl select-all align-self-start"
             >
               raphael.sinet@novurba.fr
             </a>
@@ -72,7 +72,7 @@ export default function Contact() {
             <a
               href="https://www.linkedin.com/company/novurba/"
               target="_blank"
-              className="text-start text-lg select-all align-self-start"
+              className="text-start text-xl select-all align-self-start"
             >
               company/novurba/
             </a>

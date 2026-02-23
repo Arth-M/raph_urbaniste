@@ -17,7 +17,7 @@ export default function Entreprise() {
             preload={true}
             className="object-scale-down text-start col-span z-10 rounded-full mx-auto"
           />
-          <p className="tacking-wide font-light text-lg pt-1 px-5 md:max-w-[70%] md:p-1 self-center">
+          <p className="tacking-wide font-light text-xl pt-1 px-5 md:max-w-[70%] md:p-1 self-center">
             NOVURBA est une entreprise créée par Raphael SINET, urbaniste
             diplômé de l'Institut d'Urbanisme Régional d'Aix-en-Provence en
             2014. L'ensemble de son parcours professionnel en régions
@@ -57,7 +57,7 @@ export default function Entreprise() {
             </div>
             <a
               href="tel:+33665728130"
-              className="text-start text-lg select-all align-self-start"
+              className="text-start text-xl select-all align-self-start"
             >
               +33 6-65-72-81-30
             </a>
@@ -82,7 +82,7 @@ export default function Entreprise() {
             </div>
             <a
               href="mailto:raphael.sinet@novurba.fr"
-              className="text-start text-lg select-all align-self-start"
+              className="text-start text-xl select-all align-self-start"
             >
               raphael.sinet@novurba.fr
             </a>
@@ -133,7 +133,7 @@ export default function Entreprise() {
             </div>
             <a
               href="https://www.linkedin.com/company/novurba/"
-              className="text-start text-lg select-all align-self-start"
+              className="text-start text-xl select-all align-self-start"
               target="_blank"
             >
               company/novurba/
@@ -145,7 +145,7 @@ export default function Entreprise() {
       <h2 className="text-xl text-center font-bold uppercase mt-15 mb-6">
         Références professionnelles
       </h2>
-      <div className="flex flex-col gap-y-4 items-center w-full px-5 md:max-w-[70%] mx-auto text-lg">
+      <div className="flex flex-col gap-y-4 items-center w-full px-5 md:max-w-[70%] mx-auto text-xl">
         <p className="text-center">
           Cabinet LUYTON (TOULON) - Planification et urbanisme pré-opérationnel
         </p>
@@ -169,7 +169,7 @@ export default function Entreprise() {
       <h2 className="text-xl text-center font-bold uppercase mt-15 mb-6">
         Études achevées ou en cours
       </h2>
-      <div className="flex flex-col gap-y-4 items-center max-w-[70%] mx-auto text-lg">
+      <div className="flex flex-col gap-y-4 items-center max-w-[70%] mx-auto text-xl">
         <p className="text-center">
           Plans Locaux d’Urbanisme de trois communes gardoises – En cours
         </p>

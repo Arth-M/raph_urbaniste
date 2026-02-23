@@ -37,7 +37,7 @@ export default function Home() {
             c'est aussi et surtout du conseil dans une nouvelle façon de voir et
             concevoir l'urbanisme et l'aménagement, avec comme mots d'ordre{" "}
             <span>: </span>
-            <div className="inline-flex items-center gap-2 text-lg font-normal">
+            <div className="inline-flex items-center gap-2 text-xl font-normal">
               <span className="text-copperfield-500/90"> résilience</span>
               <div className="w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></div>
               <span className="text-copperfield-500/90">bas carbone</span>
@@ -72,7 +72,7 @@ export default function Home() {
                 Nos <span className="text-copperfield-500/90">valeurs</span>
               </h2>
             </div>
-            <p className="tracking-wide font-light text-lg min-w-[45%]">
+            <p className="tracking-wide font-light text-xl min-w-[370px]">
               <span className="font-normal">NOVURBA</span> est une entreprise
               avant toute chose proche de la réalité de chaque territoire, car
               nous sommes bien conscient des différences entre chaque
@@ -96,13 +96,13 @@ export default function Home() {
             width={669}
             height={446}
             preload={true}
-            className="object-cover h-fit rounded-l-xl w-[90%] md:max-w-[40%] md:min-h-[700px] lg:min-h-[520px] justify-self-end"
+            className="object-cover h-fit rounded-l-xl w-[90%] min-w-[370px] md:max-w-[40%] md:min-h-[700px] lg:min-h-[520px] justify-self-end"
             // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
           />
         </div>
       </div>
 
-      <div className="w-screen sm:mt-20 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="hidden md:block w-screen sm:mt-20 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
 
       <div className="container sm:mt-15 p-5 mx-auto">
         {/* Ils nous font confiance part */}
@@ -117,9 +117,9 @@ export default function Home() {
               loading="lazy"
               className="w-[200px] h-[200px] lg:my-0 my-6"
             />
-            <h2 className="text-center text-2xl md:text-3xl font-md">
+            <h2 className="text-center text-3xl md:text-4xl font-md tracking-wide">
               Ils font confiance à{" "}
-              <span className="text-copperfield-500/90">Novurba</span>
+              <span className="text-copperfield-500/90 font-bold ">Novurba</span>
             </h2>
             <Image
               src={`/images/Montpellier_Méditerranée_Métropole.png`}
@@ -152,9 +152,9 @@ export default function Home() {
 
         {/* Ils nous font confiance : 1 design pattern for small screens (<md) */}
         <div className="md:hidden">
-          <h2 className="text-center text-2xl md:text-3xl font-md">
+          <h2 className="text-center text-4xl md:text-4xl font-md tracking-wide">
             Ils font confiance à{" "}
-            <span className="text-copperfield-500/90">Novurba</span>
+            <span className="text-copperfield-500/90 font-bold">Novurba</span>
           </h2>
           <div className="w-full flex flex-wrap items-center gap-x-30 gap-y-5 justify-center mt-5">
             <Image
@@ -192,6 +192,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="z-90 md:hidden block w-screen sm:mt-20 -mb-22 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
+
       <ArrowUp />
     </div>
   );

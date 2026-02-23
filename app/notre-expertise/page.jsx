@@ -65,7 +65,7 @@ export default function Expertise() {
           <h2 className="text-xl font-semibold mb-2">
             Planification / Projet urbain
           </h2>
-          <p className="text-justify font-light tracking-wide text-lg mb-8">
+          <p className="text-justify font-light tracking-wide text-xl mb-8">
             NOVURBA vous accompagne et vous conseille dans vos projets de
             planification (Conseil à la rédaction de vos documents d'urbanisme,
             que cela soit PLU ou cartes communales), et vous accompagne dans la
@@ -82,7 +82,7 @@ export default function Expertise() {
               loading="lazy"
               className="object-scale-down text-start justify-self-center"
             />
-            <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+            <ul className="mt-6 font-light text-xl gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
               <li>Etudes urbaines spécifiques</li>
               <li>Etudes pré-opérationnelles</li>
               <li>Conseil en planification (PLU/ CC)</li>
@@ -100,7 +100,7 @@ export default function Expertise() {
         >
           <div>
             <h2 className="text-xl font-semibold mb-2">Stratégie foncière</h2>
-            <p className="text-justify font-light tracking-wide text-lg">
+            <p className="text-justify font-light tracking-wide text-xl">
               NOVURBA vous conseille et vous accompagne dans vos projets
               nécessitant le développement d'une stratégie foncière qu'elle soit
               en amont (étude de gisements fonciers, analyse de la dureté
@@ -117,7 +117,7 @@ export default function Expertise() {
               loading="lazy"
               className="object-scale-down text-start justify-self-center"
             />
-            <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+            <ul className="mt-6 font-light text-xl gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
               <li>Analyse des gisements fonciers</li>
               <li>Analyse de la dureté foncière</li>
               <li>Analyse de la mutabilité foncière</li>
@@ -135,7 +135,7 @@ export default function Expertise() {
         >
           <div>
             <h2 className="text-xl font-semibold mb-2">Cartographie</h2>
-            <p className="text-justify font-light tracking-wide text-lg">
+            <p className="text-justify font-light tracking-wide text-xl">
               NOVURBA propose de vous accompagner dans la réalisation de
               cartographies, plans et schémas divers dans tous vos projets, de
               la planification à la stratégie foncière en passant par le projet
@@ -151,7 +151,7 @@ export default function Expertise() {
               loading="lazy"
               className="object-scale-down text-start justify-self-center"
             />
-            <ul className="mt-6 font-light text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+            <ul className="mt-6 font-light text-xl gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
               <li>Cartographie SIG</li>
 
               <li>Cartographie en dessin vectoriel</li>

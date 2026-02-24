@@ -25,6 +25,9 @@ export default function Expertise() {
 
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [activeCard, setActiveCard] = useState(null);
+  const [visibleCard1, setVisibleCard1] = useState(false)
+  const [visibleCard2, setVisibleCard2] = useState(false)
+  const [visibleCard3, setVisibleCard3] = useState(false)
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -42,6 +45,26 @@ export default function Expertise() {
     return () => window.removeEventListener("click", handleClickOutside);
   }, [activeCard]);
 
+  useEffect(() => {
+    const cards = document.querySelectorAll(".expertise-card");
+    if (!cards.length) return;
+
+    const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("scale-110", entry.isIntersecting);
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  for (const card of cards) {
+    observer.observe(card)
+  }
+  return () => observer.disconnect();
+
+  }, [activeItemIndex]);
+
   return (
     <div className="mt-10 md:mt-15 w-full">
       <div className=" w-[90%] md:w-[800px] md:h-[533px] mx-auto rounded-xl">
@@ -54,7 +77,7 @@ export default function Expertise() {
         />
       </div>
 
-      <div className="flex flex-wrap mt-15 md:px-30 px-5 gap-y-12 mx-auto justify-around">
+      <div className="flex flex-wrap mt-15 px-10 sm:gap-x-8 md:gap-x-10 gap-y-12 mx-auto justify-around">
         <div
           id="planification"
           className={`min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
@@ -76,7 +99,7 @@ export default function Expertise() {
           <div className="">
             <Image
               src="/images/check-circle.svg"
-              alt="Icone de téléphone pour indiquer le numéro de téléphone"
+              alt="Icone de case cochée"
               width="50"
               height="50"
               loading="lazy"
@@ -93,7 +116,7 @@ export default function Expertise() {
         </div>
         <div
           id="strategie-fonciere"
-          className={`min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+          className={`md:min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
             activeCard === "strategie-fonciere" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("strategie-fonciere")}
@@ -111,7 +134,7 @@ export default function Expertise() {
           <div className="md:absolute md:bottom-6 mt-8 md:mt-0">
             <Image
               src="/images/check-circle.svg"
-              alt="Icone de téléphone pour indiquer le numéro de téléphone"
+              alt="Icone de case cochée"
               width="50"
               height="50"
               loading="lazy"
@@ -128,7 +151,7 @@ export default function Expertise() {
         </div>
         <div
           id="cartographie"
-          className={`min-h-[570px]  scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+          className={`md:min-h-[570px] scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
             activeCard === "cartographie" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("cartographie")}
@@ -145,7 +168,7 @@ export default function Expertise() {
           <div className="md:absolute md:bottom-6 mt-8 md:mt-0">
             <Image
               src="/images/check-circle.svg"
-              alt="Icone de téléphone pour indiquer le numéro de téléphone"
+              alt="Icone de case cochée"
               width="50"
               height="50"
               loading="lazy"

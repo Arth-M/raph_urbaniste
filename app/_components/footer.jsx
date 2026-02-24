@@ -21,7 +21,7 @@ export default function Footer() {
                   width={463}
                   height={452}
                   preload={true}
-                  className="object-cover w-25 h-fit mx-auto bg-copperfield-400 rounded-full mt-5"
+                  className="object-cover w-25 h-fit mx-auto bg-copperfield-400/90 rounded-full mt-5"
                   // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
                 />
               </a>
@@ -66,7 +66,7 @@ export default function Footer() {
                       width={463}
                       height={452}
                       preload={true}
-                      className="object-cover w-25 h-fit mx-auto bg-copperfield-400 rounded-full mt-5"
+                      className="object-cover w-25 h-fit mx-auto bg-copperfield-400/90 rounded-full mt-5"
                       // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
                     />
                   </a>

@@ -144,11 +144,11 @@ export default function Entreprise() {
         </div>
       </div>
 
-      <h2 className="relative w-fit mx-auto before:content-[''] before:absolute before:-left-4 before:top-1/2
-          before:-translate-y-1/2 before:w-3 before:h-0.5
+      <h2 className="relative w-fit mx-auto before:content-[''] before:absolute before:-left-6 before:top-1/2
+          before:-translate-y-1/2 before:w-5 before:h-0.5
           before:rounded-full before:bg-copperfield-400
-          after:content-[''] after:absolute after:-right-4 after:top-1/2
-          after:-translate-y-1/2 after:w-3 after:h-0.5
+          after:content-[''] after:absolute after:-right-6 after:top-1/2
+          after:-translate-y-1/2 after:w-5 after:h-0.5
           after:rounded-full after:bg-copperfield-400 text-xl text-black text-center font-bold uppercase mt-15 mb-6">
         Références professionnelles
       </h2>

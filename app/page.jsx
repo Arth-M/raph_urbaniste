@@ -21,7 +21,7 @@ export default function Home() {
           />
           <h1 className="z-10 w-fit text-center mx-auto text-6xl font-bold tracking-wide px-5">
             L'urbanisme par le{" "}
-            <span className="text-copperfield-500 z-10">terrain</span>
+            <span className="text-copperfield-400 z-10">terrain</span>
           </h1>
         </div>
 
@@ -38,10 +38,10 @@ export default function Home() {
             concevoir l'urbanisme et l'aménagement, avec comme mots d'ordre :
             <span className="inline flex-wrap items-center gap-x-1 font-normal">
               <span className="inline text-copperfield-500/90"> résilience</span>
-              <span className="inline-flex px-1 w-2 h-2 mb-0.5 rounded-full bg-black flex-shrink-0"></span>
-              <span className="text-copperfield-500/90">bas carbone</span>
-              <span className="inline-flex w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></span>
-              <span className="text-copperfield-500/90">sobriété</span>
+              <span className="inline-flex mx-1 w-2 h-2 mb-0.5 rounded-full bg-black flex-shrink-0"></span>
+              <span className="inline text-copperfield-500/90">bas carbone</span>
+              <span className="inline-flex mx-1 mb-0.5 w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></span>
+              <span className="inline text-copperfield-500/90">sobriété</span>
             </span>
           </span>
 

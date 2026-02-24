@@ -44,7 +44,7 @@ export default function Navbar() {
                 width={463}
                 height={452}
                 preload={true}
-                className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
+                className="object-cover w-25 h-fit rounded-full bg-copperfield-400/90"
                 // className="object-cover w-25 h-fit rounded-full bg-copperfield-400"
               />
             </a>

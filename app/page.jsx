@@ -26,7 +26,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-25 sm:mt-38 px-5 gap-y-5">
-          <span className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-xl text-justify">
+          <span className="block max-w-200 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-xl text-justify">
             <span className="font-normal text-copperfield-500/90">NOVURBA</span>
             , ce n'est pas qu'un bureau d'études qui vous propose de simples
             prestations en urbanisme et aménagement. A travers les prestations
@@ -35,15 +35,14 @@ export default function Home() {
             <span className="font-normal">projet urbain</span> et la{" "}
             <span className="font-normal">stratégie foncière</span>, NOVURBA
             c'est aussi et surtout du conseil dans une nouvelle façon de voir et
-            concevoir l'urbanisme et l'aménagement, avec comme mots d'ordre{" "}
-            <span>: </span>
-            <div className="inline-flex items-center gap-2 text-xl font-normal">
-              <span className="text-copperfield-500/90"> résilience</span>
-              <div className="w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></div>
+            concevoir l'urbanisme et l'aménagement, avec comme mots d'ordre :
+            <span className="inline flex-wrap items-center gap-x-1 font-normal">
+              <span className="inline text-copperfield-500/90"> résilience</span>
+              <span className="inline-flex px-1 w-2 h-2 mb-0.5 rounded-full bg-black flex-shrink-0"></span>
               <span className="text-copperfield-500/90">bas carbone</span>
-              <div className="w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></div>
+              <span className="inline-flex w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></span>
               <span className="text-copperfield-500/90">sobriété</span>
-            </div>
+            </span>
           </span>
 
           <div className="relative flex flex-nowrap w-fit md:w-90 justify-center items-center">

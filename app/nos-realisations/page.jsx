@@ -4,40 +4,46 @@ import ArrowUp from "../_components/arrowUp.jsx";
 export default function Realisation() {
   return (
     <div className="mt-15 w-full">
-      <h1 className="text-center text-3xl font-semibold">Nos réalisations</h1>
-      <div className="flex justify-around w-4/5 md:w-1/2 mx-auto mt-10 gap-x-2 ">
+      {/* <h1 className="text-center text-3xl font-semibold">Nos réalisations</h1> */}
+      <div className="relative flex justify-around px-4 w-full md:w-1/2 mx-auto mt-10 gap-x-2 ">
+      <Image
+        src={`/images/reseauOk.png`}
+        alt="Image de réseau"
+        width={1536}
+        height={1024}
+        preload={true}
+        className="absolute w-[80%] sm:w-[70%] md:w-[80%] object-cover -top-7 sm:-top-9 md:-top-7 lg:-top-9 opacity-80 -z-10 rotate-180"
+        style={{
+          maskImage: "linear-gradient(to top, black 27%, transparent 67%)",
+          WebkitMaskImage:
+            "linear-gradient(to top, black 27%, transparent 67%)",
+        }}
+      />
         <a
           href="#plu"
-          className="text-xl border border-copperfield-300/40 rounded px-4 py-1 hover:bg-copperfield-300/40"
+          className="text-xl z-50  bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-400 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
         >
           PLU
         </a>
         <a
           href="#strat-fonciere"
-          className="text-xl border border-copperfield-300/40 rounded px-4 py-1 hover:bg-copperfield-300/40"
+          className="text-xl z-50 bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-400 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
         >
           Stratégie foncière
         </a>
         <a
           href="#sig"
-          className="text-xl border border-copperfield-300/40 rounded px-4 py-1 hover:bg-copperfield-300/40"
+          className="text-xl z-50 bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-400 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
         >
           SIG
         </a>
       </div>
       <div className="flex flex-col md:gap-y-20 mt-20 relative ">
-        <Image
-          src={`/images/PLU.png`}
-          alt="Image du fondateur de Novurba, Raphaël Sinet"
-          width={1240}
-          height={514}
-          preload={true}
-          className="object-scale-down w-[40%] ml-0 mr-auto h-fit md:hidden absolute sm:-top-10 left-0"
-        />
+
         <section id="plu" className="md:scroll-mt-15 scroll-mt-18 mb-15 md:mb-0 mt-15 md:mt-0">
           <div className="flex flex-wrap w-full justify-between">
             <div className="flex flex-col md:w-[50%] mr-2 ml-auto min-w-[360px] px-5">
-            <h1 className="text-xl text-end font-semibold">PLU</h1>
+            <h1 className="text-xl md:text-end font-semibold">PLU</h1>
 
              <p className="text-justify font-light">
               Doté d’une expérience solide et continue en matière de <span className="font-semibold">plans locaux d’urbanisme</span>,
@@ -109,7 +115,7 @@ export default function Realisation() {
         <section id="sig" className="md:scroll-mt-15 scroll-mt-18">
           <div className="flex flex-wrap ] w-full justify-between mb-20">
             <div className="flex flex-col md:w-[50%] mr-2 ml-auto min-w-[360px] px-5">
-            <h1 className="text-xl text-end font-semibold">SIG</h1>
+            <h1 className="text-xl md:text-end font-semibold">SIG</h1>
              <p className="text-justify font-light">
               Mon expérience en <span className="font-semibold">SIG</span> s’inscrit comme un socle transversal de l’ensemble de
               mes missions, en particulier dans le champ des <span className="font-semibold">documents d’urbanisme</span>, où

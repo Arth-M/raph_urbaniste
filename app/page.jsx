@@ -26,7 +26,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-25 sm:mt-38 px-5 gap-y-5">
-          <span className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-xl">
+          <span className="max-w-150 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-xl text-justify">
             <span className="font-normal text-copperfield-500/90">NOVURBA</span>
             , ce n'est pas qu'un bureau d'études qui vous propose de simples
             prestations en urbanisme et aménagement. A travers les prestations
@@ -46,7 +46,7 @@ export default function Home() {
             </div>
           </span>
 
-          <div className="flex flex-nowrap w-fit md:w-90 justify-center align-center items-center">
+          <div className="relative flex flex-nowrap w-fit md:w-90 justify-center items-center">
             <Image
               src={`/images/raph.jpg`}
               alt="Image du fondateur de Novurba, Raphaël Sinet"
@@ -55,11 +55,14 @@ export default function Home() {
               preload={true}
               className="object-scale-down text-start col-span z-10 rounded-full"
             />
-            <div className="flex h-full items-end justify-end">
-              <p className="text-2xl text-nowrap md:text-2xl font-lg -ml-2">
-                Raphaël Sinet
-              </p>
-            </div>
+
+            <p className="absolute w-fit text-xl sm:text-2xl text-nowrap font-lg bottom-1 -right-22 sm:-right-28 md:bottom-0 md:right-0 lg:bottom-2">
+              Raphaël Sinet
+            </p>
+            <p className="absolute w-fit text-lg sm:text-xl text-nowrap font-lg -bottom-5 -right-25 sm:-right-31 md:-bottom-6 md:-right-3 lg:-bottom-4">
+              dirigeant de Novurba
+            </p>
+
           </div>
         </div>
       </div>
@@ -74,20 +77,20 @@ export default function Home() {
             </div>
             <p className="tracking-wide font-light text-xl sm:min-w-[250px]">
               <span className="font-normal">NOVURBA</span> est une entreprise
-              avant toute chose proche de la réalité de chaque territoire, car
+              avant toute chose proche de la <span className="font-normal">réalité de chaque territoire</span>, car
               nous sommes bien conscient des différences entre chaque
               département, intercommunalité, commune et même quartier. Par
               ailleurs, à l'heure du dérèglement climatique qui impacte
               durablement chaque mètre carré de notre planète, il est important
-              de tenir compte des nouvelles données climatiques qui
+              de tenir compte des <span className="font-normal">nouvelles données climatiques</span> qui
               s'établissent, des problèmes posés par la raréfaction des
               ressources et de l'impact de l'Homme sur son territoire. NOVURBA
-              s'inscrit dans une démarche résiliente et veut apporter une
+              s'inscrit dans une démarche <span className="font-normal">résiliente</span> et veut apporter une
               réponse intégrant et conciliant les activités humaines et les
               nouveaux enjeux liés au climat et à l'environnement. S'inscrivant
               dans le cadre d'une démarche résiliente et adaptée à chaque
               territoire, NOVURBA répondra pour chacun de vos projets de manière
-              personnalisée, contextualisée et territorialisée.
+              <span className="font-normal"> personnalisée, contextualisée et territorialisée</span>.
             </p>
           </div>
           <Image
@@ -192,7 +195,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-90 md:hidden block w-full -mt-20 sm:mt-5 -mb-30 sm:-mb-29 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
+      <div className="z-10 md:hidden block w-full -mt-20 sm:mt-5 -mb-30 sm:-mb-29 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
 
       <ArrowUp />
     </div>

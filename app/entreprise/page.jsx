@@ -17,7 +17,7 @@ export default function Entreprise() {
             preload={true}
             className="object-scale-down text-start col-span z-10 rounded-full mx-auto"
           />
-          <p className="tacking-wide font-light text-xl pt-1 px-5 md:max-w-[70%] md:p-1 self-center">
+          <p className="text-justify font-light text-xl pt-1 px-5 md:max-w-[70%] md:p-1 self-center">
             NOVURBA est une entreprise créée par Raphael SINET, urbaniste
             diplômé de l'Institut d'Urbanisme Régional d'Aix-en-Provence en
             2014. L'ensemble de son parcours professionnel en régions
@@ -38,51 +38,55 @@ export default function Entreprise() {
           {/* <div className="flex flex-nowrap gap-x-4 my-2 mx-auto"> */}
           <div className="grid grid-cols-[1fr_3fr] w-[80%] mx-auto md:w-[40%] gap-x-3 gap-y-5">
             <div className="flex gap-x-2 justify-end relative">
-              <Image
-                src="/images/phone-receiver-silhouette.svg"
-                alt="Icone de téléphone pour indiquer le numéro de téléphone"
-                width="30"
-                height="30"
-                loading="lazy"
-                className="absolute animate-[ping_700ms_ease-in-out_1_500ms] object-scale-down text-start col-span align-self-end"
-              />
-              <Image
-                src="/images/phone-receiver-silhouette.svg"
-                alt="Icone de téléphone pour indiquer le numéro de téléphone"
-                width="30"
-                height="30"
-                loading="lazy"
-                className="duration-700 object-scale-down text-start col-span align-self-end"
-              />
+
+              <a
+              href="tel:+33665728130"
+              className=""
+              >
+
+                <svg
+                    viewBox="0 0 25.625 25.625"  xmlns="http://www.w3.org/2000/svg"
+                    xmlSpace="preserve" className="absolute h-8 w-8 fill-copperfield-400 animate-[ping_700ms_ease-in-out_1_500ms] object-scale-down text-start col-span align-self-end">
+                  <g>
+                    <path d="M22.079,17.835c-1.548-1.324-3.119-2.126-4.648-0.804l-0.913,0.799
+                      c-0.668,0.58-1.91,3.29-6.712-2.234C5.005,10.079,7.862,9.22,8.531,8.645l0.918-0.8c1.521-1.325,0.947-2.993-0.15-4.71l-0.662-1.04
+                      C7.535,0.382,6.335-0.743,4.81,0.58L3.986,1.3C3.312,1.791,1.428,3.387,0.971,6.419c-0.55,3.638,1.185,7.804,5.16,12.375
+                      c3.97,4.573,7.857,6.87,11.539,6.83c3.06-0.033,4.908-1.675,5.486-2.272l0.827-0.721c1.521-1.322,0.576-2.668-0.973-3.995
+                      L22.079,17.835z"/>
+                  </g>
+                </svg>
+                <svg
+                    viewBox="0 0 25.625 25.625"  xmlns="http://www.w3.org/2000/svg"
+                    xmlSpace="preserve" className="h-8 w-8 fill-copperfield-400 object-scale-down text-start col-span align-self-end">
+                  <g>
+                    <path d="M22.079,17.835c-1.548-1.324-3.119-2.126-4.648-0.804l-0.913,0.799
+                      c-0.668,0.58-1.91,3.29-6.712-2.234C5.005,10.079,7.862,9.22,8.531,8.645l0.918-0.8c1.521-1.325,0.947-2.993-0.15-4.71l-0.662-1.04
+                      C7.535,0.382,6.335-0.743,4.81,0.58L3.986,1.3C3.312,1.791,1.428,3.387,0.971,6.419c-0.55,3.638,1.185,7.804,5.16,12.375
+                      c3.97,4.573,7.857,6.87,11.539,6.83c3.06-0.033,4.908-1.675,5.486-2.272l0.827-0.721c1.521-1.322,0.576-2.668-0.973-3.995
+                      L22.079,17.835z"/>
+                  </g>
+                </svg>
+              </a>
             </div>
             <a
               href="tel:+33665728130"
-              className="text-start text-xl select-all align-self-start"
+              className="text-start text-copperfield-400 text-xl select-all align-self-start"
             >
               +33 6-65-72-81-30
             </a>
 
             <div className="flex gap-x-2 justify-end relative">
-              <Image
-                src="/images/mail.svg"
-                alt="Icone de téléphone pour indiquer le numéro de téléphone"
-                width="30"
-                height="30"
-                loading="lazy"
-                className="absolute animate-[ping_700ms_ease-in-out_1_1100ms] object-scale-down text-start col-span align-self-end"
-              />
-              <Image
-                src="/images/mail.svg"
-                alt="Icone de téléphone pour indiquer le numéro de téléphone"
-                width="30"
-                height="30"
-                loading="lazy"
-                className=" object-scale-down text-start col-span align-self-end"
-              />
+              <a
+              href="mailto:raphael.sinet@novurba.fr"
+              className=""
+            >
+              <svg className="absolute h-8 w-8 fill-copperfield-400 animate-[ping_700ms_ease-in-out_1_1100ms] object-scale-down text-start col-span align-self-end" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="m462.88 337.781c0 43.236-35.17 78.351-78.351 78.351h-257.057c-43.181 0-78.352-35.116-78.352-78.351v-163.562c0-14.43 3.951-27.983 10.809-39.615l125.428 125.428c18.765 18.82 43.894 29.19 70.67 29.19 26.721 0 51.85-10.37 70.615-29.19l125.428-125.428c6.859 11.632 10.809 25.184 10.809 39.615v163.562zm-78.352-241.913h-257.056c-17.832 0-34.293 6.035-47.461 16.076l126.69 126.745c13.114 13.058 30.616 20.301 49.326 20.301 18.655 0 36.158-7.243 49.271-20.301l126.69-126.745c-13.167-10.041-29.627-16.076-47.46-16.076zm0-30.232h-257.056c-59.861 0-108.584 48.723-108.584 108.584v163.562c0 59.916 48.723 108.584 108.584 108.584h257.056c59.861 0 108.584-48.668 108.584-108.584v-163.563c0-59.861-48.723-108.583-108.584-108.583z" fillRule="evenodd"/></svg>
+              <svg className="h-8 w-8 object-scale-down fill-copperfield-400  text-start col-span align-self-end" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="m462.88 337.781c0 43.236-35.17 78.351-78.351 78.351h-257.057c-43.181 0-78.352-35.116-78.352-78.351v-163.562c0-14.43 3.951-27.983 10.809-39.615l125.428 125.428c18.765 18.82 43.894 29.19 70.67 29.19 26.721 0 51.85-10.37 70.615-29.19l125.428-125.428c6.859 11.632 10.809 25.184 10.809 39.615v163.562zm-78.352-241.913h-257.056c-17.832 0-34.293 6.035-47.461 16.076l126.69 126.745c13.114 13.058 30.616 20.301 49.326 20.301 18.655 0 36.158-7.243 49.271-20.301l126.69-126.745c-13.167-10.041-29.627-16.076-47.46-16.076zm0-30.232h-257.056c-59.861 0-108.584 48.723-108.584 108.584v163.562c0 59.916 48.723 108.584 108.584 108.584h257.056c59.861 0 108.584-48.668 108.584-108.584v-163.563c0-59.861-48.723-108.583-108.584-108.583z" fillRule="evenodd"/></svg>
+            </a>
             </div>
             <a
               href="mailto:raphael.sinet@novurba.fr"
-              className="text-start text-xl select-all align-self-start"
+              className="text-start text-copperfield-400 text-xl select-all align-self-start"
             >
               raphael.sinet@novurba.fr
             </a>
@@ -95,10 +99,9 @@ export default function Entreprise() {
                 title="Voir le profil LinkedIn de Raphaël Sinet"
               >
                 <svg
-                  className="w-7 h-7 text-black"
+                  className="w-7 h-7 fill-copperfield-400"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -116,10 +119,9 @@ export default function Entreprise() {
                   title="Voir le profil LinkedIn de Raphaël Sinet"
                 >
                   <svg
-                    className="w-7 h-7 text-black"
+                    className="w-7 h-7 fill-copperfield-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -133,7 +135,7 @@ export default function Entreprise() {
             </div>
             <a
               href="https://www.linkedin.com/company/novurba/"
-              className="text-start text-xl select-all align-self-start"
+              className="text-start text-copperfield-400 text-xl select-all align-self-start"
               target="_blank"
             >
               company/novurba/
@@ -142,7 +144,12 @@ export default function Entreprise() {
         </div>
       </div>
 
-      <h2 className="text-xl text-center font-bold uppercase mt-15 mb-6">
+      <h2 className="relative w-fit mx-auto before:content-[''] before:absolute before:-left-4 before:top-1/2
+          before:-translate-y-1/2 before:w-3 before:h-0.5
+          before:rounded-full before:bg-copperfield-400
+          after:content-[''] after:absolute after:-right-4 after:top-1/2
+          after:-translate-y-1/2 after:w-3 after:h-0.5
+          after:rounded-full after:bg-copperfield-400 text-xl text-black text-center font-bold uppercase mt-15 mb-6">
         Références professionnelles
       </h2>
       <div className="flex flex-col gap-y-4 items-center w-full px-5 md:max-w-[70%] mx-auto text-xl">
@@ -166,7 +173,12 @@ export default function Entreprise() {
         </p>
       </div>
 
-      <h2 className="text-xl text-center font-bold uppercase mt-15 mb-6">
+      <h2 className="relative w-fit mx-auto before:content-[''] before:absolute before:-left-4 before:top-1/2
+          before:-translate-y-1/2 before:w-3 before:h-0.5
+          before:rounded-full before:bg-black
+          after:content-[''] after:absolute after:-right-4 after:top-1/2
+          after:-translate-y-1/2 after:w-3 after:h-0.5
+          after:rounded-full after:bg-black text-xl text-copperfield-400 text-center font-bold uppercase mt-15 mb-6">
         Études achevées ou en cours
       </h2>
       <div className="flex flex-col gap-y-4 items-center max-w-[70%] mx-auto text-xl">

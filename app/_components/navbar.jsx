@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const pathname = usePathname()
 
   // Handle clicking outside to close menu
   useEffect(() => {
@@ -60,7 +62,7 @@ export default function Navbar() {
               title="Voir le profil LinkedIn de Raphaël Sinet"
             >
               <svg
-                className="w-6 h-fit text-copperfield-600 mr-10 my-auto pb-1"
+                className="w-6 h-fit text-copperfield-400 mr-10 my-auto pb-1"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -73,28 +75,28 @@ export default function Navbar() {
               </svg>
               <span className="sr-only">LinkedIn profile</span>
             </a>
-            <div className="space-x-2 justify-end items-center text-copperfield-500">
+            <div className="space-x-2 justify-end items-center text-copperfield-400">
               <a
                 href="/"
-                className={`rounded-md font-light text-md   ${"hover:bg-copperfield-50 hover:text-copperfield-500 px-2 py-1"}`}
+                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 Accueil
               </a>
               <a
                 href="/notre-expertise"
-                className={`rounded-md font-light text-md   ${"   hover:text-copperfield-500 hover:bg-copperfield-50 px-2 py-1"}`}
+                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/notre-expertise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 Notre expertise
               </a>
               <a
                 href="/nos-realisations"
-                className={`rounded-md font-light text-md  ${"   hover:text-copperfield-500 hover:bg-copperfield-50 px-2 py-1"}`}
+                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/nos-realisations' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 Nos réalisations
               </a>
               <a
                 href="/entreprise"
-                className={`rounded-md font-light text-md  ${"  hover:text-copperfield-500 hover:bg-copperfield-50 px-2 py-1"}`}
+                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/entreprise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 L'entreprise
               </a>

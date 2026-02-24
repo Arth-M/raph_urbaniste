@@ -6,15 +6,15 @@ export default function Footer() {
     const pathname = usePathname()
     const isHome = pathname === '/'
   return (
-    <footer className="relative bottom-0 bg-transparent mt-8 -z-10">
+    <footer className="relative bottom-0 bg-transparent mt-10 sm:mt-5 md:mt-8 z-90">
         <div className="mx-auto w-screen px-4 py-2 text-xl">
-          <div className="px-15">
-            <hr className={`mb-3 border-gray-300 mx-auto lg:mb-8 ${isHome ? 'hidden sm:block' : ''}`}/>
+          <div className="md:px-15 sm:px-8 px-4">
+            <hr className={`mb-3 border-gray-300 mx-auto lg:mb-8 ${isHome ? 'hidden md:block' : ''}`}/>
 
 
           {/* logo novurba dans le cas screen >md */}
             <div className="flex flex-col md:hidden">
-              <a href="/" className='mb-5'>
+              <a href="/" className='mb-1 -mt-5 sm:mb-0 sm:mt-10 w-fit mx-auto'>
                 <Image
                   src="/images/6410514c268519ca04980d2a_Logo essai 3.png"
                   alt="Logo de Novurba"
@@ -28,9 +28,9 @@ export default function Footer() {
              </div>
 
 
-              <ul className="md:grid-cols-5 md:max-w-[70%] lg:max-w-[55%]  gap-x-2 gap-y-2 grid grid-cols-2 md:mx-auto tracking-wide">
+              <ul className="md:grid-cols-5 md:max-w-[95%] lg:max-w-[75%] items-center text-nowrap gap-x-2 gap-y-2 grid grid-cols-2 md:mx-auto tracking-wide sm:-mt-19 md:mt-18">
 
-                <li className='text-center w-fit mx-auto'>
+                <li className='text-center w-fit mx-auto hidden sm:block'>
                   <a href="/contact" className="w-fit" >Contact</a>
                 </li>
                 <li className='text-center w-fit mx-auto'>
@@ -50,13 +50,16 @@ export default function Footer() {
                     Nos réalisations
                   </a>
                 </li>
+                <li className='text-center w-fit mx-auto block sm:hidden'>
+                  <a href="/contact" className="w-fit" >Contact</a>
+                </li>
                 <li className='text-center w-fit mx-auto'>
                   <a href="/sitemap">Plan du site</a>
                 </li>
 
               </ul>
 
-                  <a href="/" className="hidden md:flex mx-auto -mt-12 w-fit">
+                  <a href="/" className="hidden md:flex mx-auto -mt-20 w-fit">
                     <Image
                       src="/images/6410514c268519ca04980d2a_Logo essai 3.png"
                       alt="Logo de Novurba"

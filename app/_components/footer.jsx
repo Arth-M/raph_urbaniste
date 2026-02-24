@@ -6,7 +6,7 @@ export default function Footer() {
     const pathname = usePathname()
     const isHome = pathname === '/'
   return (
-    <footer className="relative bottom-0 bg-transparent mt-10 sm:mt-5 md:mt-8 z-90">
+    <footer className="relative bottom-0 bg-transparent mt-10 sm:mt-5 md:mt-8 z-80">
         <div className="mx-auto w-screen px-4 py-2 text-xl">
           <div className="md:px-15 sm:px-8 px-4">
             <hr className={`mb-3 border-gray-300 mx-auto lg:mb-8 ${isHome ? 'hidden md:block' : ''}`}/>

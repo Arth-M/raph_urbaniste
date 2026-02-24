@@ -1,7 +1,58 @@
+'use client'
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import ArrowUp from "../_components/arrowUp.jsx";
 
 export default function Realisation() {
+  const [scale1, setScale1] = useState(1);
+  const [scale2, setScale2] = useState(1);
+
+  useEffect(() => {
+    const img1 = document.getElementById("img1");
+    const img2 = document.getElementById("img2");
+    let maxScale1 = 1;
+    let maxScale2 = 1;
+
+    if (!img1 || !img2) return;
+
+    const observer1 = new IntersectionObserver(
+      ([entry]) => {
+        const calculatedScale = 1 + 0.05 * entry.intersectionRatio; // scale progressif
+        const limitedScale = Math.min(calculatedScale, 1.4); // limite max
+
+          // ne diminue jamais le scale
+          if (limitedScale >= maxScale1) {
+            maxScale1 = limitedScale;
+            setScale1(limitedScale);
+          }
+      },
+      { threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+        rootMargin: "0px 0px -100px 0px" }
+    );
+    const observer2 = new IntersectionObserver(
+      ([entry]) => {
+        const calculatedScale = 1 + 0.05 * entry.intersectionRatio; // scale progressif
+        const limitedScale = Math.min(calculatedScale, 1.4); // limite max
+
+          // ne diminue jamais le scale
+          if (limitedScale >= maxScale2) {
+            maxScale2 = limitedScale;
+            setScale2(limitedScale);
+          }
+      },
+      { threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+        rootMargin: "0px 0px -100px 0px" }
+    );
+
+    observer1.observe(img1);
+    observer2.observe(img2);
+    return () => {
+      observer1.disconnect();
+      observer2.disconnect();
+    };
+  }, []);
+
+
   return (
     <div className="mt-15 w-full">
       {/* <h1 className="text-center text-3xl font-semibold">Nos réalisations</h1> */}
@@ -40,11 +91,19 @@ export default function Realisation() {
       </div>
       <div className="flex flex-col md:gap-y-20 mt-20 relative ">
 
-        <section id="plu" className="md:scroll-mt-15 scroll-mt-18 mb-15 md:mb-0 mt-15 md:mt-0">
-          <div className="flex flex-wrap w-full justify-between">
-            <div className="flex flex-col md:w-[50%] mr-2 ml-auto min-w-[360px] px-5">
-            <h1 className="text-xl md:text-end font-semibold">PLU</h1>
+        <section id="plu" className="text-lg md:scroll-mt-15 scroll-mt-18 mb-15 md:mb-0 mt-15 md:mt-0">
+          <div className="lg:flex lg:flex-wrap w-full justify-between">
+            <div className="lg:w-[50%] lg:mr-2 ml-auto min-w-[360px] px-8 lg:px-5">
+            <Image
+                src={`/images/PLU.png`}
+                alt="Image de plu"
+                width={1240}
+                height={514}
+                preload={true}
+                className="object-scale-down w-[40%] h-fit hidden md:block md:float-right lg:hidden ml-6 mb-2"
+            />
 
+            <h1 className="text-2xl md:text-end font-semibold mb-2 text-copperfield-400">PLU</h1>
              <p className="text-justify font-light">
               Doté d’une expérience solide et continue en matière de <span className="font-semibold">plans locaux d’urbanisme</span>,
               j’ai pu faire mes armes en bureau d’études ou j’ai participé à l’élaboration de <span className="font-semibold">dix PLU</span>,
@@ -60,11 +119,11 @@ export default function Realisation() {
             </div>
               <Image
                 src={`/images/PLU.png`}
-                alt="Image du fondateur de Novurba, Raphaël Sinet"
+                alt="Image de plu"
                 width={1240}
                 height={514}
                 preload={true}
-                className="object-scale-down w-[40%] h-fit hidden md:flex"
+                className="object-scale-down w-[40%] h-fit hidden lg:block ml-6 mb-2"
               />
           </div>
         </section>
@@ -74,10 +133,12 @@ export default function Realisation() {
           width={1240}
           height={514}
           preload={true}
-          className="object-scale-down w-full ml-0 mr-auto h-fit md:hidden"
+          id="img1"
+          className={`object-scale-down w-[80%] h-fit mx-auto md:hidden mb-15 ease-in-out`}
+          style={{ transform: `scale(${scale1})` }}
         />
-        <section id="strat-fonciere" className="md:scroll-mt-15 scroll-mt-18 bg-copperfield-100/70 text-copperfield-950 md:bg-white py-15 md:py-0">
-          <div className="flex flex-wrap w-full justify-between">
+        <section id="strat-fonciere" className="text-lg bg-copperfield-400 text-copperfield-50 md:scroll-mt-15 scroll-mt-18 md:bg-white md:text-black py-15 md:py-0">
+          <div className="lg:flex lg:flex-wrap w-full justify-between">
 
             <Image
                 src={`/images/strat-fonc-realisations.png`}
@@ -85,10 +146,10 @@ export default function Realisation() {
                 width={1240}
                 height={514}
                 preload={true}
-                className="object-scale-down w-[40%] h-fit hidden md:flex"
+                className="object-scale-down w-[40%] h-fit hidden md:block sm:float-left lg:float-none mr-6 mb-2"
               />
-              <div className="flex flex-col md:w-[50%] ml-2 mr-auto min-w-[360px] px-5">
-            <h1 className="text-xl font-semibold">Stratégie foncière</h1>
+            <div className="lg:w-[50%] lg:ml-2 mr-auto min-w-[360px] px-8 lg:px-5">
+            <h1 className="text-2xl font-semibold mb-2 md:text-copperfield-400">Stratégie foncière</h1>
              <p className="text-justify font-light">
               Mon expérience en <span className="font-semibold">stratégie foncière</span> s’est construite au sein d’acteurs
               publics majeurs de l’aménagement. À <span className="font-semibold">Montpellier Méditerranée Métropole</span>,
@@ -110,25 +171,35 @@ export default function Realisation() {
           width={1240}
           height={514}
           preload={true}
-          className="object-scale-down w-full h-fit mr-0 ml-auto md:hidden mb-15"
+          id="img2"
+          className="object-scale-down w-[80%] h-fit mx-auto md:hidden mb-15 mt-15 ease-in-out"
+          style={{ transform: `scale(${scale2})` }}
         />
-        <section id="sig" className="md:scroll-mt-15 scroll-mt-18">
-          <div className="flex flex-wrap ] w-full justify-between mb-20">
-            <div className="flex flex-col md:w-[50%] mr-2 ml-auto min-w-[360px] px-5">
-            <h1 className="text-xl md:text-end font-semibold">SIG</h1>
-             <p className="text-justify font-light">
-              Mon expérience en <span className="font-semibold">SIG</span> s’inscrit comme un socle transversal de l’ensemble de
-              mes missions, en particulier dans le champ des <span className="font-semibold">documents d’urbanisme</span>, où
-              ’analyse spatiale et la production cartographique sont centrales.
-              Au-delà de ces cadres réglementaires, j’ai également réalisé des <span className="font-semibold">cartographies
-              dédiées</span> dans le cadre d’études spécifiques, notamment <span className="font-semibold">patrimoniales et
-              hydrauliques</span>, nécessitant rigueur méthodologique et précision technique.
-              Pratiquant le <span className="font-semibold">SIG depuis plus de dix ans</span>, j’ai développé une <span className="font-semibold">forte expertise
-              technique</span>, tant en structuration de données qu’en analyse spatiale et
-              en restitution cartographique, me permettant d’adapter les outils et les
-              méthodes aux enjeux opérationnels et stratégiques des projets.
+        <section id="sig" className="text-lg md:scroll-mt-15 scroll-mt-18">
+          <div className="lg:flex lg:flex-wrap ] w-full justify-between mb-20">
+            <div className="lg:w-[50%] lg:mr-2 ml-auto min-w-[360px] px-8 lg:px-5">
+              <Image
+                src={`/images/sig.png`}
+                alt=""
+                width={1240}
+                height={514}
+                preload={true}
+                className="object-scale-down w-[40%] h-fit hidden md:block sm:float-right lg:hidden ml-6 mb-2"
+              />
+              <h1 className="text-2xl md:text-end font-semibold mb-2 text-copperfield-400">SIG</h1>
+              <p className="text-justify font-light">
+                Mon expérience en <span className="font-semibold">SIG</span> s’inscrit comme un socle transversal de l’ensemble de
+                mes missions, en particulier dans le champ des <span className="font-semibold">documents d’urbanisme</span>, où
+                l’analyse spatiale et la production cartographique sont centrales.
+                Au-delà de ces cadres réglementaires, j’ai également réalisé des <span className="font-semibold">cartographies
+                dédiées</span> dans le cadre d’études spécifiques, notamment <span className="font-semibold">patrimoniales et
+                hydrauliques</span>, nécessitant rigueur méthodologique et précision technique.
+                Pratiquant le <span className="font-semibold">SIG depuis plus de dix ans</span>, j’ai développé une <span className="font-semibold">forte expertise
+                technique</span>, tant en structuration de données qu’en analyse spatiale et
+                en restitution cartographique, me permettant d’adapter les outils et les
+                méthodes aux enjeux opérationnels et stratégiques des projets.
 
-            </p>
+              </p>
             </div>
             <Image
                 src={`/images/sig.png`}
@@ -136,7 +207,7 @@ export default function Realisation() {
                 width={1240}
                 height={514}
                 preload={true}
-                className="object-scale-down w-[40%] h-fit hidden md:flex"
+                className="object-scale-down w-[40%] h-fit hidden lg:block ml-2"
               />
           </div>
 

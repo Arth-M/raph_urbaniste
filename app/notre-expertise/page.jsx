@@ -1,7 +1,7 @@
 "use client";
 import Carousel from "../_components/carousel";
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ArrowUp from "../_components/arrowUp.jsx";
 
 export default function Expertise() {
@@ -80,7 +80,7 @@ export default function Expertise() {
       <div className="flex flex-wrap mt-15 px-10 sm:gap-x-8 md:gap-x-10 gap-y-12 mx-auto justify-around">
         <div
           id="planification"
-          className={`min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+          className={`min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 ease-in-out cursor-pointer ${
             activeCard === "planification" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("planification")}
@@ -116,7 +116,7 @@ export default function Expertise() {
         </div>
         <div
           id="strategie-fonciere"
-          className={`md:min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+          className={`md:min-h-[672px] scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 ease-in-out cursor-pointer ${
             activeCard === "strategie-fonciere" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("strategie-fonciere")}
@@ -151,7 +151,7 @@ export default function Expertise() {
         </div>
         <div
           id="cartographie"
-          className={`md:min-h-[570px] scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 cursor-pointer ${
+          className={`md:min-h-[570px] scroll-mt-10 expertise-card relative flex flex-col justify-between w-[300px] border border-copperfield-200/20 px-5 py-6 rounded bg-copperfield-200/20 transition-transform duration-300 ease-in-out cursor-pointer ${
             activeCard === "cartographie" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("cartographie")}

@@ -58,7 +58,7 @@ export default function Navbar() {
              <div className="mr-7">
                 <Link
                   href="/entreprise#contact"
-                  className="px-4 py-2 border border-seagull-500 text-seagull-500 "
+                  className="px-4 py-2 rounded border border-seagull-500 text-seagull-500 "
                 >
                   Contact
                 </Link>
@@ -116,7 +116,7 @@ export default function Navbar() {
             <div className="mr-7">
                 <Link
                   href="/entreprise#contact"
-                  className="px-4 py-2 border border-seagull-500 text-seagull-500 "
+                  className="px-4 py-2 border rounded border-seagull-500 text-seagull-500 "
                 >
                   Contact
                 </Link>

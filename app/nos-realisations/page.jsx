@@ -72,19 +72,19 @@ export default function Realisation() {
       />
         <a
           href="#plu"
-          className="text-xl z-50  bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-400 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
+          className="opacity-0 animate-drop-in [animation-delay:0s] text-xl z-50  bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-50 hover:text-copperfield-500 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
         >
           PLU
         </a>
         <a
           href="#strat-fonciere"
-          className="text-xl z-50 bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-400 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
+          className="opacity-0 animate-drop-in [animation-delay:500ms] text-xl z-50 bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-50 hover:text-copperfield-500 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
         >
           Stratégie foncière
         </a>
         <a
           href="#sig"
-          className="text-xl z-50 bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-400 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
+          className="opacity-0 animate-drop-in [animation-delay:1s] text-xl z-50 bg-copperfield-400 text-copperfield-50 tracking-wider sm:tracking-widest border border-copperfield-400 rounded-sm px-4 py-1 hover:bg-copperfield-50 hover:text-copperfield-500 hover:-translate-y-0.5 hover:scale-102 ease-in-out duration-200"
         >
           SIG
         </a>

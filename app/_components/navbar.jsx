@@ -58,7 +58,7 @@ export default function Navbar() {
              <div className="mr-9">
                 <Link
                   href="/entreprise#contact"
-                  className="px-4 py-2 rounded border border-seagull-500 text-seagull-500 "
+                  className="px-4 py-2 rounded border border-seagull-500 text-seagull-500 hover:translate-y-1  hover:bg-seagull-500 hover:text-white"
                 >
                   Contact
                 </Link>

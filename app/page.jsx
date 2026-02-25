@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="md:mt-15 mt-15 w-full">
       <div className="not-arrow-up">
-        <div className="w-fit relative mx-auto z-10">
+        <div className="w-fit relative mx-auto z-10 ">
           <Image
             src={`/images/reseauOk.png`}
             alt="Image de réseau"
@@ -20,9 +20,9 @@ export default function Home() {
                 "linear-gradient(to top, black 30%, transparent 100%)",
             }}
           />
-          <h1 className="z-10 w-fit text-center mx-auto text-6xl font-bold tracking-wide px-5">
-            L'urbanisme par le{" "}
-            <span className="text-copperfield-400 z-10">terrain</span>
+          <h1 className="z-10 w-fit text-center mx-auto text-6xl font-semibold tracking-wide px-5 delay-[0s,2s,4s]">
+            <span className="inline-block animate-pulse-word delay-[0s]">L'urbanisme </span>{" "}<span className="inline-block animate-pulse-word [animation-delay:500ms]">par </span>{" "}<span className="inline-block animate-pulse-word [animation-delay:1.1s]">le</span>{" "}
+            <span className="inline-block text-copperfield-400 z-10 font-bold mb-1 animate-pulse-word2 [animation-delay:1.9s]">terrain</span>
           </h1>
         </div>
 

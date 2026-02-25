@@ -7,7 +7,7 @@ export default function Entreprise() {
       <div className="flex flex-wrap mx-auto px-4 md:px-20">
         <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-4 md:gap-y-5 mb-8">
           <h1 className="tacking-wide text-3xl text-center font-bold">
-            Novurba, qu'ès aco ?
+            Novurba, <span className="text-copperfield-400">qu'ès aco ?</span>
           </h1>
           <Image
             src={`/images/raph.jpg`}
@@ -46,7 +46,7 @@ export default function Entreprise() {
 
                 <svg
                     viewBox="0 0 25.625 25.625"  xmlns="http://www.w3.org/2000/svg"
-                    xmlSpace="preserve" className="absolute h-8 w-8 fill-copperfield-400 animate-[ping_700ms_ease-in-out_1_500ms] object-scale-down text-start col-span align-self-end">
+                    xmlSpace="preserve" className="absolute h-8 w-8 fill-seagull-500 animate-[ping_700ms_ease-in-out_1_500ms] object-scale-down text-start col-span align-self-end">
                   <g>
                     <path d="M22.079,17.835c-1.548-1.324-3.119-2.126-4.648-0.804l-0.913,0.799
                       c-0.668,0.58-1.91,3.29-6.712-2.234C5.005,10.079,7.862,9.22,8.531,8.645l0.918-0.8c1.521-1.325,0.947-2.993-0.15-4.71l-0.662-1.04
@@ -57,7 +57,7 @@ export default function Entreprise() {
                 </svg>
                 <svg
                     viewBox="0 0 25.625 25.625"  xmlns="http://www.w3.org/2000/svg"
-                    xmlSpace="preserve" className="h-8 w-8 fill-copperfield-400 object-scale-down text-start col-span align-self-end">
+                    xmlSpace="preserve" className="h-8 w-8 fill-seagull-500 object-scale-down text-start col-span align-self-end">
                   <g>
                     <path d="M22.079,17.835c-1.548-1.324-3.119-2.126-4.648-0.804l-0.913,0.799
                       c-0.668,0.58-1.91,3.29-6.712-2.234C5.005,10.079,7.862,9.22,8.531,8.645l0.918-0.8c1.521-1.325,0.947-2.993-0.15-4.71l-0.662-1.04
@@ -70,7 +70,7 @@ export default function Entreprise() {
             </div>
             <a
               href="tel:+33665728130"
-              className="text-start text-copperfield-400 text-xl select-all align-self-start"
+              className="text-start text-seagull-500 text-xl select-all align-self-start"
             >
               +33 6-65-72-81-30
             </a>
@@ -80,13 +80,13 @@ export default function Entreprise() {
               href="mailto:raphael.sinet@novurba.fr"
               className=""
             >
-              <svg className="absolute h-8 w-8 fill-copperfield-400 animate-[ping_700ms_ease-in-out_1_1100ms] object-scale-down text-start col-span align-self-end" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="m462.88 337.781c0 43.236-35.17 78.351-78.351 78.351h-257.057c-43.181 0-78.352-35.116-78.352-78.351v-163.562c0-14.43 3.951-27.983 10.809-39.615l125.428 125.428c18.765 18.82 43.894 29.19 70.67 29.19 26.721 0 51.85-10.37 70.615-29.19l125.428-125.428c6.859 11.632 10.809 25.184 10.809 39.615v163.562zm-78.352-241.913h-257.056c-17.832 0-34.293 6.035-47.461 16.076l126.69 126.745c13.114 13.058 30.616 20.301 49.326 20.301 18.655 0 36.158-7.243 49.271-20.301l126.69-126.745c-13.167-10.041-29.627-16.076-47.46-16.076zm0-30.232h-257.056c-59.861 0-108.584 48.723-108.584 108.584v163.562c0 59.916 48.723 108.584 108.584 108.584h257.056c59.861 0 108.584-48.668 108.584-108.584v-163.563c0-59.861-48.723-108.583-108.584-108.583z" fillRule="evenodd"/></svg>
-              <svg className="h-8 w-8 object-scale-down fill-copperfield-400  text-start col-span align-self-end" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="m462.88 337.781c0 43.236-35.17 78.351-78.351 78.351h-257.057c-43.181 0-78.352-35.116-78.352-78.351v-163.562c0-14.43 3.951-27.983 10.809-39.615l125.428 125.428c18.765 18.82 43.894 29.19 70.67 29.19 26.721 0 51.85-10.37 70.615-29.19l125.428-125.428c6.859 11.632 10.809 25.184 10.809 39.615v163.562zm-78.352-241.913h-257.056c-17.832 0-34.293 6.035-47.461 16.076l126.69 126.745c13.114 13.058 30.616 20.301 49.326 20.301 18.655 0 36.158-7.243 49.271-20.301l126.69-126.745c-13.167-10.041-29.627-16.076-47.46-16.076zm0-30.232h-257.056c-59.861 0-108.584 48.723-108.584 108.584v163.562c0 59.916 48.723 108.584 108.584 108.584h257.056c59.861 0 108.584-48.668 108.584-108.584v-163.563c0-59.861-48.723-108.583-108.584-108.583z" fillRule="evenodd"/></svg>
+              <svg className="absolute h-8 w-8 fill-seagull-500 animate-[ping_700ms_ease-in-out_1_1100ms] object-scale-down text-start col-span align-self-end" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="m462.88 337.781c0 43.236-35.17 78.351-78.351 78.351h-257.057c-43.181 0-78.352-35.116-78.352-78.351v-163.562c0-14.43 3.951-27.983 10.809-39.615l125.428 125.428c18.765 18.82 43.894 29.19 70.67 29.19 26.721 0 51.85-10.37 70.615-29.19l125.428-125.428c6.859 11.632 10.809 25.184 10.809 39.615v163.562zm-78.352-241.913h-257.056c-17.832 0-34.293 6.035-47.461 16.076l126.69 126.745c13.114 13.058 30.616 20.301 49.326 20.301 18.655 0 36.158-7.243 49.271-20.301l126.69-126.745c-13.167-10.041-29.627-16.076-47.46-16.076zm0-30.232h-257.056c-59.861 0-108.584 48.723-108.584 108.584v163.562c0 59.916 48.723 108.584 108.584 108.584h257.056c59.861 0 108.584-48.668 108.584-108.584v-163.563c0-59.861-48.723-108.583-108.584-108.583z" fillRule="evenodd"/></svg>
+              <svg className="h-8 w-8 object-scale-down fill-seagull-500  text-start col-span align-self-end" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="m462.88 337.781c0 43.236-35.17 78.351-78.351 78.351h-257.057c-43.181 0-78.352-35.116-78.352-78.351v-163.562c0-14.43 3.951-27.983 10.809-39.615l125.428 125.428c18.765 18.82 43.894 29.19 70.67 29.19 26.721 0 51.85-10.37 70.615-29.19l125.428-125.428c6.859 11.632 10.809 25.184 10.809 39.615v163.562zm-78.352-241.913h-257.056c-17.832 0-34.293 6.035-47.461 16.076l126.69 126.745c13.114 13.058 30.616 20.301 49.326 20.301 18.655 0 36.158-7.243 49.271-20.301l126.69-126.745c-13.167-10.041-29.627-16.076-47.46-16.076zm0-30.232h-257.056c-59.861 0-108.584 48.723-108.584 108.584v163.562c0 59.916 48.723 108.584 108.584 108.584h257.056c59.861 0 108.584-48.668 108.584-108.584v-163.563c0-59.861-48.723-108.583-108.584-108.583z" fillRule="evenodd"/></svg>
             </a>
             </div>
             <a
               href="mailto:raphael.sinet@novurba.fr"
-              className="text-start text-copperfield-400 text-xl select-all align-self-start"
+              className="text-start text-seagull-500 text-xl select-all align-self-start"
             >
               raphael.sinet@novurba.fr
             </a>
@@ -99,7 +99,7 @@ export default function Entreprise() {
                 title="Voir le profil LinkedIn de Raphaël Sinet"
               >
                 <svg
-                  className="w-7 h-7 fill-copperfield-400"
+                  className="w-7 h-7 fill-seagull-500"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -119,7 +119,7 @@ export default function Entreprise() {
                   title="Voir le profil LinkedIn de Raphaël Sinet"
                 >
                   <svg
-                    className="w-7 h-7 fill-copperfield-400"
+                    className="w-7 h-7 fill-seagull-500"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -135,7 +135,7 @@ export default function Entreprise() {
             </div>
             <a
               href="https://www.linkedin.com/company/novurba/"
-              className="text-start text-copperfield-400 text-xl select-all align-self-start"
+              className="text-start text-seagull-500 text-xl select-all align-self-start"
               target="_blank"
             >
               company/novurba/

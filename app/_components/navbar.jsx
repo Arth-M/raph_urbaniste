@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from 'next/navigation'
+import Link from "next/link";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,7 +55,15 @@ export default function Navbar() {
             {/*  */}
             {/* https://www.linkedin.com/public-profile/in/raphaël-sinet-1a917a86/
              */}
-            <a
+             <div className="mr-7">
+                <Link
+                  href="/entreprise#contact"
+                  className="px-4 py-2 border border-seagull-500 text-seagull-500 "
+                >
+                  Contact
+                </Link>
+              </div>
+            {/* <a
               href="https://www.linkedin.com/company/novurba/"
               className=" hover:animate-pulse"
               target="_blank"
@@ -74,7 +83,7 @@ export default function Navbar() {
                 />
               </svg>
               <span className="sr-only">LinkedIn profile</span>
-            </a>
+            </a> */}
             <div className="space-x-2 justify-end items-center text-copperfield-400">
               <a
                 href="/"
@@ -96,7 +105,7 @@ export default function Navbar() {
               </a>
               <a
                 href="/entreprise"
-                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/entreprise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/entreprise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 L'entreprise
               </a>

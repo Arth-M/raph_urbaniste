@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import ArrowUp from "./_components/arrowUp.jsx";
 
 export default function Home() {
@@ -37,9 +38,14 @@ export default function Home() {
             c'est aussi et surtout du conseil dans une nouvelle façon de voir et
             concevoir l'urbanisme et l'aménagement, avec comme mots d'ordre :
             <span className="inline flex-wrap items-center gap-x-1 font-normal">
-              <span className="inline text-copperfield-500/90"> résilience</span>
+              <span className="inline text-copperfield-500/90">
+                {" "}
+                résilience
+              </span>
               <span className="inline-flex mx-1 w-2 h-2 mb-0.5 rounded-full bg-black flex-shrink-0"></span>
-              <span className="inline text-copperfield-500/90">bas carbone</span>
+              <span className="inline text-copperfield-500/90">
+                bas carbone
+              </span>
               <span className="inline-flex mx-1 mb-0.5 w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></span>
               <span className="inline text-copperfield-500/90">sobriété</span>
             </span>
@@ -58,10 +64,9 @@ export default function Home() {
             <p className="absolute w-fit text-xl sm:text-2xl text-nowrap font-lg bottom-1 -right-22 sm:-right-28 md:bottom-0 md:right-0 lg:bottom-2">
               Raphaël Sinet
             </p>
-            <p className="absolute w-fit text-lg sm:text-xl text-nowrap font-lg -bottom-5 -right-25 sm:-right-31 md:-bottom-6 md:-right-3 lg:-bottom-4">
+            <p className="absolute w-fit text-lg sm:text-xl text-nowrap -bottom-5 -right-25 sm:-right-31 md:-bottom-6 md:-right-3 lg:-bottom-4">
               dirigeant de Novurba
             </p>
-
           </div>
         </div>
       </div>
@@ -70,26 +75,33 @@ export default function Home() {
         <div className="md:mr-0 md:ml-auto md:flex grid grid-cols-1 w-full gap-y-6 md:gap-y-0 h-fit">
           <div className="flex flex-col text-justify px-8 lg:pl-30 md:pr-7 lg:w-2/3 my-auto mx-auto">
             <div className="rounded-full border-2 border-copperfield-400 w-36 h-36 py-13 mx-auto mb-3">
-              <h2 className="text-center text-2xl font-semibold my-auto">
-                Nos <span className="text-copperfield-500/90">valeurs</span>
+              <h2 className="text-center text-2xl my-auto">
+                Nos <span className="font-semibold text-copperfield-500/90">valeurs</span>
               </h2>
             </div>
             <p className="tracking-wide font-light text-xl sm:min-w-[250px]">
               <span className="font-normal">NOVURBA</span> est une entreprise
-              avant toute chose proche de la <span className="font-normal">réalité de chaque territoire</span>, car
-              nous sommes bien conscient des différences entre chaque
+              avant toute chose proche de la{" "}
+              <span className="font-normal">réalité de chaque territoire</span>,
+              car nous sommes bien conscient des différences entre chaque
               département, intercommunalité, commune et même quartier. Par
               ailleurs, à l'heure du dérèglement climatique qui impacte
               durablement chaque mètre carré de notre planète, il est important
-              de tenir compte des <span className="font-normal">nouvelles données climatiques</span> qui
-              s'établissent, des problèmes posés par la raréfaction des
+              de tenir compte des{" "}
+              <span className="font-normal">nouvelles données climatiques</span>{" "}
+              qui s'établissent, des problèmes posés par la raréfaction des
               ressources et de l'impact de l'Homme sur son territoire. NOVURBA
-              s'inscrit dans une démarche <span className="font-normal">résiliente</span> et veut apporter une
-              réponse intégrant et conciliant les activités humaines et les
+              s'inscrit dans une démarche{" "}
+              <span className="font-normal">résiliente</span> et veut apporter
+              une réponse intégrant et conciliant les activités humaines et les
               nouveaux enjeux liés au climat et à l'environnement. S'inscrivant
               dans le cadre d'une démarche résiliente et adaptée à chaque
               territoire, NOVURBA répondra pour chacun de vos projets de manière
-              <span className="font-normal"> personnalisée, contextualisée et territorialisée</span>.
+              <span className="font-normal">
+                {" "}
+                personnalisée, contextualisée et territorialisée
+              </span>
+              .
             </p>
           </div>
           <Image
@@ -103,6 +115,8 @@ export default function Home() {
           />
         </div>
       </div>
+
+
 
       <div className="hidden md:block w-full sm:mt-20 bg-[url(/images/fond2.png)] md:bg-fixed h-120 bg-size-[100%_auto] lg:bg-size-[170%_auto] md:bg-size-[180%_auto] md:bg-left bg-center bg-origin-border bg-no-repeat"></div>
 
@@ -121,7 +135,9 @@ export default function Home() {
             />
             <h2 className="text-center text-3xl md:text-4xl font-md tracking-wide">
               Ils font confiance à{" "}
-              <span className="text-copperfield-500/90 font-bold ">Novurba</span>
+              <span className="text-copperfield-500/90 font-bold ">
+                Novurba
+              </span>
             </h2>
             <Image
               src={`/images/Montpellier_Méditerranée_Métropole.png`}

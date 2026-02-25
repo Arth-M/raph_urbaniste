@@ -31,7 +31,7 @@ export default function Footer() {
               <ul className="md:grid-cols-5 md:max-w-[95%] lg:max-w-[75%] items-center text-nowrap gap-x-2 gap-y-2 grid grid-cols-2 md:mx-auto tracking-wide sm:-mt-19 md:mt-18">
 
                 <li className='text-center w-fit mx-auto hidden sm:block'>
-                  <a href="/contact" className="w-fit" >Contact</a>
+                  <a href="/entreprise" className="w-fit" >L'entreprise</a>
                 </li>
                 <li className='text-center w-fit mx-auto'>
                   <a
@@ -51,7 +51,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li className='text-center w-fit mx-auto block sm:hidden'>
-                  <a href="/contact" className="w-fit" >Contact</a>
+                  <a href="/entreprise" className="w-fit" >L'entreprise</a>
                 </li>
                 <li className='text-center w-fit mx-auto'>
                   <a href="/sitemap">Plan du site</a>

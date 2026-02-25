@@ -30,7 +30,7 @@ export default function Entreprise() {
           </p>
         </div>
 
-        <div className="flex flex-col md:max-w-[50%] md:w-[50%] mx-auto gap-y-3 md:gap-y-5 mb-8 mt-5 md:mt-0">
+        <div id="contact" className="scroll-mt-10 flex flex-col md:max-w-[50%] md:w-[50%] mx-auto gap-y-3 md:gap-y-5 mb-8 mt-5 md:mt-0">
           <h2 className="text-3xl text-center font-bold mb-7">
             Comment nous contacter ?
           </h2>

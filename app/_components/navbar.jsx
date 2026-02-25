@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from 'next/navigation'
+import Link from "next/link";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,7 +55,15 @@ export default function Navbar() {
             {/*  */}
             {/* https://www.linkedin.com/public-profile/in/raphaël-sinet-1a917a86/
              */}
-            <a
+             <div className="mr-9">
+                <Link
+                  href="/entreprise#contact"
+                  className="px-4 py-2 rounded border border-seagull-500 text-seagull-500 "
+                >
+                  Contact
+                </Link>
+              </div>
+            {/* <a
               href="https://www.linkedin.com/company/novurba/"
               className=" hover:animate-pulse"
               target="_blank"
@@ -74,29 +83,29 @@ export default function Navbar() {
                 />
               </svg>
               <span className="sr-only">LinkedIn profile</span>
-            </a>
+            </a> */}
             <div className="space-x-2 justify-end items-center text-copperfield-400">
               <a
                 href="/"
-                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 Accueil
               </a>
               <a
                 href="/notre-expertise"
-                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/notre-expertise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/notre-expertise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 Notre expertise
               </a>
               <a
                 href="/nos-realisations"
-                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/nos-realisations' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/nos-realisations' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 Nos réalisations
               </a>
               <a
                 href="/entreprise"
-                className={`rounded-md font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/entreprise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/entreprise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
               >
                 L'entreprise
               </a>
@@ -104,6 +113,14 @@ export default function Navbar() {
           </div>
 
           <div className="absolute inset-y-0 right-0 flex items-center justify-center pr-2 lg:hidden">
+            <div className="mr-7">
+                <Link
+                  href="/entreprise#contact"
+                  className="px-4 py-2 border rounded border-seagull-500 text-seagull-500 "
+                >
+                  Contact
+                </Link>
+              </div>
             {/* Mobile menu button with hamburger icon */}
             <button
               type="button"

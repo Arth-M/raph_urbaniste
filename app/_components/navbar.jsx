@@ -113,6 +113,14 @@ export default function Navbar() {
           </div>
 
           <div className="absolute inset-y-0 right-0 flex items-center justify-center pr-2 lg:hidden">
+            <div className="mr-7">
+                <Link
+                  href="/entreprise#contact"
+                  className="px-4 py-2 border border-seagull-500 text-seagull-500 "
+                >
+                  Contact
+                </Link>
+              </div>
             {/* Mobile menu button with hamburger icon */}
             <button
               type="button"

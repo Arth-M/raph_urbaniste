@@ -55,7 +55,7 @@ export default function Navbar() {
             {/*  */}
             {/* https://www.linkedin.com/public-profile/in/raphaël-sinet-1a917a86/
              */}
-             <div className="mr-7">
+             <div className="mr-9">
                 <Link
                   href="/entreprise#contact"
                   className="px-4 py-2 rounded border border-seagull-500 text-seagull-500 "

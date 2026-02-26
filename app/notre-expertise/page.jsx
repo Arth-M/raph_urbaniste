@@ -85,7 +85,7 @@ export default function Expertise() {
           }`}
           onClick={() => setActiveCard("planification")}
         >
-          <h2 className="text-xl font-semibold mb-2 text-copperfield-400npmnpm text-copperfield-400">
+          <h2 className="text-xl font-semibold mb-2 text-copperfield-400 text-copperfield-400">
             Planification / Projet urbain
           </h2>
           <p className="text-justify font-light tracking-wide text-xl mb-8">
@@ -115,7 +115,7 @@ export default function Expertise() {
           onClick={() => setActiveCard("strategie-fonciere")}
         >
           <div>
-            <h2 className="text-xl font-semibold mb-2 text-copperfield-400npmnpm">Stratégie foncière</h2>
+            <h2 className="text-xl font-semibold mb-2 text-copperfield-400">Stratégie foncière</h2>
             <p className="text-justify font-light tracking-wide text-xl">
               NOVURBA vous conseille et vous accompagne dans vos projets
               nécessitant le développement d'une stratégie foncière qu'elle soit
@@ -144,7 +144,7 @@ export default function Expertise() {
           onClick={() => setActiveCard("cartographie")}
         >
           <div>
-            <h2 className="text-xl font-semibold mb-2 text-copperfield-400npmnpm">Cartographie</h2>
+            <h2 className="text-xl font-semibold mb-2 text-copperfield-400">Cartographie</h2>
             <p className="text-justify font-light tracking-wide text-xl">
               NOVURBA propose de vous accompagner dans la réalisation de
               cartographies, plans et schémas divers dans tous vos projets, de

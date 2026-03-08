@@ -28,7 +28,7 @@
 
 
   --animate-pulse-word: pulse-word 500ms ease-in-out 1;
-  --animate-pulse-word2: pulse-word2 100ms ease-in-out 1;
+  --animate-pulse-word2: pulse-word2 500ms ease-in-out 1;
   --animate-drop-in: drop-in 700ms cubic-bezier(.22,1,.36,1) forwards;
 
 }
@@ -57,14 +57,14 @@
 @keyframes pulse-word2 {
   0% {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1);
     filter: blur(0px);
   }
 
 
   50% {
     opacity: 0.7;
-    transform: scale(1.05);
+    transform: scale(1.02);
     filter: blur(0.3px);
   }
 

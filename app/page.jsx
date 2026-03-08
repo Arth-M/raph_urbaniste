@@ -6,18 +6,33 @@ import ArrowUp from "./_components/arrowUp.jsx";
 
 export default function Home() {
   useEffect(() => {
-    const typed = new Typed("#typed", {
-      strings: [ `
-        <span class="inline-block">L'urbanisme par le</span>
-        <span class="inline-block text-copperfield-500/90 font-bold animate-pulse-word2 scale-[1.05]">terrain</span>
-        `],
-      typeSpeed: 100,
-      loop: false,
-    });
+    // const typed = new Typed("#typed", {
+    //   strings: ["L'urbanisme par le"],
+    //   typeSpeed: 65,
+    //   loop: false,
+    //   showCursor: false
+    // });
+    // setTimeout(() => {
+    //   const typed2 = new Typed("#typed2", {
+    //   strings: ["terrain"],
+    //   typeSpeed: 80,
+    //   loop: false,
+    //   showCursor: false,
+    //   // onComplete: () => {
+    //   //   document.querySelector("#typed2").classList.add("animate-pulse-word2");
+    //   // }
+    // });
+    // }, 1900);
 
-    return () => {
-      typed.destroy(); // cleanup
-    };
+    // return () => {
+    //   typed.destroy(); // cleanup
+    // };
+    const el = document.querySelector("#typed");
+    const metro = document.querySelector("#metro")
+  el.classList.remove("translate-x-full");
+  setTimeout(() => {
+    metro.classList.remove("invisible")
+  }, 2500);
   }, []);
   return (
     <div className="md:mt-15 mt-15 w-full">
@@ -41,9 +56,33 @@ export default function Home() {
             <span className="inline-block text-copperfield-400 z-10 font-bold mb-1 animate-pulse-word2 [animation-delay:1.9s]">terrain</span>
           </h1>
         </div> */}
-        <h1 id="typed" className="z-10 text-center text-6xl font-semibold tracking-wide px-5"></h1>
+        {/* <div className="w-fit mx-auto mt-5">
+        <h1 id="typed" className="z-10 mx-0 inline-block text-center text-6xl font-semibold tracking-wide px-5"></h1>
+        <h1 id="typed2" className="z-10 text-copperfield-500/90 -ml-5.5 inline-block text-center text-6xl font-semibold tracking-wide px-5"></h1>
+        </div> */}
+        <div className="relative w-full overflow-hiddenw-fit mx-auto mt-5 text-center text-6xl font-semibold tracking-wide px-5">
+          <div className="absolute w-70 h-20 bg-white right-0 z-50 hidden sm:block"></div>
+          <div className="w-fit mx-auto relative">
+            <Image
+                src={`/images/reseauOk.png`}
+                alt="Image de réseau"
+                width={1536}
+                height={1024}
+                preload={true}
+                id="metro"
+                className="absolute invisible w-full object-cover top-25 opacity-20 md:opacity-80 md:top-10 sm:left-3 -z-10"
+                style={{
+                  maskImage: "linear-gradient(to top, black 50%, transparent 90%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to top, black 30%, transparent 100%)",
+                }}
+              />
+            <h1 id="typed" className="z-10 inline-block translate-x-full transition-transform duration-[2500ms] ease-out">L'urbanisme par le&nbsp;
+            <span className=" text-copperfield-500/90">terrain</span></h1>
+          </div>
+        </div>
 
-        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-20 sm:mt-25 px-5 gap-y-5">
+        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-25 sm:mt-35 px-5 gap-y-5">
           <span className="block max-w-200 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-xl text-justify">
             <span className="font-normal text-copperfield-500/90">NOVURBA</span>
             , ce n'est pas qu'un bureau d'études qui vous propose de simples

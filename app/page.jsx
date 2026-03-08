@@ -1,12 +1,28 @@
+'use client'
 import Image from "next/image";
-
+import { useEffect } from "react";
+import Typed from "typed.js";
 import ArrowUp from "./_components/arrowUp.jsx";
 
 export default function Home() {
+  useEffect(() => {
+    const typed = new Typed("#typed", {
+      strings: [ `
+        <span class="inline-block">L'urbanisme par le</span>
+        <span class="inline-block text-copperfield-500/90 font-bold animate-pulse-word2 scale-[1.05]">terrain</span>
+        `],
+      typeSpeed: 100,
+      loop: false,
+    });
+
+    return () => {
+      typed.destroy(); // cleanup
+    };
+  }, []);
   return (
     <div className="md:mt-15 mt-15 w-full">
       <div className="not-arrow-up">
-        <div className="w-fit relative mx-auto z-10 ">
+        {/* <div className="w-fit relative mx-auto z-10 ">
           <Image
             src={`/images/reseauOk.png`}
             alt="Image de réseau"
@@ -24,9 +40,10 @@ export default function Home() {
             <span className="inline-block animate-pulse-word delay-[0s]">L'urbanisme </span>{" "}<span className="inline-block animate-pulse-word [animation-delay:500ms]">par </span>{" "}<span className="inline-block animate-pulse-word [animation-delay:1.1s]">le</span>{" "}
             <span className="inline-block text-copperfield-400 z-10 font-bold mb-1 animate-pulse-word2 [animation-delay:1.9s]">terrain</span>
           </h1>
-        </div>
+        </div> */}
+        <h1 id="typed" className="z-10 text-center text-6xl font-semibold tracking-wide px-5"></h1>
 
-        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-25 sm:mt-38 px-5 gap-y-5">
+        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-20 sm:mt-25 px-5 gap-y-5">
           <span className="block max-w-200 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-xl text-justify">
             <span className="font-normal text-copperfield-500/90">NOVURBA</span>
             , ce n'est pas qu'un bureau d'études qui vous propose de simples

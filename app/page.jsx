@@ -61,7 +61,7 @@ export default function Home() {
         <h1 id="typed2" className="z-10 text-copperfield-500/90 -ml-5.5 inline-block text-center text-6xl font-semibold tracking-wide px-5"></h1>
         </div> */}
         <div className="relative w-full overflow-hiddenw-fit mx-auto mt-5 text-center text-6xl font-semibold tracking-wide px-5">
-          <div className="absolute w-70 h-20 bg-white right-0 z-50 hidden sm:block"></div>
+          <div className="absolute sm:w-5 md:w-15 lg:w-45 sm:h-50 lg:h-20 bg-white right-0 z-50 hidden sm:block"></div>
           <div className="w-fit mx-auto relative">
             <Image
                 src={`/images/reseauOk.png`}
@@ -78,7 +78,7 @@ export default function Home() {
                 }}
               />
             <h1 id="typed" className="z-10 inline-block translate-x-full transition-transform duration-[2500ms] ease-out">L'urbanisme par le&nbsp;
-            <span className=" text-copperfield-500/90">terrain</span></h1>
+            <span className="text-copperfield-500/90">terrain</span></h1>
           </div>
         </div>
 

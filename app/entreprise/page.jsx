@@ -6,7 +6,7 @@ export default function Entreprise() {
     <div className="mt-15 md:mt-20 w-full">
       <div className="flex flex-wrap mx-auto px-4 md:px-20">
         <div className="flex flex-col md:max-w-[50%] md:w-[50%] gap-y-4 md:gap-y-5 mb-8">
-          <h1 className="tacking-wide text-3xl text-center font-bold">
+          <h1 className="tracking-wide text-3xl text-center font-bold">
             Novurba, <span className="text-copperfield-400">qu'ès aco ?</span>
           </h1>
           <Image
@@ -17,7 +17,7 @@ export default function Entreprise() {
             preload={true}
             className="object-scale-down text-start col-span z-10 rounded-full mx-auto"
           />
-          <p className="text-justify font-light text-xl pt-1 px-5 md:max-w-[70%] md:p-1 self-center">
+          <p className="text-justify font-secondary font-light text-xl pt-1 px-5 md:max-w-[70%] md:p-1 self-center">
             NOVURBA est une entreprise créée par Raphael SINET, urbaniste
             diplômé de l'Institut d'Urbanisme Régional d'Aix-en-Provence en
             2014. L'ensemble de son parcours professionnel en régions
@@ -31,7 +31,7 @@ export default function Entreprise() {
         </div>
 
         <div id="contact" className="scroll-mt-10 flex flex-col md:max-w-[50%] md:w-[50%] mx-auto gap-y-3 md:gap-y-5 mb-8 mt-5 md:mt-0">
-          <h2 className="text-3xl text-center font-bold mb-7">
+          <h2 className="tracking-wide text-3xl text-center font-bold mb-7">
             Comment nous contacter ?
           </h2>
           {/* téléphone */}
@@ -181,7 +181,7 @@ export default function Entreprise() {
           after:rounded-full after:bg-black text-xl text-copperfield-400 text-center font-bold uppercase mt-15 mb-6">
         Études achevées ou en cours
       </h2>
-      <div className="flex flex-col gap-y-4 items-center max-w-[70%] mx-auto text-xl">
+      <div className="flex flex-col gap-y-4 items-center max-w-[70%] mx-auto text-xl mb-20">
         <p className="text-center">
           Plans Locaux d’Urbanisme de trois communes gardoises – En cours
         </p>

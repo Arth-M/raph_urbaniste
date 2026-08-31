@@ -7,7 +7,7 @@ import Footer from './_components/footer.jsx'
 import { useState, useEffect } from 'react'
 
 import {
-  Open_Sans,
+  Quicksand,
   Oswald
 } from "next/font/google";
 
@@ -94,9 +94,9 @@ import {
 //   ],
 // }
 
-const openSans = Open_Sans({
+const quicksand = Quicksand({
   subsets: ["latin"],
-  variable: "--font-open-sans",
+  variable: "--font-quicksand",
   display: "swap",
 });
 
@@ -141,7 +141,7 @@ export default function RootLayout({ children }) {
           <link rel="icon" type="image/svg+xml" href="./images/cityN.svg"></link>
 
         </head>
-        <body className={`${oswald.variable} ${openSans.variable} h-screen`}>
+        <body className={`${oswald.variable} ${quicksand.variable} h-screen`}>
        <div className="px-5 w-full h-full flex flex-col items-center justify-center">
         <label htmlFor="code" className="text-xl text-black text-center">Site en construction. <br></br>Un code est nécessaire pour y accéder</label>
         <input type="password" name='code' placeholder="xxxx"
@@ -171,7 +171,7 @@ export default function RootLayout({ children }) {
           /> */}
           <link rel="icon" type="image/svg+xml" href="./images/cityN.svg"></link>
         </head>
-        <body className={`${oswald.variable} ${openSans.variable} h-screen`}>
+        <body className={`${oswald.variable} ${quicksand.variable} h-screen`}>
           <Navbar/>
           {children}
           <Footer />

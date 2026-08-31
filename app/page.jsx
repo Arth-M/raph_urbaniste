@@ -135,25 +135,25 @@ export default function Home() {
                 Nos <span className="font-semibold text-copperfield-500/90">valeurs</span>
               </h2>
             </div>
-            <p className="tracking-tight font-secondary font-light text-2xl sm:min-w-[250px]">
+            <p className="tracking-tight font-secondary font-light text-xl sm:min-w-[250px]">
               <span className="font-normal font-secondary text-copperfield-500/90">NOVURBA</span> est une entreprise
               avant toute chose proche de la{" "}
-              <span className="font-normal font-secondary text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">réalité de chaque territoire</span>,
+              <span className="font-normal font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-400">réalité de chaque territoire</span>,
               car nous sommes bien conscient des différences entre chaque
               département, intercommunalité, commune et même quartier. Par
               ailleurs, à l'heure du dérèglement climatique qui impacte
               durablement chaque mètre carré de notre planète, il est important
               de tenir compte des{" "}
-              <span className="font-normal font-secondary text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">nouvelles données climatiques</span>{" "}
+              <span className="font-normal font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-400">nouvelles données climatiques</span>{" "}
               qui s'établissent, des problèmes posés par la raréfaction des
               ressources et de l'impact de l'Homme sur son territoire. NOVURBA
               s'inscrit dans une démarche{" "}
-              <span className="font-normal font-secondary text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">résiliente</span> et veut apporter
+              <span className="font-normal font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-400">résiliente</span> et veut apporter
               une réponse intégrant et conciliant les activités humaines et les
               nouveaux enjeux liés au climat et à l'environnement. S'inscrivant
               dans le cadre d'une démarche résiliente et adaptée à chaque
               territoire, NOVURBA répondra pour chacun de vos projets de manière
-              <span className="font-normal font-secondary text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">
+              <span className="font-normal font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-400">
                 {" "}
                 personnalisée, contextualisée et territorialisée
               </span>
@@ -189,12 +189,14 @@ export default function Home() {
               loading="lazy"
               className="w-[200px] h-[200px] lg:my-0 my-6"
             />
-            <h2 className="text-center text-3xl md:text-4xl font-md tracking-wide">
+            <div>
+            <h2 className="inline font-secondary text-center text-shadow-[-1px_1px_0px] text-shadow-black/70 text-2xl md:text-4xl font-md tracking-tight">
               Ils font confiance à{" "}
-              <span className="text-copperfield-500/90 font-bold ">
+            </h2>
+              <span className="inline font-secondary text-copperfield-500/90 text-shadow-[-1px_1px_0px] text-shadow-copperfield-500/70 font-bold text-3xl md:text-4xl font-md tracking-tight">
                 Novurba
               </span>
-            </h2>
+            </div>
             <Image
               src={`/images/Montpellier_Méditerranée_Métropole.png`}
               alt="image d'un sponsor"

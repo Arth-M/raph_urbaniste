@@ -104,14 +104,14 @@ export default function Realisation() {
             />
 
             <h1 className="text-2xl md:text-end font-semibold mb-2 text-copperfield-400">PLU</h1>
-             <p className="text-justify font-light">
-              Doté d’une expérience solide et continue en matière de <span className="font-semibold">plans locaux d’urbanisme</span>,
-              j’ai pu faire mes armes en bureau d’études ou j’ai participé à l’élaboration de <span className="font-semibold">dix PLU</span>,
+             <p className="text-justify font-light font-secondary">
+              Doté d’une expérience solide et continue en matière de <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">plans locaux d’urbanisme</span>,
+              j’ai pu faire mes armes en bureau d’études ou j’ai participé à l’élaboration de <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">dix PLU</span>,
               en intervenant sur les différentes phases réglementaires et opérationnelles.
-              J’ai ensuite occupé un poste d’<span className="font-semibold">analyste de PLU</span> dans le cadre du développement
+              J’ai ensuite occupé un poste d’<span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">analyste de PLU</span> dans le cadre du développement
               d’une application dédiée aux promoteurs immobiliers, ce qui m’a permis d’acquérir
               une lecture fine, comparative et stratégique des documents d’urbanisme.
-              Actuellement, au travers de mon activité libérale, je participe <span className="font-semibold">activement à
+              Actuellement, au travers de mon activité libérale, je participe <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">activement à
               la réalisation de trois PLU</span> et un quatrième a été récemment finalisé, consolidant une
               approche à la fois technique et réglementaire.
 
@@ -150,15 +150,15 @@ export default function Realisation() {
               />
             <div className="lg:w-[50%] lg:ml-2 mr-auto min-w-[360px] px-8 lg:px-5">
             <h1 className="text-2xl font-semibold mb-2 md:text-copperfield-400">Stratégie foncière</h1>
-             <p className="text-justify font-light">
-              Mon expérience en <span className="font-semibold">stratégie foncière</span> s’est construite au sein d’acteurs
-              publics majeurs de l’aménagement. À <span className="font-semibold">Montpellier Méditerranée Métropole</span>,
-              j’ai participé aux processus de réalisation de plusieurs <span className="font-semibold">ZAC</span> à l’échelle métropolitaine,
+             <p className="text-justify font-light font-secondary">
+              Mon expérience en <span className="font-semibold font-secondary md:text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">stratégie foncière</span> s’est construite au sein d’acteurs
+              publics majeurs de l’aménagement. À <span className="font-semibold font-secondary md:text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">Montpellier Méditerranée Métropole</span>,
+              j’ai participé aux processus de réalisation de plusieurs <span className="font-semibold font-secondary md:text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">ZAC</span> à l’échelle métropolitaine,
               en lien étroit avec les enjeux de programmation, de maîtrise foncière et de phasage
-              opérationnel. J’ai ensuite exercé au sein de <span className="font-semibold">EPF Occitanie</span>, où j’accompagnais
+              opérationnel. J’ai ensuite exercé au sein de <span className="font-semibold font-secondary md:text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">EPF Occitanie</span>, où j’accompagnais
               directement les communes : compréhension et formalisation de leur projet, traduction
               cartographique des intentions, rédaction des conventions foncières, puis gestion
-              complète des phases d’<span className="font-semibold">acquisition, de portage et de revente des terrains</span>,
+              complète des phases d’<span className="font-semibold font-secondary md:text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">acquisition, de portage et de revente des terrains</span>,
               dans une logique d’anticipation et de sécurisation d’opérations urbaines à court, moyen ou long terme.
 
             </p>
@@ -187,15 +187,15 @@ export default function Realisation() {
                 className="object-scale-down w-[40%] h-fit hidden md:block sm:float-right lg:hidden ml-6 mb-2"
               />
               <h1 className="text-2xl md:text-end font-semibold mb-2 text-copperfield-400">SIG</h1>
-              <p className="text-justify font-light">
-                Mon expérience en <span className="font-semibold">SIG</span> s’inscrit comme un socle transversal de l’ensemble de
-                mes missions, en particulier dans le champ des <span className="font-semibold">documents d’urbanisme</span>, où
+              <p className="text-justify font-light font-secondary">
+                Mon expérience en <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">SIG</span> s’inscrit comme un socle transversal de l’ensemble de
+                mes missions, en particulier dans le champ des <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">documents d’urbanisme</span>, où
                 l’analyse spatiale et la production cartographique sont centrales.
-                Au-delà de ces cadres réglementaires, j’ai également réalisé des <span className="font-semibold">cartographies
-                dédiées</span> dans le cadre d’études spécifiques, notamment <span className="font-semibold">patrimoniales et
+                Au-delà de ces cadres réglementaires, j’ai également réalisé des <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">cartographies
+                dédiées</span> dans le cadre d’études spécifiques, notamment <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">patrimoniales et
                 hydrauliques</span>, nécessitant rigueur méthodologique et précision technique.
-                Pratiquant le <span className="font-semibold">SIG depuis plus de dix ans</span>, j’ai développé une <span className="font-semibold">forte expertise
-                technique</span>, tant en structuration de données qu’en analyse spatiale et
+                Pratiquant le <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">SIG depuis plus de dix ans</span>, j’ai développé une <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">forte expertise
+                technique</span>, tant en structuration de données qu’en <span className="font-semibold font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-500/70">analyse spatiale</span> et
                 en restitution cartographique, me permettant d’adapter les outils et les
                 méthodes aux enjeux opérationnels et stratégiques des projets.
 

@@ -52,9 +52,6 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center justify-end min-w-[500px] ">
-            {/*  */}
-            {/* https://www.linkedin.com/public-profile/in/raphaël-sinet-1a917a86/
-             */}
              <div className="mr-9">
                 <Link
                   href="/entreprise#contact"

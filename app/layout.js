@@ -6,6 +6,11 @@ import Footer from './_components/footer.jsx'
 
 import { useState, useEffect } from 'react'
 
+import {
+  Open_Sans,
+  Oswald
+} from "next/font/google";
+
 
 // REMETTRE LES METADATA QUAND ON MET LE SITE EN LIGNE ET ENLEVER USE CLIENT ET PAGE CODE ET IMPORT USESTATE et USEEFFECT !!!!
 
@@ -89,6 +94,18 @@ import { useState, useEffect } from 'react'
 //   ],
 // }
 
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-open-sans",
+  display: "swap",
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
+  display: "swap",
+});
+
 export default function RootLayout({ children }) {
   const [codeTrue, setCodeTrue] = useState(false)
   const [userTest, setUserTest] = useState(false)
@@ -122,11 +139,9 @@ export default function RootLayout({ children }) {
             }}
           /> */}
           <link rel="icon" type="image/svg+xml" href="./images/cityN.svg"></link>
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
-          </style>
+
         </head>
-        <body className='oswald  h-screen'>
+        <body className={`${oswald.variable} ${openSans.variable} h-screen`}>
        <div className="px-5 w-full h-full flex flex-col items-center justify-center">
         <label htmlFor="code" className="text-xl text-black text-center">Site en construction. <br></br>Un code est nécessaire pour y accéder</label>
         <input type="password" name='code' placeholder="xxxx"
@@ -155,11 +170,8 @@ export default function RootLayout({ children }) {
             }}
           /> */}
           <link rel="icon" type="image/svg+xml" href="./images/cityN.svg"></link>
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
-          </style>
         </head>
-        <body className='oswald  h-screen'>
+        <body className={`${oswald.variable} ${openSans.variable} h-screen`}>
           <Navbar/>
           {children}
           <Footer />

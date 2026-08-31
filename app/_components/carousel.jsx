@@ -71,7 +71,7 @@ export default function Carousel({
           width={800}
           height={533}
           preload={true}
-          className="object-scale-down z-0 object-center w-full h-full rounded-xl"
+          className="object-fill z-0 object-center w-full h-full rounded-xl"
         />
       </div>
     </div>

@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  --font-general: 'Oswald';
   --color-copperfield-50: #fdf4ef;
   --color-copperfield-100: #fae6da;
   --color-copperfield-200: #f3cbb5;
@@ -40,6 +39,15 @@
   font-style: normal;
 }
 
+.font-secondary {
+  font-family: var(--font-open-sans), sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+h1,h2,h3,h4,h5,h6, p, span, a, button, input, textarea, select, option, label {
+  font-family: var(--font-oswald), sans-serif;
+}
 @keyframes pulse-word {
   0%, 100% {
     opacity: 1;

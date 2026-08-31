@@ -83,14 +83,14 @@ export default function Home() {
         </div>
 
         <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-25 sm:mt-35 px-5 gap-y-5">
-          <span className="block max-w-200 text-wrap px-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-xl text-justify">
+          <span className="block max-w-200 text-wrap pt-10 pb-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-2xl text-justify">
             <span className="font-normal text-copperfield-500/90">NOVURBA</span>
             , ce n'est pas qu'un bureau d'études qui vous propose de simples
-            prestations en urbanisme et aménagement. A travers les prestations
+            prestations en urbanisme et aménagement. À travers les prestations
             et compétences sur la{" "}
-            <span className="font-normal">planification</span>, le{" "}
-            <span className="font-normal">projet urbain</span> et la{" "}
-            <span className="font-normal">stratégie foncière</span>, NOVURBA
+            <span className="font-normal text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">planification</span>, le{" "}
+            <span className="font-normal text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">projet urbain</span> et la{" "}
+            <span className="font-normal text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">stratégie foncière</span>, NOVURBA
             c'est aussi et surtout du conseil dans une nouvelle façon de voir et
             concevoir l'urbanisme et l'aménagement, avec comme mots d'ordre :
             <span className="inline flex-wrap items-center gap-x-1 font-normal">
@@ -130,30 +130,30 @@ export default function Home() {
       <div className="w-full md:mt-30 mt-25">
         <div className="md:mr-0 md:ml-auto md:flex grid grid-cols-1 w-full gap-y-6 md:gap-y-0 h-fit">
           <div className="flex flex-col text-justify px-8 lg:pl-30 md:pr-7 lg:w-2/3 my-auto mx-auto">
-            <div className="rounded-full border-2 border-copperfield-400 w-36 h-36 py-13 mx-auto mb-3">
-              <h2 className="text-center text-2xl my-auto">
+            <div className="rounded-full border-2 border-copperfield-400 w-40 h-40 py-14 mx-auto mb-3">
+              <h2 className="text-center text-3xl my-auto">
                 Nos <span className="font-semibold text-copperfield-500/90">valeurs</span>
               </h2>
             </div>
-            <p className="tracking-wide font-light text-xl sm:min-w-[250px]">
-              <span className="font-normal">NOVURBA</span> est une entreprise
+            <p className="tracking-tight font-secondary font-light text-2xl sm:min-w-[250px]">
+              <span className="font-normal font-secondary text-copperfield-500/90">NOVURBA</span> est une entreprise
               avant toute chose proche de la{" "}
-              <span className="font-normal">réalité de chaque territoire</span>,
+              <span className="font-normal font-secondary text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">réalité de chaque territoire</span>,
               car nous sommes bien conscient des différences entre chaque
               département, intercommunalité, commune et même quartier. Par
               ailleurs, à l'heure du dérèglement climatique qui impacte
               durablement chaque mètre carré de notre planète, il est important
               de tenir compte des{" "}
-              <span className="font-normal">nouvelles données climatiques</span>{" "}
+              <span className="font-normal font-secondary text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">nouvelles données climatiques</span>{" "}
               qui s'établissent, des problèmes posés par la raréfaction des
               ressources et de l'impact de l'Homme sur son territoire. NOVURBA
               s'inscrit dans une démarche{" "}
-              <span className="font-normal">résiliente</span> et veut apporter
+              <span className="font-normal font-secondary text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">résiliente</span> et veut apporter
               une réponse intégrant et conciliant les activités humaines et les
               nouveaux enjeux liés au climat et à l'environnement. S'inscrivant
               dans le cadre d'une démarche résiliente et adaptée à chaque
               territoire, NOVURBA répondra pour chacun de vos projets de manière
-              <span className="font-normal">
+              <span className="font-normal font-secondary text-seagull-500 text-shadow-[1px_0.5px_0px] text-shadow-seagull-400">
                 {" "}
                 personnalisée, contextualisée et territorialisée
               </span>

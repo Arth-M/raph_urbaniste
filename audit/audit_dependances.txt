@@ -1,0 +1,139 @@
+AUDIT DÉPENDANCES ET SUPPLY CHAIN : raph_sinet_urbaniste
+Date : 2026-10-06. Mode lecture seule. Aucun fichier modifié, aucune installation, aucun `npm audit fix`.
+Note : PROJECT.md est absent (/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/.cursor/PROJECT.md introuvable). Le contexte a été établi en explorant le repo.
+
+Contexte constaté : site vitrine Next.js (App Router, JSX, sans TypeScript) avec Tailwind v4, pour un client urbaniste. Écosystème unique : npm. Un seul manifeste (package.json) et un seul lock (package-lock.json, lockfileVersion 3). Remote : github.com/Arth-M/raph_urbaniste. On ne trouve ni Dockerfile, ni vercel.json, ni .github/, ni .npmrc. La cible de déploiement n'est pas vérifiable depuis le repo.
+
+Commandes exécutées, toutes en lecture : npm ls (--depth=0 et --all), npm audit, npm audit --omit=dev, npm outdated, npm audit signatures, npm view, requêtes API OSV.dev, analyse du lock par script node en lecture, grep des imports, git log.
+
+====================================================================
+1. SYNTHÈSE EXÉCUTIVE
+====================================================================
+Risque global : MOYEN. Le périmètre est petit : 9 dépendances directes, 96 entrées dans le lock dont 61 optionnelles (binaires natifs par plateforme pour sharp et lightningcss), et environ 43 paquets réellement installés sur cette machine. Les fondamentaux sont bons : lock commité et synchronisé, sha512 sur 100 % des entrées, registre unique registry.npmjs.org, aucun script d'installation, 43/43 signatures registre vérifiées et 26 attestations de provenance.
+
+Top 3 :
+  1. Licence : typed.js 3.0.0 est sous GPL-3.0. La version 2.1.0 était MIT. Le paquet a été ajouté au commit 1428b40 (2026-03-08), directement en ^3.0.0. Il est importé côté client dans app/page.jsx, donc redistribué dans le bundle navigateur, alors que le projet est sous MIT et qu'il s'agit d'un site client commercial.
+  2. next@16.3.3 : CVE critique GHSA-vcvr-r3jv-pc5j (RCE via next/og ImageResponse). Plage affectée : 16.2.0 à 16.3.5, corrigée en 16.3.6, dernière version 16.3.8. Non exploitable aujourd'hui : grep "next/og|ImageResponse|opengraph-image" sur app/ ne renvoie rien. Elle le deviendrait dès qu'une image OG dynamique serait ajoutée.
+  3. Absence de politique : pas de dependabot.yml, pas de SLA, runtime non fixé. Des alertes Dependabot existent côté GitHub (commit 3e60e06 de dependabot[bot], « Bump tar »), mais sans configuration versionnée. Le commit « fixed CVEs » du 2026-08-31 n'a pas mis à jour baseline-browser-mapping, alors que l'advisory datait du 13 août.
+
+====================================================================
+2. TABLEAU DES FINDINGS
+====================================================================
+ID | Sév. | Cat. | Package | Actuel | Cible | Effort | Exploitable | Recommandation
+F1 | High (juridique) | 5 Licences / relicensing | typed.js | 3.0.0 (GPL-3.0) | 2.1.0 (MIT) ou suppression | S | n/a (risque légal) | Revenir à 2.1.0 (dernière MIT), ou remplacer l'effet de frappe par un hook React ou du CSS d'environ 30 lignes. Sinon, documenter une acceptation GPL validée par le client.
+F2 | Critical (CVSS), exposition faible | 2 CVE | next | 16.3.3 | ≥16.3.6 (latest 16.3.8) | S | Non (next/og non utilisé) | Mise à jour dans le range ^16.3.3 : lock seulement. Faire un build, puis un smoke test des pages.
+F3 | High | 2 CVE | source-map-js (transitive : postcss, @tailwindcss/node) | 1.2.1 | ≥1.2.2 | S | Non (build uniquement, source maps non contrôlées par un attaquant) | Viendra avec le rafraîchissement du lock. GHSA-68fv-2mgg-jv7q / CVE-2026-93749.
+F4 | Moderate | 2 CVE / 3 Hygiène | baseline-browser-mapping (devDep directe + transitive de next) | 2.9.19 | ≥2.11.0 (latest 2.11.27) | S | Non (outil de build) | Mettre à jour. Se demander aussi si la déclaration explicite est utile : next la tire déjà. Elle a probablement été ajoutée pour faire taire un avertissement « data is old ». GHSA-w5vr-8v7q-w6rv / CVE-2026-45819.
+F5 | Medium | 2 Vulnérabilités (process) | — | — | — | S | — | Aucun .github/dependabot.yml. Des alertes Dependabot semblent actives côté GitHub (PR de dependabot[bot] mergée), mais sans config versionnée : pas de groupage, pas de fréquence, version updates non garanties. Ajouter une config npm hebdomadaire et groupée.
+F6 | Medium | 4/12 Runtime EOL et pinning | Node.js | local v20.17.0, aucun pin | Node 22 LTS ou 24 LTS, version exacte | S | Inconnu (cible de déploiement non visible) | Node 20 est EOL depuis le 2026-04-30. Il n'y a ni .nvmrc, ni .tool-versions, ni "engines", ni "packageManager" (npm local 11.18.0). Next exige >=20.9.0. Fixer la version.
+F7 | Low | 1/12 Floating tool | prettier (via script "format": "npx prettier . --write") | non déclaré | devDependency figée | S | Faible | npx télécharge la dernière version de prettier à chaque appel : outil non versionné et hors lock. Le déclarer en devDependency.
+F8 | Low | 4 Fraîcheur | react / react-dom | 19.2.8 | 19.3.0 | S | Non (aucune CVE OSV/GHSA sur 19.2.8) | Mineur, à grouper avec F2.
+F9 | Low | 4 Fraîcheur | postcss (directe) | 8.5.26 | 8.5.29 | S | Non | Mineur. Next embarque sa propre postcss 8.5.23 (duplication bénigne).
+F10 | Low | 4 Fraîcheur | caniuse-lite (transitive de next) | 1.0.30001751 (environ oct. 2025) | latest | S | Non | Données navigateurs vieilles d'environ un an. Le rafraîchissement du lock suffira.
+F11 | Info | 5 Licences | @img/sharp-libvips-* (LGPL-3.0-or-later, optionnels), lightningcss* (MPL-2.0), caniuse-lite (CC-BY-4.0) | — | — | — | — | Compatibles avec un usage commercial. libvips (LGPL) n'est utilisé que côté serveur pour l'optimisation d'images, lié dynamiquement et non redistribué au client. MPL-2.0 ne concerne que des fichiers d'outil de build. CC-BY-4.0 porte sur des données de build. Aucune licence UNKNOWN.
+F12 | Info | 9 SBOM / 13 Incident | — | — | — | — | — | Pas de SBOM, de procédure d'incident ni de veille formalisée. C'est proportionné à un site vitrine. Pas de SBOM recommandé sans plateforme pour le consommer.
+
+====================================================================
+3. CHECKLIST DÉTAILLÉE
+====================================================================
+1. Lock files et résolution
+ [x] package-lock.json présent et commité (git ls-files). lockfileVersion 3.
+ [x] Synchronisé : les dépendances racine du lock sont identiques à package.json, et npm ls ne signale ni erreur, ni paquet manquant, ni « invalid ».
+ [x] Intégrité : 96/96 entrées avec integrity sha512 (0 manquante).
+ [~] Pinning : ranges ^ dans le manifeste, lock strict. C'est acceptable pour une application, mais typed.js en ^3.0.0 a fait entrer une licence GPL sans revue.
+ [x] Pas de "latest", de "*" ni de dépendance git. Seule exception : le npx prettier non versionné (F7).
+ [~] Builds reproductibles : lock et registre stable OK, mais Node et npm ne sont pas fixés (F6).
+
+2. Vulnérabilités
+ [ ] Audit automatisé dans une CI : il n'y a aucune CI dans le repo (pas de .github/workflows). npm audit a été exécuté localement pour cet audit.
+ [~] Dependabot : pas de config versionnée, mais des PR dependabot[bot] existent dans l'historique (3e60e06, 379f6e4 « Bump next 16.0.7 -> 16.0.9 »). Les alertes de sécurité semblent donc activées dans les réglages GitHub (non vérifiable sans accès au repo distant).
+ [ ] CVE critiques et hautes adressées : NON, 1 critique, 1 haute et 1 modérée sont ouvertes (F2-F4). Aucune acceptation écrite.
+ [x] Cross-check multi-sources : npm audit (GHSA) et OSV.dev donnent des résultats identiques sur next 16.3.3, source-map-js 1.2.1 et baseline-browser-mapping 2.9.19. OSV ne signale rien sur react, react-dom, postcss, sharp, tailwindcss, react-icons, typed.js, styled-jsx ni nanoid@3.3.18. Les CVE nanoid remontées par OSV concernent la 3.3.11, pas la version installée.
+ [x] Reachability : next/og absent du code, et les deux autres paquets ne servent qu'au build. Exposition réelle faible.
+ [ ] SLA de remédiation : absent. Historiquement, les patchs React/Next de décembre 2025 ont été appliqués en quelques jours (5e9a545, 50295df), mais l'advisory baseline-browser-mapping du 13 août est toujours ouverte au 6 octobre.
+ [ ] Process zero-day : non documenté.
+
+3. Hygiène
+ [x] Dépendances inutilisées : toutes les dépendances directes sont utilisées (react, react-dom, next, react-icons dans carousel.jsx, typed.js dans page.jsx, tailwindcss via globals.css, @tailwindcss/postcss via postcss.config.mjs). baseline-browser-mapping est redondante en déclaration directe.
+ [~] Séparation prod/dev : tailwindcss, @tailwindcss/postcss et postcss sont en dependencies alors que ce sont des outils de build. C'est sans impact sur le bundle client, et c'est la convention fréquente de Next. Information seulement.
+ [x] Duplication : postcss 8.5.23 (sous next) et 8.5.26 coexistent, c'est négligeable.
+ [x] Pas de redondance fonctionnelle.
+ [x] Taille de l'arbre : environ 43 paquets installés et 118 lignes dans npm ls --all, très raisonnable.
+
+4. Versions et fraîcheur
+ [~] Majeures à jour (Next 16, React 19, Tailwind 4). Patchs en retard : voir la sortie npm outdated (F2, F4, F8, F9).
+ [ ] Politique de mise à jour formalisée : absente. Le readme.md est un tutoriel d'installation obsolète : il cite next ^14, react ^18 et recommande `npm install ...@latest`.
+ [ ] LTS : runtime non fixé, Node local 20 EOL (F6).
+ [x] Pas de pré-versions.
+ [ ] EOL : Node 20 (local), voir F6.
+
+5. Licences
+ [x] Inventaire généré en lecture depuis le lock : MIT 47, Apache-2.0 16, MPL-2.0 12, LGPL-3.0-or-later 10 (+4 mixtes), ISC 3, BSD-3-Clause 1, 0BSD 1, CC-BY-4.0 1, GPL-3.0 1.
+ [x] Aucune licence UNKNOWN.
+ [ ] Compatibilité : typed.js GPL-3.0 face à un projet MIT ou commercial (F1).
+ [ ] Pas d'allowlist ni de denylist de licences (pas de CI).
+ [~] Attribution : non vérifiable dans le rendu du site. Les licences MIT sont conservées dans les fichiers du bundle selon la minification de Next.
+ [ ] Relicensing surprise : constaté (typed.js, F1).
+
+6. Authenticité
+ [x] Les noms des dépendances directes sont corrects (pas de typosquatting) et pointent vers les dépôts officiels (vercel/next.js, facebook/react, tailwindlabs, react-icons, mattboldt/typed.js).
+ [~] typed.js : un seul mainteneur (mattboldt). Le projet était resté inactif de nov. 2023 à janv. 2026, puis la 3.0.0 est sortie avec un changement de licence. Rien de malveillant constaté, mais le paquet est à surveiller.
+ [x] Aucun paquet du lock avec hasInstallScript.
+ [x] Dependency confusion : pas de paquet interne.
+ [x] Pas de paquet halluciné.
+
+7. Santé upstream
+ [~] next, react, tailwind, postcss : maintenus activement. typed.js et react-icons : petits mainteneurs (bus factor faible). Aucun statut deprecated constaté sur les paquets directs.
+ [ ] OpenSSF Scorecard non consulté (non bloquant pour ce périmètre).
+ [x] Aucun protestware connu dans l'arbre (aucun advisory).
+
+8. Provenance et signature
+ [x] npm audit signatures : 43 paquets avec signature registre vérifiée, 26 avec attestation de provenance.
+ [ ] SLSA : non applicable ou non documenté.
+
+9. SBOM : aucun. Aucun SBOM généré non plus, ni dans le repo ni ailleurs.
+
+10. Forks / patches / vendoring : aucun patch-package, fork ou code tiers vendored constaté. Des balises <Script> externes sont commentées dans app/layout.js (lignes 135 et 166) : à revoir dans l'audit frontend ou sécurité si elles sont réactivées.
+
+11. Registries
+ [x] Registre unique registry.npmjs.org (toutes les URL resolved). Pas de .npmrc projet ni utilisateur, donc registre par défaut. Pas de miroir interne, ce qui est proportionné.
+ [n/a] Credentials de publication : rien n'est publié.
+
+12. Runtime et toolchain
+ [ ] Pas de .nvmrc, de .tool-versions, de "engines" ni de "packageManager".
+ [~] Toolchain de build : next (SWC), lightningcss et @tailwindcss/oxide, tous signés et récents.
+ [n/a] Images Docker : aucune.
+
+13. Incident supply chain : aucune procédure ni veille formalisée. Rebuilder une version antérieure est possible grâce aux lock files historiques dans git.
+
+====================================================================
+4. PLAN DE REMÉDIATION PROPOSÉ (à décider par l'utilisateur)
+====================================================================
+Quick wins (moins d'un jour), en commits séparés :
+  a) Rafraîchir le lock dans les ranges actuels : next 16.3.8, puis baseline-browser-mapping ≥2.11.0, postcss 8.5.29, react et react-dom 19.3.0. Lancer ensuite `npm audit` (cible : 0 vulnérabilité), `next build` et une vérification visuelle, y compris le carrousel sous Firefox (dernier fix).
+  b) typed.js : choisir entre figer 2.1.0 (MIT), écrire une animation maison, ou accepter la GPL par écrit avec le client.
+  c) Ajouter .nvmrc (Node 22.x ou 24.x LTS, version exacte), "engines" et "packageManager": "npm@11.x.y".
+  d) Ajouter prettier en devDependency.
+Court terme (un sprint) :
+  e) Ajouter .github/dependabot.yml (npm hebdomadaire, groupes « next-react » et « build-tools », plus github-actions si une CI est créée).
+  f) Mettre à jour readme.md : retirer les instructions `@latest` et les versions obsolètes.
+Structurel :
+  g) Mini-politique dans le README : délais de correction (critique ≤ 7 jours, haute ≤ 30 jours), revue de licence à chaque nouvelle dépendance ou montée de majeure, allowlist (MIT/Apache/BSD/ISC/MPL/LGPL dynamique).
+  h) Optionnel : une CI minimale avec `npm ci`, `npm audit --audit-level=high` et license-checker --failOn GPL (le CI/CD relève d'une autre skill).
+
+====================================================================
+5. MÉTRIQUES DE SUIVI SUGGÉRÉES
+====================================================================
+- Nombre de CVE critiques et hautes ouvertes (aujourd'hui 1 critique et 1 haute, cible 0).
+- Ancienneté de la plus vieille advisory non traitée (aujourd'hui environ 54 jours, pour baseline-browser-mapping).
+- Nombre de dépendances sous licence copyleft forte (GPL/AGPL) dans le bundle client (aujourd'hui 1, cible 0).
+- Écart avec la dernière version patch de next et react.
+
+Hors périmètre, à signaler à d'autres skills : les scripts tiers commentés dans app/layout.js (frontend ou sécurité), l'absence de CI (CI/CD), la plateforme de déploiement et la version de Node en production (infrastructure).
+
+Fichiers clés :
+/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/package.json
+/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/package-lock.json
+/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/page.jsx (import typed.js)
+/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/LICENSE (MIT)
+/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/readme.md

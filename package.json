@@ -12,8 +12,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-icons": "^5.7.0",
-    "tailwindcss": "^4.3.3",
-    "typed.js": "^3.0.0"
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "baseline-browser-mapping": "^2.9.19"

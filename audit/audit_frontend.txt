@@ -1,0 +1,205 @@
+AUDIT FRONTEND / UX / ACCESSIBILITÉ — Novurba (raph_sinet_urbaniste)
+Date : 2026-10-06 — Auditeur : sous-agent readonly audit-platform
+Branche : main @ 7a714c2 (working tree propre)
+
+NOTE : PROJECT.md absent (/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/.cursor/PROJECT.md n'existe pas). Le contexte a été établi en explorant le repo.
+
+==================================================================
+0. PÉRIMÈTRE ET MÉTHODE
+==================================================================
+- Type : site vitrine Next.js 16 (App Router), React 19, Tailwind v4, en français uniquement. Cabinet d'urbanisme (Raphaël Sinet / Novurba, Occitanie). Public visé : collectivités (métropoles, mairies, communes).
+- Pages auditées (code source) : / (app/page.jsx), /notre-expertise, /nos-realisations, /entreprise, /contact, /sitemap. Composants : navbar, footer, carousel, arrowUp, layout.js, globals.css.
+- Niveau de référence : WCAG 2.1 AA. Le site n'appartient pas au secteur public, donc le RGAA n'est pas obligatoire. Comme les clients sont des collectivités, le RGAA reste un argument commercial.
+- Limite de l'audit : revue statique du code uniquement. Je n'ai pas lancé de serveur ni de navigateur (mode readonly, pas d'install ni de build). Donc pas d'axe, Lighthouse, Pa11y, WAVE, pas de lecteur d'écran et pas de test sur appareil réel. Les contrastes ont été calculés à partir des tokens de globals.css (formule WCAG, script python local). Les points qui ne se vérifient qu'au rendu sont marqués « non vérifié ».
+- État du site : tout le site est derrière une porte « code d'accès » côté client (layout.js, code '34000' en dur, sessionStorage). C'est donc encore une pré-production. Les métadonnées et le JSON-LD sont commentés avec la note « REMETTRE LES METADATA QUAND ON MET LE SITE EN LIGNE ».
+
+==================================================================
+1. SYNTHÈSE EXÉCUTIVE
+==================================================================
+Maturité frontend/a11y : 2/5. Conformité WCAG 2.1 AA estimée : NON ATTEINTE.
+
+Points positifs : `lang="fr"` présent sur `<html>`. Une partie des SVG décoratifs ont `aria-hidden`. Le bouton « Retour en haut » a un `aria-label`. Les couleurs sont centralisées en tokens `@theme`. Le site est responsive (breakpoints Tailwind sm/md/lg utilisés partout). Les polices sont chargées avec `display: swap`.
+
+Top 5 des problèmes bloquants :
+ 1. Carrousel en défilement auto (2,5 s) sans pause ni arrêt. Boutons flèche sans nom accessible. Lien vide superposé à l'image. [2.2.2 A, 4.1.2 A, 2.4.4 A]
+ 2. Contrastes de texte insuffisants sur les couleurs de marque, partout sur le site. [1.4.3 AA, 1.4.11 AA]
+ 3. Liens icônes sans nom accessible : tel et mail sur /entreprise. Le menu hamburger a un libellé en anglais et pas d'`aria-expanded`. [4.1.2 A, 2.4.4 A, 3.1.2 AA]
+ 4. Pas de `<title>`, pas de `<main>`, plusieurs h1 ou aucun h1 selon la page, pas de skip link. [2.4.2 A, 1.3.1 A, 2.4.1 A]
+ 5. `prefers-reduced-motion` n'est jamais respecté (slide du h1, ping, drop-in, scale au scroll, défilement auto). Débordement horizontal probable (faute de frappe `overflow-hiddenw-fit`, `w-screen`, `min-w-[360px]`). [2.3.3 AAA / bonne pratique, 1.4.10 AA]
+
+==================================================================
+2. CONSTATS PAR SECTION DE LA CHECKLIST
+==================================================================
+
+--- §1 Responsive design ---
+[MAJEUR] Débordement horizontal sur la home pendant l'animation du h1.
+  app/page.jsx:63 : `className="relative w-full overflow-hiddenw-fit ..."`. La faute de frappe (espace manquant) fait que la classe `overflow-hidden` n'est jamais appliquée. Le h1 démarre en `translate-x-full` (l. 80) et glisse pendant 2500 ms : il dépasse du viewport à droite. Un `<div>` blanc absolu (l. 64, `hidden sm:block`) sert de cache-misère. Correctif : `overflow-hidden w-fit`. [1.4.10 AA]
+[MAJEUR] `w-screen` sur nav et footer (navbar.jsx:31-34, footer.jsx:10). 100vw inclut la largeur de la barre de défilement sur desktop (Windows, Firefox, Chrome) et provoque un scroll horizontal. Remplacer par `w-full`. (Non vérifié au rendu, mais c'est un comportement CSS connu.)
+[MAJEUR] /nos-realisations : `min-w-[360px] px-8` sur les blocs texte (l. 96, 151, 180). Le contenu ne reflow pas à 320 px ou en zoom 400 %. [1.4.10 AA]
+[MINEUR] Home : nom et fonction du dirigeant en positionnement absolu avec offsets négatifs (`-right-22`, `-right-31`, app/page.jsx:120-125). Risque de débordement ou de chevauchement aux largeurs intermédiaires. Footer : marges négatives (`sm:-mt-19`, `-mt-20`) fragiles.
+[MINEUR] Cibles tactiles : boutons du carrousel 30×30 px (carousel.jsx:41, 55), sous les 44 px recommandés. ArrowUp : environ 39 px (p-3 + icône 15 px).
+[MINEUR] Safe areas iOS non gérées (`env(safe-area-inset-*)` absent) pour le bouton fixe ArrowUp.
+[OK] Le corps de texte est en text-lg ou text-xl (≥18 px). Images en w-% / object-*.
+
+--- §2 Compatibilité navigateurs ---
+[MAJEUR] Aucune matrice de navigateurs documentée. Pas de browserslist, le readme n'en parle pas. Seul `baseline-browser-mapping` est présent en devDependency. Le dernier commit (« fix carousel image for firefox ») montre que des écarts entre navigateurs ont déjà été rencontrés sans être formalisés.
+[MAJEUR] JS désactivé : layout.js est un composant client et l'état initial `codeTrue=false`. Le rendu serveur ne contient que la porte d'accès, donc aucun contenu n'est accessible sans JS. Même après la mise en ligne, le h1 de la home reste hors écran (`translate-x-full`) tant que le JS n'a pas tourné.
+[MINEUR] `maskImage` + `WebkitMaskImage` sont fournis ensemble : correct.
+[MINEUR] Mode privé : sessionStorage est généralement disponible. Pas de try/catch (layout.js:113, 120). Non vérifié.
+
+--- §3 Internationalisation ---
+[N/A partiel] Site monolingue en français : les chaînes en dur sont acceptables, pas besoin d'un framework i18n.
+[MAJEUR] Textes destinés aux lecteurs d'écran en anglais sur un site déclaré `lang="fr"` : « Open main menu » (navbar.jsx:130), « LinkedIn profile » (entreprise/page.jsx:112, 132 ; contact/page.jsx:69). Ils seront prononcés avec la phonétique française. Traduire en français. [3.1.2 AA]
+[MINEUR] « qu'ès aco ? » (entreprise/page.jsx:10) est en occitan : on peut l'entourer de `<span lang="oc">`.
+
+--- §4 Localisation ---
+[MINEUR] Formats de téléphone incohérents et non conformes à l'usage français : « +33 676382568 » (contact:29) contre « +33 6-65-72-81-30 » (entreprise:75). Préférer « 06 65 72 81 30 » ou « +33 6 65 72 81 30 ».
+[MAJEUR (contenu/UX)] Numéros de téléphone DIFFÉRENTS entre /contact (+33676382568) et /entreprise (+33665728130). Un visiteur peut appeler le mauvais numéro. À faire valider par le client.
+[MINEUR] Année du copyright en dur : « 2026 - Tous droits réservés » (footer.jsx:91).
+
+--- §5 Design system et composants ---
+[OK partiel] Tokens de couleur centralisés (globals.css @theme : palettes copperfield et seagull) ; durées d'animation en tokens.
+[MAJEUR] Aucun composant réutilisable pour les liens de navigation, les cartes, les boutons ou les titres décorés : les classes Tailwind sont dupliquées (4 liens du menu identiques, 3 cartes d'expertise copiées-collées avec le même `id="Layer_1"` répété 3 fois dans le DOM, notre-expertise/page.jsx:100, 128, 156 → ID dupliqué). [4.1.1 en 2.1]
+[MINEUR] Hacks visuels : `<li className="hidden lg:block lg:invisible"> coucou</li>` (notre-expertise:167) sert à aligner les hauteurs. Classe invalide `-rotate{50}` (sitemap/page.jsx:39). `text-copperfield-400` en double (notre-expertise:88).
+[MINEUR] Pas de Storybook ni de documentation visuelle (acceptable pour un site vitrine).
+[MINEUR] Navigation incohérente : le CTA « Contact » pointe vers /entreprise#contact, alors que la page /contact existe, n'est liée que depuis /sitemap et affiche un autre numéro. Page orpheline à supprimer ou à unifier.
+
+--- §6 États UI ---
+[MAJEUR] Pas de `app/not-found.jsx` ni de `app/error.jsx` : c'est la page 404 par défaut de Next (en anglais) qui s'affiche, ce qui casse l'expérience.
+[N/A] Pas de chargement de données asynchrones ni d'états vides (site statique).
+[MINEUR] Porte d'accès : le message d'erreur (layout.js:149-151) n'est pas annoncé (pas d'`aria-live`) et n'est pas lié au champ.
+
+--- §7 Feedback utilisateur ---
+[MAJEUR] `prefers-reduced-motion` n'est jamais pris en compte : aucun `motion-reduce:` ou `motion-safe:` et aucune media query (grep négatif). Animations concernées : slide du h1 sur 2,5 s, apparition différée de l'image réseau (page.jsx:30-35), `animate-[ping]` sur les icônes de contact, `animate-drop-in`, scale au scroll (nos-realisations, notre-expertise), défilement auto du carrousel, `md:bg-fixed` (parallaxe). [2.3.3 AAA, recommandé AA]
+[MINEUR] Hover avec `hover:text-xl` dans le menu mobile (navbar.jsx:166…) : la taille du texte change au survol et provoque des sauts de mise en page.
+[MINEUR] Cartes d'expertise : un clic ajoute `scale-110`, mais l'IntersectionObserver ajoute et retire aussi `scale-110` sur les mêmes éléments (notre-expertise:55). Le feedback est contradictoire et l'intention n'est pas claire.
+
+--- §8 Formulaires ---
+Seul formulaire : la porte d'accès (layout.js:140-151), qui est temporaire.
+[MAJEUR] Il n'y a pas de `<form>` : la touche Entrée ne valide pas, le bouton n'a qu'un onClick. Le label est lié par `htmlFor="code"` mais l'input n'a pas d'`id="code"` (seulement `name`), donc le label n'est PAS associé. Le placeholder « xxxx » sert d'indice. Pas d'`autocomplete`. Le message d'erreur n'est ni annoncé ni lié via `aria-describedby`, et le champ n'a pas d'`aria-invalid`. [1.3.1 A, 3.3.1 A, 4.1.2 A]
+Note hors périmètre : le code en dur côté client n'apporte aucune protection réelle. À signaler au domaine sécurité.
+
+--- §9 UX et ergonomie ---
+[MAJEUR] La page /nos-realisations n'a pas de h1 visible (commenté l. 58). Les ancres PLU / Stratégie foncière / SIG apparaissent en `opacity-0` avec animation : sans animation (CSS ou JS indisponible, reduced motion émulé…) elles peuvent rester invisibles. Non vérifié.
+[MINEUR] `text-justify` sur de longs paragraphes (home, entreprise, réalisations, expertise) : crée des « rivières » et gêne les lecteurs dyslexiques. Préférer `text-left`. `font-light` (300) en Quicksand réduit la lisibilité.
+[MINEUR] Liens externes (`target="_blank"` LinkedIn, ATU-Web) non signalés visuellement ni pour les lecteurs d'écran. Le lien ATU-Web (footer.jsx:93) n'a pas de `rel="noopener"`.
+[MINEUR] Liens LinkedIn : l'attribut `title` « Voir le profil LinkedIn de Raphaël Sinet » alors que l'URL pointe vers la page entreprise (`company/novurba`).
+[MINEUR] Pas d'onglet actif annoncé (voir §12). Le footer n'a ni Accueil ni Contact.
+[OK] Architecture simple (5 pages, 1 niveau) : pas besoin de fil d'Ariane ni de recherche.
+
+--- §10 Accessibilité, référentiel ---
+[MINEUR] Pas de déclaration d'accessibilité ni d'engagement de niveau. Ce n'est pas obligatoire pour une entreprise privée de cette taille, mais c'est recommandé vu une clientèle de collectivités.
+
+--- §11 HTML sémantique ---
+[BLOQUANT] Aucun `<title>` sur aucune page : layout.js est 'use client', `metadata` est commenté et le `<head>` manuel ne contient que le favicon. [2.4.2 A]
+[MAJEUR] Aucun landmark `<main>` : `{children}` est rendu directement dans `<body>` (layout.js:167). [1.3.1 A, 2.4.1 A]
+[MAJEUR] Hiérarchie des titres :
+  - /nos-realisations : 3 `<h1>` (l. 106, 152, 189), un par section.
+  - /notre-expertise : aucun h1. Le carrousel affiche un `<h2>` dont le texte change toutes les 2,5 s (carousel.jsx:50).
+  - Home : h2 « Ils font confiance à » suivi d'un `<span>` hors du titre (page.jsx:193-198), donc le titre est tronqué (« Ils font confiance à »).
+  - /sitemap : le composant s'appelle `Realisation` (copier-coller). Sans impact pour l'utilisateur.
+[MAJEUR] `<div onClick>` sur les 3 cartes d'expertise (notre-expertise:81, 110, 139) avec `cursor-pointer`. Elles ne sont ni focusables ni utilisables au clavier.
+[MINEUR] Pastilles décoratives `<span>` entre « résilience • bas carbone • sobriété » (page.jsx:101, 105) : sans texte, la liste est lue d'un bloc. Une liste ou un séparateur textuel masqué est préférable.
+[MINEUR] Coordonnées sans `<address>`. Les références professionnelles et les études sont des suites de `<p>` séparés par des `<hr>` : utiliser une `<ul>` (entreprise:155-197).
+[MINEUR] Footer : `<li className="hidden md:flex"></li>` vide utilisé comme espaceur (footer.jsx:44). Il est annoncé comme un élément de liste vide.
+[MINEUR] Navigation : un seul `<nav>` sans `aria-label`. Le footer n'a pas de `<nav>`.
+
+--- §12 ARIA ---
+[BLOQUANT] Boutons du carrousel (précédent/suivant) avec seulement une icône react-icons, sans `aria-label` (carousel.jsx:40-47, 54-61). [4.1.2 A]
+[BLOQUANT] Lien vide superposé à l'image du carrousel : `<a href="#..."></a>` sans contenu ni nom (carousel.jsx:66-73). [2.4.4 A, 4.1.2 A]
+[BLOQUANT] /entreprise : les liens icônes `tel:` (l. 42-69) et `mailto:` (l. 79-85) ne contiennent que des SVG sans `<title>` ni `aria-label`, donc ils n'ont pas de nom accessible. Ils doublent en plus les liens texte qui suivent : on peut les retirer de la tabulation ou les fusionner.
+[MAJEUR] Hamburger : pas d'`aria-expanded`, pas d'`aria-controls`, texte sr-only en anglais (navbar.jsx:120-148). Le SVG n'a pas d'`aria-hidden`.
+[MAJEUR] Pas d'`aria-current="page"` sur le lien actif (navbar.jsx:84-111). L'état actif n'est donné que par la couleur. [1.3.1, 1.4.1]
+[MAJEUR] /entreprise : lien LinkedIn dupliqué (l. 95 et 115). La copie animée « ping » est un 2e lien focusable identique, donc un arrêt de tabulation en double. Il faut la passer en décoratif (`aria-hidden` + `tabIndex=-1`, ou mieux un pseudo-élément).
+[MINEUR] Navbar : `<span className="sr-only">Logo de Novurba</span>` HORS du lien (navbar.jsx:42), redondant avec l'alt de l'image. Le lien logo devrait avoir l'alt « Novurba – Accueil » (alt d'image fonctionnelle = destination).
+[MINEUR] ArrowUp : `aria-label` sur le bouton et alt descriptif sur l'image (redondant mais sans danger). Passer l'image en `alt=""`.
+[MINEUR] Carrousel : pas de `aria-roledescription="carousel"`, pas de région `aria-live="off/polite"` pour les diapositives (pattern APG Carousel).
+
+--- §13 Navigation clavier ---
+[BLOQUANT] Carrousel avec défilement auto toutes les 2,5 s (carousel.jsx:25-33), sans pause, sans arrêt au survol ou au focus, sans moyen de le stopper. [2.2.2 A]
+[MAJEUR] Pas de skip link vers le contenu. [2.4.1 A]
+[MAJEUR] Menu mobile : il se ferme seulement au clic extérieur (mousedown). Pas de fermeture par Escape, pas de retour du focus, et il reste ouvert si on quitte le menu avec Tab.
+[MAJEUR] Cartes d'expertise inaccessibles au clavier (div onClick, voir §11).
+[MINEUR] Le bouton ArrowUp masqué utilise `invisible` (visibility:hidden), donc il sort bien de l'ordre de tabulation. OK.
+[NON VÉRIFIÉ] Focus visible : la preflight de Tailwind v4 garde l'outline natif et aucun `outline-none` n'a été trouvé. Le focus reste donc probablement visible, mais son contraste sur fond copperfield-400 (boutons PLU / Stratégie / SIG) n'a pas été testé. Seul le hamburger a un style de focus explicite (indigo-500, hors charte).
+[OK] Aucun tabindex positif.
+
+--- §14 Contrastes et couleurs (calculés, formule WCAG) ---
+| Couple | Ratio | Usage | Verdict |
+| copperfield-400 #e37d58 / blanc | 2,86:1 | menu desktop text-xl font-light, h1 des sections, « qu'ès aco », titres | ÉCHEC 1.4.3 (le texte n'est « grand » qu'à partir de 24 px) |
+| seagull-500 #28a2cf / blanc | 2,93:1 | bouton Contact (texte + bordure), liens tel/mail/LinkedIn, mots mis en avant | ÉCHEC 1.4.3 et 1.4.11 |
+| copperfield-500 à 90 % / blanc | ≈3,32:1 | « terrain » (h1 6xl : OK grand texte), « NOVURBA », mots-clés en 2xl/xl | Échec pour le texte < 24 px |
+| copperfield-50 / copperfield-400 | 2,64:1 | boutons PLU/Stratégie/SIG, section stratégie foncière en mobile | ÉCHEC |
+| copperfield-50 / copperfield-300 | 1,86:1 | onglet actif du menu | ÉCHEC grave |
+| copperfield-500 / copperfield-100 | 3,15:1 | survol du menu | ÉCHEC |
+| gray-700 / gray-50 | 9,86:1 | menu mobile | OK |
+[MAJEUR] Texte blanc sur l'image du carrousel : seul un `drop-shadow` est appliqué, sans overlay. Contraste non garanti selon l'image. Non vérifié.
+[MAJEUR] Les liens dans le texte (sitemap mis à part) ne sont pas soulignés. Ils se distinguent par la couleur seule (seagull-500) alors que les mots mis en avant non cliquables ont la même couleur : confusion entre lien et emphase. [1.4.1 A]
+Recommandation : utiliser copperfield-700 (#ab3223) et seagull-700 (#16698e) ou plus foncé pour le texte. Garder les tons 300-500 pour le décoratif.
+
+--- §15 Texte, zoom, reflow ---
+[MAJEUR] Reflow à 320 px compromis (voir §1 : min-w-[360px], w-screen, h1 en translate).
+[MINEUR] Hauteurs fixes avec du texte : `h-[350px]` sur un paragraphe (notre-expertise:91), `md:min-h-[800px]`. Risque de chevauchement en zoom 200 % ou avec un espacement de texte modifié (1.4.12). Non vérifié.
+[OK] Tailles en rem (utilitaires Tailwind). Pas de texte en image, hors logos.
+
+--- §16 Alternatives textuelles et médias ---
+[MAJEUR] Logos des références clients : 4 logos avec alt « image d'un sponsor » (page.jsx:186-266, 8 occurrences). L'alt doit donner le nom : « Montpellier Méditerranée Métropole », « Atelier Chibaudel », « Essence Urbanisme », « Naturae – Groupe Lamo ». Ce ne sont pas des sponsors mais des clients. [1.1.1 A]
+[MINEUR] Le même alt générique « Images de cartographie, stratégie foncière, et planification » sert pour les 3 diapositives du carrousel (carousel.jsx:77). Il devrait être propre à chaque image, ou vide si l'image est décorative (le titre est déjà affiché).
+[MINEUR] Alt descriptifs sur des images décoratives : « Image de réseau » (fond décoratif, page.jsx:68 et nos-realisations:62), « Image de plu », icônes de la sitemap (« Icone d'épingle »), icônes tel/mail de /contact, « Image d'une ville du sud ». Passer en `alt=""`. Éviter aussi les préfixes « Image de… ».
+[OK] Les illustrations de /nos-realisations ont `alt=""` (décoratif, cohérent).
+[N/A] Pas de vidéo ni d'audio. Pas de clignotement > 3 Hz (le ping est une seule itération).
+
+--- §17 Composants complexes ---
+Carrousel : non conforme au pattern APG (voir §12 et §13).
+Menu disclosure mobile : non conforme (`aria-expanded`, Escape).
+Pas de modale, d'onglets, d'accordéon, de combobox, d'iframe ni de captcha.
+
+--- §18 Tests d'accessibilité ---
+[MAJEUR] Aucun outil d'accessibilité dans le projet : pas de pa11y, axe, eslint-plugin-jsx-a11y ni Lighthouse CI dans package.json, et aucun script de test. Aucune trace de test manuel au clavier ou au lecteur d'écran.
+Cet audit n'a pas exécuté d'outil automatisé (readonly, pas de serveur lancé).
+
+==================================================================
+3. QUICK WINS (fort impact, faible effort)
+==================================================================
+1. app/page.jsx:63 : `overflow-hiddenw-fit` → `overflow-hidden w-fit`.
+2. carousel.jsx : `aria-label="Diapositive précédente"` / `"Diapositive suivante"`. Supprimer le `<a>` vide superposé ou lui donner un texte (« Voir : {text} »). Mettre l'auto-défilement en pause au survol, au focus et avec un bouton Pause, ou le désactiver.
+3. navbar.jsx : `aria-expanded={isMobileMenuOpen}`, `aria-controls`, sr-only « Ouvrir le menu », Escape pour fermer, `aria-current="page"` sur le lien actif.
+4. entreprise/page.jsx : `aria-label="Appeler Novurba"` / `"Écrire à Novurba"` sur les liens icônes (ou `aria-hidden` + `tabIndex={-1}` puisqu'ils doublent les liens texte). Retirer la copie LinkedIn focusable. « LinkedIn profile » → « Page LinkedIn de Novurba ».
+5. Alt des logos clients : mettre les vrais noms.
+6. layout.js : envelopper `{children}` dans `<main id="contenu">`, ajouter un skip link, puis à la mise en ligne retirer 'use client' du layout et rétablir `metadata` avec un `title` par page (`export const metadata` ou `generateMetadata` dans chaque page, qui doit alors être un composant serveur).
+7. Remplacer `w-screen` par `w-full` dans le nav et le footer.
+8. Ajouter `motion-reduce:animate-none motion-reduce:transition-none` sur les éléments animés, ou un bloc `@media (prefers-reduced-motion: reduce)` global.
+
+==================================================================
+4. ROADMAP
+==================================================================
+Court terme (avant mise en ligne) :
+- Quick wins 1 à 8.
+- Un seul h1 par page (/nos-realisations : un h1 « Nos réalisations » et des h2 pour les sections ; /notre-expertise : ajouter un h1).
+- Unifier /contact et /entreprise#contact (supprimer la page orpheline ou l'aligner). Valider le bon numéro avec le client.
+- Ajouter app/not-found.jsx en français.
+- Cartes d'expertise : retirer onClick et cursor-pointer, ou utiliser un vrai `<button>`.
+Moyen terme :
+- Revoir la palette de texte pour atteindre 4,5:1 (copperfield-700+, seagull-700+). Souligner les liens dans le texte.
+- Extraire les composants NavLink, ExpertiseCard, ContactItem, DecoratedHeading pour supprimer les duplications et les ID répétés.
+- Corriger le reflow à 320 px et le zoom à 400 % (retirer min-w-[360px], les hauteurs fixes et les offsets négatifs).
+- Documenter la matrice de navigateurs (Chrome, Firefox, Safari macOS/iOS, Edge, 2 dernières versions) et tester sur un iPhone et un Android réels.
+Long terme :
+- Ajouter eslint-plugin-jsx-a11y et pa11y-ci ou Lighthouse CI.
+- Faire un test manuel VoiceOver et NVDA. Envisager une déclaration d'accessibilité (argument pour les collectivités).
+
+==================================================================
+5. ANNEXES ET PREUVES
+==================================================================
+Fichiers examinés (chemins absolus) :
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/layout.js
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/globals.css
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/notre-expertise/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/nos-realisations/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/entreprise/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/contact/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/sitemap/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/_components/{navbar,footer,carousel,arrowUp}.jsx
+Commandes lancées (lecture seule) : cat / grep sur app/, calcul de contraste en python3 sur les valeurs hex des tokens. Le grep de `prefers-reduced|motion-|focus-visible|outline|<title|<main|skip` dans app/ n'a rien trouvé, à part un `focus:outline-2` sur le hamburger.
+Non réalisé : axe, Lighthouse, Pa11y, WAVE, lecteurs d'écran, appareils réels, zoom, mode forcé des couleurs (pas de rendu possible en mode readonly).

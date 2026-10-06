@@ -80,7 +80,7 @@ export default function Expertise() {
       <div className="flex flex-wrap mt-15 mb-15 px-10 sm:gap-x-8 md:gap-x-10 gap-y-12 mx-auto justify-around">
         <div
           id="planification"
-          className={`md:min-h-[800px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-400 px-5 py-6 rounded bg-copperfield-50/40 transition-transform duration-300 ease-in-out cursor-pointer ${
+          className={`md:min-h-[850px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-400 px-5 py-6 rounded bg-copperfield-50/40 transition-transform duration-300 ease-in-out cursor-pointer ${
             activeCard === "planification" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("planification")}
@@ -96,20 +96,21 @@ export default function Expertise() {
             d'un territoire, via la réalisation d'études urbaines (diagnostic
             urbain, prospective, études de capacité ...)
           </p>
-          <div className="md:min-h-[350px]">
+          <div className="md:min-h-[350px] mb-0 sm:mt-auto mt-5">
             <svg id="Layer_1"className="fill-copperfield-400 h-12 w-12 object-scale-down self-center justify-self-center" enableBackground="new 0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g><path d="m12 23c-1.3 0-2.6-.2-3.8-.7-2.2-.8-4.1-2.3-5.4-4.3s-1.9-4.4-1.7-6.7c.2-2.4 1.1-4.6 2.6-6.4s3.6-3.1 5.9-3.6 4.7-.3 6.9.7c.5.2.7.8.5 1.3s-.8.7-1.3.5c-1.8-.8-3.8-1-5.6-.6-2 .4-3.7 1.5-4.9 3-1.3 1.5-2 3.3-2.1 5.3-.1 1.9.4 3.9 1.4 5.5s2.6 2.9 4.4 3.5c1.8.7 3.8.7 5.7.2 1.8-.5 3.5-1.7 4.7-3.2s1.8-3.5 1.8-5.4v-.9c0-.6.4-1 1-1s1 .4 1 1v.8c0 2.4-.8 4.7-2.2 6.6s-3.4 3.3-5.7 4c-1.1.2-2.1.4-3.2.4zm0-8c-.3 0-.5-.1-.7-.3l-3-3c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l2.3 2.3 9.3-9.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-10 10c-.2.2-.4.3-.7.3z"/></g></svg>
-            <ul className="mt-6 font-secondary text-xl gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+            <ul className="mt-6 font-secondary text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
               <li>Etudes urbaines spécifiques</li>
               <li>Etudes pré-opérationnelles</li>
               <li>Conseil en planification (PLU/ CC)</li>
               <li>Prospective urbaine</li>
               <li>Diagnostic urbain</li>
+              <li className="hidden lg:block lg:invisible"> coucou</li>
             </ul>
           </div>
         </div>
         <div
           id="strategie-fonciere"
-          className={`md:min-h-[800px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-400 px-5 py-6 rounded bg-copperfield-50/40 transition-transform duration-300 ease-in-out cursor-pointer ${
+          className={`md:min-h-[850px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-400 px-5 py-6 rounded bg-copperfield-50/40 transition-transform duration-300 ease-in-out cursor-pointer ${
             activeCard === "strategie-fonciere" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("strategie-fonciere")}
@@ -124,10 +125,10 @@ export default function Expertise() {
               mobilisation du foncier ...)
             </p>
           </div>
-          <div className="md:min-h-[350px] mb-0 mt-auto">
+          <div className="md:min-h-[350px] mb-0 sm:mt-auto mt-5">
             <svg id="Layer_1"className="fill-copperfield-400 h-12 w-12 object-scale-down self-center justify-self-center" enableBackground="new 0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g><path d="m12 23c-1.3 0-2.6-.2-3.8-.7-2.2-.8-4.1-2.3-5.4-4.3s-1.9-4.4-1.7-6.7c.2-2.4 1.1-4.6 2.6-6.4s3.6-3.1 5.9-3.6 4.7-.3 6.9.7c.5.2.7.8.5 1.3s-.8.7-1.3.5c-1.8-.8-3.8-1-5.6-.6-2 .4-3.7 1.5-4.9 3-1.3 1.5-2 3.3-2.1 5.3-.1 1.9.4 3.9 1.4 5.5s2.6 2.9 4.4 3.5c1.8.7 3.8.7 5.7.2 1.8-.5 3.5-1.7 4.7-3.2s1.8-3.5 1.8-5.4v-.9c0-.6.4-1 1-1s1 .4 1 1v.8c0 2.4-.8 4.7-2.2 6.6s-3.4 3.3-5.7 4c-1.1.2-2.1.4-3.2.4zm0-8c-.3 0-.5-.1-.7-.3l-3-3c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l2.3 2.3 9.3-9.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-10 10c-.2.2-.4.3-.7.3z"/></g></svg>
 
-            <ul className="mt-6 font-secondary text-xl gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+            <ul className="mt-6 font-secondary text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
               <li>Analyse des gisements fonciers</li>
               <li>Analyse de la dureté foncière</li>
               <li>Analyse de la mutabilité foncière</li>
@@ -138,7 +139,7 @@ export default function Expertise() {
         </div>
         <div
           id="cartographie"
-          className={`md:min-h-[800px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-400 px-5 py-6 rounded bg-copperfield-50/40 transition-transform duration-300 ease-in-out cursor-pointer ${
+          className={`md:min-h-[850px] scroll-mt-10 expertise-card relative flex flex-col w-[300px] border border-copperfield-400 px-5 py-6 rounded bg-copperfield-50/40 transition-transform duration-300 ease-in-out cursor-pointer ${
             activeCard === "cartographie" ? "scale-110" : ""
           }`}
           onClick={() => setActiveCard("cartographie")}
@@ -152,10 +153,10 @@ export default function Expertise() {
               urbain.
             </p>
           </div>
-          <div className="md:min-h-[350px] mb-0 mt-auto">
+          <div className="md:min-h-[350px] mb-0 sm:mt-auto mt-5">
             <svg id="Layer_1"className="fill-copperfield-400 h-12 w-12 object-scale-down self-center justify-self-center" enableBackground="new 0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g><path d="m12 23c-1.3 0-2.6-.2-3.8-.7-2.2-.8-4.1-2.3-5.4-4.3s-1.9-4.4-1.7-6.7c.2-2.4 1.1-4.6 2.6-6.4s3.6-3.1 5.9-3.6 4.7-.3 6.9.7c.5.2.7.8.5 1.3s-.8.7-1.3.5c-1.8-.8-3.8-1-5.6-.6-2 .4-3.7 1.5-4.9 3-1.3 1.5-2 3.3-2.1 5.3-.1 1.9.4 3.9 1.4 5.5s2.6 2.9 4.4 3.5c1.8.7 3.8.7 5.7.2 1.8-.5 3.5-1.7 4.7-3.2s1.8-3.5 1.8-5.4v-.9c0-.6.4-1 1-1s1 .4 1 1v.8c0 2.4-.8 4.7-2.2 6.6s-3.4 3.3-5.7 4c-1.1.2-2.1.4-3.2.4zm0-8c-.3 0-.5-.1-.7-.3l-3-3c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l2.3 2.3 9.3-9.3c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-10 10c-.2.2-.4.3-.7.3z"/></g></svg>
 
-            <ul className="mt-6 font-secondary text-xl gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
+            <ul className="mt-6 font-secondary text-lg gap-x-2 gap-y-2 grid grid-cols-1 px-2 items-center justify-start">
               <li>Cartographie SIG</li>
 
               <li>Cartographie en dessin vectoriel</li>

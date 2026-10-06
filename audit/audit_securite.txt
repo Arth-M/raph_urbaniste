@@ -1,0 +1,152 @@
+# Rapport d'audit sécurité — raph_sinet_urbaniste (site vitrine Novurba) — 2026-10-06
+
+PROJECT.md absent (/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/.cursor/PROJECT.md n'existe pas). Le contexte vient de l'exploration du dépôt.
+
+## 1. Résumé exécutif
+C'est un site vitrine statique : Next.js 16 (App Router), React 19, Tailwind 4. Il n'y a ni backend, ni API, ni authentification réelle, ni base de données, ni formulaire, ni upload. La surface d'attaque est donc très réduite. Le niveau global est correct pour ce type de site, mais il reste des points à corriger avant la mise en ligne :
+- Findings : 0 critique exploitable, 2 hautes, 3 moyennes, 4 basses, 3 infos.
+- Top 3 :
+  1. Un « code d'accès » purement côté client donne une fausse impression de confidentialité.
+  2. Le framework Next.js a une version vulnérable (CVE critique, non atteignable en l'état).
+  3. Aucun en-tête de sécurité HTTP n'est configuré, et le domaine de prod n'a pas de HTTPS.
+
+Statut « partial » : la configuration réelle du déploiement Vercel n'a pas pu être vérifiée (URL inconnue, pas de vercel.json). TLS et en-têtes de prod n'ont donc pas été testés sur l'application elle-même. novurba.fr sert aujourd'hui la page « Site en construction » d'OVH.
+
+## 2. Périmètre
+- Dépôt : app/ (layout.js, page.jsx, contact, entreprise, nos-realisations, notre-expertise, sitemap, _components), public/images, package.json et package-lock.json, .gitignore, historique git (83 commits).
+- Live (passif) : DNS et HTTP de novurba.fr.
+- Hors périmètre : supply chain détaillée, infra, CI/CD, RGPD (autres skills). Les vulnérabilités npm sont croisées ici seulement.
+
+## 3. Méthodologie
+Revue manuelle du code ; grep de motifs à risque (dangerouslySetInnerHTML, innerHTML, eval, process.env, localStorage/sessionStorage, fetch, target="_blank", http://) ; recherche de secrets dans l'historique git (`git log -p --all`) ; `npm audit` en lecture seule ; `curl -I` et `dig` passifs sur le domaine. Aucun scanner actif, aucune modification.
+
+## 4. Cartographie et threat model
+- Points d'entrée : pages statiques publiques, liens mailto/tel, liens externes (LinkedIn, atuweb.fr).
+- Aucun : route handler (app/**/route.js), server action, middleware/proxy, appel fetch, variable process.env, formulaire envoyé à un serveur.
+- Actifs sensibles : la réputation et l'intégrité du site (défacement, clickjacking, phishing via le domaine), les coordonnées pro publiques (téléphone, email, volontairement publiées), le domaine et l'email (SPF/DMARC).
+- STRIDE : surtout Tampering/Spoofing (intégrité du contenu, usurpation email) et Information disclosure (contenu « en construction » visible malgré le code). Pas d'EoP ni de données utilisateur.
+
+## 5. Findings par sévérité
+
+### Haute
+H1. Contrôle d'accès « site en construction » uniquement côté client
+- Description : app/layout.js est 'use client'. L'accès au contenu dépend de `if (code === '34000')`, puis de `sessionStorage.setItem('siteAccess','true')`. Le code est en clair dans le bundle JS. Les chunks des pages, avec leur contenu, sont téléchargeables sans saisir de code.
+- Preuve (app/layout.js) :
+  ```
+  const handleCodeSubmit = () => {
+    if (code === '34000') {
+      sessionStorage.setItem('siteAccess', 'true')
+  ```
+- Impact : aucune confidentialité réelle. N'importe qui peut lire le code dans le JS, poser siteAccess=true dans la console, ou récupérer les chunks /_next/static. Faible impact business (le contenu a vocation à être public), mais la fausse impression de sécurité est un risque si du contenu confidentiel y est ajouté. Le code « 34000 » (code postal de Montpellier) se devine trivialement. Effet de bord : tout le layout est rendu côté client, et les metadata SEO sont commentées.
+- Recommandation : pour une pré-prod, utiliser Vercel Deployment Protection (Password / Vercel Authentication) ou une Basic Auth côté serveur dans proxy.js/middleware (avec une comparaison en temps constant et un secret en variable d'environnement). Ou bien supprimer ce mécanisme à la mise en ligne, remettre layout.js en Server Component et réactiver `metadata`, comme le prévoit le commentaire « REMETTRE LES METADATA… ».
+- Effort : S.
+
+H2. Next.js 16.3.3 vulnérable (GHSA-vcvr-r3jv-pc5j, RCE dans next/og ImageResponse, versions 16.2.0 à 16.3.5)
+- Preuve : node_modules/next/package.json et package-lock.json en version 16.3.3 ; `npm audit` le classe critique.
+- Atteignabilité : faible. Aucun import de next/og ou ImageResponse dans app/. Sévérité ramenée à Haute par prudence (correctif trivial, usage futur possible d'OG images).
+- Également : source-map-js 1.0.0 à 1.2.1 (haute, DoS, outillage de build) et baseline-browser-mapping < 2.11.0 (moyenne, DoS, devDependency). Les deux ont un impact runtime négligeable.
+- Recommandation : `npm audit fix` (next >= 16.3.6), puis `npm run build` et vérification visuelle. Activer Dependabot ou Renovate (voir la skill supply chain).
+- Effort : S.
+
+### Moyenne
+M1. Aucun en-tête de sécurité HTTP configuré
+- Preuve : pas de next.config.(js|mjs|ts), pas de vercel.json, pas de middleware ou proxy. Donc pas de CSP, frame-ancestors / X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy ou COOP. X-Powered-By: Next.js est envoyé par défaut. Vercel ajoute HSTS par défaut sur ses domaines (non vérifié sur ce déploiement).
+- Impact : clickjacking possible, pas de défense en profondeur contre une XSS, fuite de la stack technique.
+- Recommandation : créer next.config.mjs avec `poweredByHeader: false` et `async headers()` sur `source: '/(.*)'` :
+  - CSP de base : `default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'`. Passer ensuite à des nonces si possible. next/font auto-héberge les Google Fonts, donc pas de domaine tiers à ouvrir.
+  - `X-Content-Type-Options: nosniff`
+  - `Referrer-Policy: strict-origin-when-cross-origin`
+  - `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+  - `Strict-Transport-Security: max-age=63072000; includeSubDomains`
+  
+  Démarrer en Content-Security-Policy-Report-Only.
+- Effort : S.
+
+M2. Domaine de production sans HTTPS
+- Preuve : `curl -I http://novurba.fr` renvoie un 302 vers http://www.novurba.fr (en HTTP, pas HTTPS). Sur https://novurba.fr, la connexion est reset. Sur https://www.novurba.fr, le port 443 refuse la connexion. Le DNS A pointe vers 213.186.33.5 (hébergement mutualisé OVH, page « Site en construction »). robots.txt et sitemap.xml référencent déjà https://novurba.fr.
+- Impact : à la bascule DNS, risque de servir le site en HTTP ou en certificat invalide. Le sitemap HTTPS serait cassé.
+- Recommandation : au branchement du domaine sur Vercel, vérifier le certificat (automatique sur Vercel), la redirection 301 HTTP vers HTTPS et apex vers www (ou l'inverse, mais cohérent avec le sitemap), puis HSTS. Sinon, activer SSL Let's Encrypt chez OVH. Tester ensuite avec SSL Labs (objectif A+).
+- Effort : S.
+
+M3. Email du domaine : SPF présent, DMARC absent
+- Preuve : `dig TXT novurba.fr` renvoie "v=spf1 include:mx.ovh.com ~all". `dig TXT _dmarc.novurba.fr` ne renvoie rien. DKIM non trouvé sur le sélecteur « default » (sélecteur OVH inconnu, donc non conclusif). Aucun enregistrement CAA. MX : OVH.
+- Impact : l'adresse raphael.sinet@novurba.fr est publiée sur le site. Sans DMARC, le domaine est plus facile à usurper dans des campagnes de phishing visant des mairies ou collectivités (cible du client).
+- Recommandation : activer DKIM dans l'espace client OVH. Publier `_dmarc TXT "v=DMARC1; p=none; rua=mailto:…"`, puis passer à quarantine/reject. Ajouter des CAA (letsencrypt.org, et l'autorité utilisée par Vercel). Durcir SPF en -all une fois validé.
+- Effort : S.
+
+### Basse
+B1. target="_blank" sans rel="noopener noreferrer"
+- Preuve : app/_components/footer.jsx:78 (`<a href="http://www.atuweb.fr" … target="_blank">`), app/contact/page.jsx:74, et à vérifier sur app/entreprise/page.jsx:97/117/139 (certains ont rel, d'autres non). Les navigateurs modernes appliquent noopener implicitement, d'où un risque de reverse tabnabbing résiduel faible.
+- Recommandation : ajouter rel="noopener noreferrer" partout. Passer le lien atuweb.fr en https.
+- Effort : S.
+
+B2. Lien sortant en HTTP (http://www.atuweb.fr)
+- Recommandation : utiliser https://.
+
+B3. Pas de /.well-known/security.txt
+- Recommandation : ajouter public/.well-known/security.txt (RFC 9116 : Contact, Expires, Preferred-Languages: fr).
+
+B4. Données personnelles et historiques dans les commentaires du code source
+- Preuve : app/layout.js contient en commentaire un ancien téléphone et un email personnel (`// telephone: '+33-6-15-43-51-99'`, `// email: 'c.castronovo.34@gmail.com'`) ainsi qu'une adresse postale. Ces commentaires sont dans le dépôt (public si le repo GitHub Arth-M l'est) mais pas dans le bundle de prod (supprimés par la minification).
+- Recommandation : retirer les données personnelles d'un tiers apparemment sans lien. À croiser avec l'audit RGPD.
+
+### Info
+I1. Aucun secret trouvé : pas de .env commité, pas de clé API, token ou clé privée dans l'historique git (`git log -p --all` filtré sur api_key, secret, password, token, sk_, pk_, AKIA, BEGIN PRIVATE). .gitignore couvre .env, .env*.local, *.pem et .vercel. Aucune variable process.env utilisée.
+I2. Le fichier .DS_Store est présent à la racine du workspace mais ignoré par git (non commité). Il n'est pas sous public/, donc non servi.
+I3. robots.txt contient `Disallow: /private/` alors qu'aucune route /private n'existe. C'est inoffensif, mais il vaut mieux ne pas annoncer de chemins sensibles dans robots.txt.
+
+## 6. Checklist (C = conforme, NC = non conforme, NA = non applicable, NV = non vérifiable)
+1. Authentification et autorisation : NA (pas de comptes). Le pseudo-contrôle d'accès est NC (H1). Comparaison en temps constant : NC dans le principe (comparaison `===` côté client), mais sans objet puisque le code est public.
+2. Routes et API : NA (aucun route handler, server action ni API). Injections SQL, NoSQL, commande, SSTI, path : NA. SSRF : NA (aucun fetch serveur). Rate limiting : NA. CSRF : NA (aucune mutation). CORS : NA. Open redirect : C (aucun paramètre de redirection).
+3. Frontend :
+   - XSS : C. React échappe par défaut, aucun dangerouslySetInnerHTML actif (seulement dans du code commenté), aucune donnée utilisateur rendue.
+   - CSP : NC (M1). Clickjacking : NC (M1).
+   - SRI : NA (aucun script CDN, les fonts sont auto-hébergées via next/font).
+   - Secrets dans le bundle : C, sauf le code d'accès (H1).
+   - Sourcemaps de prod : C par défaut (productionBrowserSourceMaps désactivé, pas de next.config).
+   - Cookies : NA.
+   - Web Storage : sessionStorage pour un flag non sensible (lié à H1).
+   - Données sensibles en URL : C.
+4. Backend et HTTP :
+   - En-têtes : NC (M1). TLS : NC sur novurba.fr (M2), NV sur Vercel.
+   - Exposition d'information : X-Powered-By (M1). Pas de route de debug.
+   - Méthodes HTTP : NV. Désérialisation et XXE : NA.
+   - /.git et /.env : NV en live (novurba.fr ne sert pas l'app). Sur Vercel, seuls public/ et le build sont servis.
+5. Secrets : C (I1). Pas de hook gitleaks ni de scan CI : recommandé.
+6. Cryptographie : NA (aucune crypto applicative).
+7. Upload : NA.
+8. Logging sécurité : NA (pas d'événements d'auth). Les logs Vercel suffisent pour un site vitrine.
+9. DNS et email : SPF C, DMARC NC, DKIM NV, CAA NC (M3). Subdomain takeover : pas de CNAME tiers observé sur www (A record OVH). Webhooks : NA. security.txt : NC (B3).
+10. OWASP Top 10 :
+   - A01 : H1 (cosmétique).
+   - A02 : M2.
+   - A03 : C.
+   - A04 : H1 (contrôle conçu côté client).
+   - A05 : M1, M2.
+   - A06 : H2.
+   - A07 : NA.
+   - A08 : C (lockfile présent).
+   - A09 : NA.
+   - A10 : NA.
+
+## 7. Points conformes
+- Surface d'attaque minimale : 100 % statique, aucune entrée utilisateur traitée côté serveur.
+- Aucun secret dans le code ni dans l'historique. .gitignore complet.
+- Rendu React sans injection HTML. next/image et next/font évitent les dépendances tierces au runtime (pas de CDN, pas de fuite vers Google Fonts).
+- package-lock.json versionné (builds reproductibles). Les dépendances sont peu nombreuses et à jour hormis les avis cités.
+- La plupart des liens LinkedIn ont déjà rel="noopener noreferrer".
+
+## 8. Recommandations transverses
+- Avant la mise en ligne : retirer le gate client (ou le remplacer par Vercel Deployment Protection), réactiver les metadata côté serveur, ajouter next.config.mjs avec les en-têtes, brancher le domaine en HTTPS et vérifier avec SSL Labs et securityheaders.com.
+- Ajouter Dependabot ou Renovate et `npm audit --omit=dev` en CI pour suivre les avis Next.js, qui sont fréquents.
+- Ajouter gitleaks en pre-commit ou CI (défense en profondeur, coût nul).
+- Après déploiement, refaire un passage passif (headers, TLS, /.well-known/security.txt) sur l'URL réelle, qui n'était pas vérifiable lors de cet audit.
+
+Fichiers clés :
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/layout.js
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/_components/footer.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/contact/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/entreprise/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/package.json
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/package-lock.json
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/robots.txt

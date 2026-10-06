@@ -6,8 +6,8 @@
   --color-copperfield-200: #f3cbb5;
   --color-copperfield-300: #eba786;
   --color-copperfield-400: #e37d58;
-  --color-copperfield-500: #dc5933;
-  --color-copperfield-600: #cd4329;
+  --color-copperfield-500: #DB8965;
+  --color-copperfield-600: #c66f4a;
   --color-copperfield-700: #ab3223;
   --color-copperfield-800: #892a23;
   --color-copperfield-900: #6e2620;
@@ -26,27 +26,36 @@
   --color-seagull-950: #102f41;
 
 
+  /* Tailles de texte fluides : taille Tailwind d'origine à 360px -> x1.125 à 1280px (Barlow Condensed / Source Sans 3) */
+  --text-xs: clamp(0.75rem, 0.7133rem + 0.163vw, 0.844rem);
+  --text-sm: clamp(0.875rem, 0.8322rem + 0.1902vw, 0.984rem);
+  --text-base: clamp(1rem, 0.9511rem + 0.2174vw, 1.125rem);
+  --text-lg: clamp(1.20rem, 1.07rem + 0.2446vw, 1.266rem);
+  --text-xl: clamp(1.35rem, 1.1889rem + 0.2717vw, 1.406rem);
+  --text-2xl: clamp(1.5rem, 1.4266rem + 0.3261vw, 1.688rem);
+  --text-3xl: clamp(1.875rem, 1.7833rem + 0.4076vw, 2.109rem);
+  --text-4xl: clamp(2.25rem, 2.1399rem + 0.4891vw, 2.531rem);
+  --text-5xl: clamp(3rem, 2.8533rem + 0.6522vw, 3.375rem);
+  --text-6xl: clamp(3.75rem, 3.5666rem + 0.8152vw, 4.219rem);
+
   --animate-pulse-word: pulse-word 500ms ease-in-out 1;
   --animate-pulse-word2: pulse-word2 500ms ease-in-out 1;
   --animate-drop-in: drop-in 700ms cubic-bezier(.22,1,.36,1) forwards;
 
 }
 
-
-.oswald {
-  font-family: "Oswald", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+body {
+  font-size: var(--text-base);
 }
 
 .font-secondary {
-  font-family: var(--font-quicksand), sans-serif;
+  font-family: var(--font-source-sans), sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
 h1,h2,h3,h4,h5,h6, p, span, a, button, input, textarea, select, option, label {
-  font-family: var(--font-oswald), sans-serif;
+  font-family: var(--font-barlow-condensed), sans-serif;
 }
 @keyframes pulse-word {
   0%, 100% {

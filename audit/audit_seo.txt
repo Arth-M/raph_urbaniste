@@ -1,0 +1,261 @@
+AUDIT SEO : Novurba (raph_sinet_urbaniste)
+Date : 2026-10-06 | Mode : lecture seule | Workspace : /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste
+
+PROJECT.md absent (/Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/.cursor/PROJECT.md n'existe pas). Le contexte a été établi en explorant le repo. Pas de fichier product-marketing non plus.
+
+### 0. Contexte et limites
+
+- Stack : Next.js ^16.3.3 (App Router), React 19, Tailwind 4, polices via next/font (Quicksand, Oswald). Il n'y a pas de next.config. Remote : github.com/Arth-M/raph_urbaniste. Dernier commit : 2026-08-31.
+- Type de site : site vitrine d'un bureau d'études en urbanisme (Novurba, Raphaël Sinet), clientèle B2B et collectivités, ancrage local Montpellier/Occitanie (Castelnau-le-Lez dans le JSON-LD commenté).
+- Pages : `/`, `/notre-expertise`, `/nos-realisations`, `/entreprise`, `/contact`, `/sitemap` (plan du site HTML). Fichiers statiques : `app/robots.txt`, `app/sitemap.xml`.
+- Statut : le site est en pré-lancement assumé. Un commentaire dans `layout.js` dit : « REMETTRE LES METADATA QUAND ON MET LE SITE EN LIGNE ET ENLEVER USE CLIENT ET PAGE CODE… ». La plupart des constats ci-dessous sont donc des bloquants de mise en ligne, pas des régressions.
+- Ce qui n'a pas pu être vérifié :
+  - Search Console, trafic, `site:` et indexation.
+  - Core Web Vitals mesurés : pas de build ni de navigateur lancé.
+  - HTTPS réel : le port 443 refuse la connexion depuis l'environnement d'audit, alors que le port 80 répond. C'est probablement réel, mais à confirmer depuis un autre réseau.
+  - L'hébergement cible du Next.js : un serveur Node est nécessaire pour `next start` et l'optimisation d'images. Seul un hébergement mutualisé OVH (IP 213.186.33.5) est observé.
+
+### 1. Synthèse exécutive
+
+Santé SEO actuelle : 1/5. Le site ne peut pas être indexé aujourd'hui, et la configuration prévue pour le lancement contient plusieurs erreurs qui pénaliseraient l'indexation dès le premier jour.
+
+Problèmes prioritaires :
+1. [CRITIQUE] Barrière d'accès côté client dans le layout racine. Le serveur rend le formulaire de code pour toutes les URL (`useState(false)` au premier rendu, donc la branche `!codeTrue`). Le contenu réel n'apparaît qu'après la saisie du code `34000` en sessionStorage, ce que Googlebot ne fera jamais.
+2. [CRITIQUE] Aucune metadata active : pas de title, pas de meta description, pas d'Open Graph, pas de canonical. Le bloc `export const metadata` est commenté, et il ne peut de toute façon pas coexister avec 'use client' dans `layout.js`.
+3. [ÉLEVÉ] Domaine pas encore raccordé : page parking OVH en noindex, pas de HTTPS, redirection 302 de l'apex vers http://www. Les incohérences entre host, protocole, sitemap et robots sont à régler au lancement.
+4. [ÉLEVÉ] La configuration metadata prévue pose un canonical global vers `https://novurba.fr/` dans le layout. Hérité par toutes les pages, il ferait de chaque page intérieure un doublon déclaré de l'accueil.
+5. [MOYEN] Structure on-page : H1 absent sur `/notre-expertise`, 3 H1 sur `/nos-realisations`, H1 de l'accueil sans mot-clé. NAP incohérent (deux téléphones). Pas de mentions légales ni de politique de confidentialité, une obligation LCEN en France et un signal de confiance E-E-A-T.
+
+### 2. Constats techniques
+
+T1. Barrière d'accès côté client (contenu invisible pour les robots)
+- Impact : critique. Priorité : 1.
+- Preuve : `app/layout.js` lignes 1 et 109-155. `'use client'`, `const [codeTrue] = useState(false)`, `if (code === '34000')`, et `sessionStorage.getItem('siteAccess')` lu dans un useEffect. Au rendu serveur, toutes les routes renvoient « Site en construction. Un code est nécessaire pour y accéder ».
+- Remarque hors SEO : le code est en clair dans le bundle JS. Ce n'est pas une protection.
+- Correctif : au lancement, supprimer la barrière et 'use client' du layout. Le layout doit redevenir un Server Component. Si une protection pré-lancement reste nécessaire, la faire au niveau de l'hébergeur ou du middleware (Basic Auth), avec `X-Robots-Tag: noindex` pendant la phase de recette.
+
+T2. Metadata absentes ou incompatibles avec l'architecture actuelle
+- Impact : critique. Priorité : 1.
+- Preuve : `app/layout.js` lignes 15-55 (metadata commentées). Aucun `export const metadata` ni `generateMetadata` ne figure dans `app/`. Les pages `app/page.jsx`, `app/notre-expertise/page.jsx` et `app/nos-realisations/page.jsx` sont en 'use client' : elles ne peuvent pas exporter de metadata. `entreprise`, `contact` et `sitemap` sont des Server Components et le pourraient.
+- Le seul `<head>` manuel contient un favicon `href="./images/cityN.svg"`, relatif et fragile : il casse si des URL se terminent par un slash ou sont imbriquées.
+- Correctif :
+  - Layout serveur avec `metadataBase: new URL('https://<host canonique>')`, un `title.template` (« %s | Novurba ») et une description par défaut.
+  - Pour chaque page client, découper en `page.jsx` serveur (qui exporte `metadata`) et un composant client enfant.
+  - Favicon via `app/icon.svg` ou un chemin absolu `/images/cityN.svg`.
+
+T3. Canonical global prévu, pointant vers l'accueil
+- Impact : élevé (s'il est réactivé tel quel). Priorité : 1.
+- Preuve : `layout.js` lignes 51-54, `alternates: { canonical: 'https://novurba.fr/' }` dans le layout racine. Next.js fait hériter ce champ à toutes les routes qui ne le surchargent pas.
+- Correctif : `alternates: { canonical: './' }` avec `metadataBase` (canonical auto-référent), ou un canonical explicite par page.
+
+T4. Domaine, HTTPS et cohérence des hosts
+- Impact : élevé. Priorité : 1 au lancement.
+- Preuve (curl du 2026-10-06) :
+  - `http://novurba.fr/` renvoie un 302 vers `http://www.novurba.fr`.
+  - `http://www.novurba.fr/` renvoie un 200 : page « Site en construction » OVH avec `<meta name="robots" content="none,noindex,nofollow">`.
+  - `https://novurba.fr` et `https://www.novurba.fr` : connexion refusée sur le port 443.
+  - DNS : apex et www pointent vers 213.186.33.5 (mutualisé OVH).
+  - Pendant ce temps, `app/robots.txt` déclare `Sitemap: https://novurba.fr/sitemap.xml`, et `app/sitemap.xml`, l'OG et le JSON-LD utilisent `https://novurba.fr` (apex).
+- Correctif :
+  - Certificat TLS sur l'apex et sur www.
+  - Choisir un host canonique.
+  - Redirections 301 (pas 302) depuis http et depuis l'autre variante.
+  - Aligner sitemap, robots, canonical, OG et JSON-LD.
+  - Ajouter HSTS en bonus.
+  - Vérifier que l'hébergement fait tourner Node (`next start`) ou passer en `output: 'export'`. Dans ce second cas, l'optimisation `next/image` impose `images.unoptimized` ou un loader.
+
+T5. Sitemap XML
+- Impact : faible à moyen. Priorité : 3.
+- Preuve : `app/sitemap.xml` liste 5 URL, au bon format. `lastmod` est figé à 2025-12-05 sur toutes les entrées. La page `/sitemap` (plan HTML) en est absente, ce qui est acceptable.
+- Correctif : remplacer par `app/sitemap.js` (MetadataRoute.Sitemap) avec le host canonique et des `lastmod` réels. Le soumettre dans Search Console et Bing Webmaster Tools au lancement.
+
+T6. robots.txt
+- Impact : faible. Priorité : 4.
+- Preuve : `Allow: /` et `Disallow: /private/`. La route `/private/` n'existe pas : c'est inoffensif, mais inutile. La référence au sitemap est correcte sur le principe (host à aligner, voir T4).
+- Correctif : générer via `app/robots.js` avec le host canonique. Pendant la recette, préférer un noindex par en-tête plutôt qu'un `Disallow`.
+
+T7. Pas de page 404 personnalisée
+- Impact : faible. Priorité : 4.
+- Preuve : il n'y a pas de `app/not-found.jsx`. La 404 Next par défaut renvoie bien un statut 404, mais sans maillage vers les pages clés.
+- Correctif : ajouter `not-found.jsx` avec des liens vers l'expertise, les réalisations et le contact.
+
+T8. Performance et Core Web Vitals (analyse statique uniquement)
+- Impact : moyen. Priorité : 3.
+- Preuves :
+  - Images sources très lourdes dans `public/images` : strat_fonciere.png 4,4 Mo, fond2.png 3,8 Mo, sig.png 2,6 Mo, village_photo.jpg 2,5 Mo, strat-fonc-realisations.png 2,5 Mo, PLU.png 0,9 Mo. Elles passent par `next/image`, ce qui les optimise si le serveur Node est présent (voir T4).
+  - `preload={true}` est utilisé massivement : 8 occurrences dans nos-realisations, 4 sur l'accueil, et d'autres dans la navbar et le footer. Trop de préchargements se concurrencent et dégradent le LCP. Il en faut un seul, sur l'image LCP réelle.
+  - Le H1 de l'accueil est animé (`translate-x-full`, transition de 2,5 s). L'image réseau est `invisible` puis révélée par un setTimeout de 2,5 s. Risque de LCP retardé, et le H1 est hors écran à la première peinture.
+  - Toutes les pages principales et le layout sont des composants client : le JS hydraté est plus lourd. Il faudrait le rendre serveur pour limiter le TBT et l'INP.
+  - Les polices next/font avec `display: swap` : OK.
+  - Le doublon `6410514c..._Logo essai 3.png`, identique à `Logo_Novurba.png` (même taille), est un résidu inutile.
+- Correctif :
+  - Recompresser et convertir les sources (WebP/AVIF, largeur max d'environ 2000 px).
+  - Garder un seul `preload`/`priority` par page.
+  - Retirer l'animation d'entrée du H1, ou démarrer visible.
+  - Mesurer avec PageSpeed Insights après le lancement.
+
+T9. Mobile
+- Impact : faible. Priorité : 4.
+- Preuve : la mise en page responsive est en Tailwind, avec une variante dédiée `md:hidden` pour le bloc « Ils font confiance ». Le viewport n'est pas déclaré explicitement, mais Next l'injecte par défaut une fois le layout en mode serveur.
+- À vérifier en rendu réel : pas de test navigateur effectué.
+
+T10. Structure des URL
+- Bonne : URL lisibles, en minuscules, avec tirets (`/notre-expertise`, `/nos-realisations`). Rien à corriger.
+
+T11. International
+- Sans objet : site monolingue fr, `lang="fr"` présent.
+
+### 3. Constats on-page
+
+O1. Titles et descriptions
+- Impact : critique (absents). Priorité : 1.
+- Le title prévu (« Novurba - Urbanisme en Occitanie », 33 caractères) est correct mais trop court. La description prévue fait environ 230 caractères (au-delà de 160) et contient des fautes : « remodellement », « Il accompagnement » dans l'OG.
+- Proposition de titres uniques par page, 50-60 caractères :
+  - Accueil : « Novurba, bureau d'études urbanisme à Montpellier »
+  - Expertise : « Planification, PLU, stratégie foncière, SIG | Novurba »
+  - Réalisations : « Réalisations PLU, foncier, SIG | Novurba »
+  - Entreprise : « Raphaël Sinet, urbaniste | Novurba »
+  - Contact : « Contacter Novurba, urbanisme en Occitanie »
+
+O2. Titres Hn
+- Impact : moyen. Priorité : 2.
+- Accueil (`app/page.jsx` ligne 80) : un seul H1, « L'urbanisme par le terrain ». C'est un slogan sans mot-clé métier ni géographique. Il faudrait y ajouter un sous-titre ou une mention « bureau d'études en urbanisme à Montpellier ».
+- `/notre-expertise` : aucun H1, seulement des H2 (carousel et cartes).
+- `/nos-realisations` : le H1 global est commenté (ligne 58), et il y a 3 H1 de section (PLU, Stratégie foncière, SIG, lignes 106, 152 et 189).
+- `/entreprise` : H1 « Novurba, qu'ès aco ? ». Pertinence faible pour le référencement, à compléter.
+- `/contact` : H1 « Comment nous contacter ? ». OK.
+- Correctif : un H1 descriptif par page, et les sections en H2.
+
+O3. Attributs alt
+- Impact : moyen. Priorité : 2.
+- Preuves :
+  - `alt=""` sur les images de contenu de `/nos-realisations` (lignes 132, 145, 170, 183, 206).
+  - « Image de plu » répété deux fois.
+  - Logos clients avec un alt générique « image d'un sponsor » (8 occurrences sur l'accueil). Ce ne sont pas des sponsors, et le nom du client manque.
+  - « Image de réseau » est décoratif.
+- Correctif : alt descriptifs (par exemple « Logo Montpellier Méditerranée Métropole », « Carte de zonage PLU de … »). Garder `alt=""` uniquement pour le purement décoratif.
+- Noms de fichiers : un nom avec espaces (« 6410514c..._Logo essai 3.png ») et des noms peu descriptifs (fond2.png, reseauOk.png).
+
+O4. Maillage interne
+- Impact : faible. Priorité : 3.
+- Preuves : la navbar et le footer couvrent toutes les pages, et le plan du site HTML existe. Les liens utilisent `<a>` (crawlables, mais sans prefetch, d'où `next/link` conseillé).
+- Le footer duplique le lien « L'entreprise » (lignes 34 et 54).
+- `/contact` n'est lié ni depuis la navbar (qui utilise `/entreprise#contact`) ni depuis le footer. La seule entrée est `/sitemap`, ce qui en fait une page quasi orpheline.
+- `rel="keep-params"` sur le logo (navbar ligne 41) est non standard et inutile.
+- Correctif : lier `/contact` depuis la navbar et le footer, ou bien le supprimer et le retirer du sitemap s'il fait doublon avec `/entreprise#contact`.
+
+O5. Ciblage des mots-clés
+- Impact : moyen. Priorité : 2.
+- Pas de stratégie visible. Les termes métier (PLU, carte communale, stratégie foncière, SIG, projet urbain) sont présents, mais aucune page ne cible de requête locale (« urbaniste Montpellier », « bureau d'études urbanisme Hérault/Gard/Occitanie »).
+- Les pages Expertise et Réalisations se chevauchent sur les mêmes thèmes (PLU, foncier, SIG) : il y a un risque de cannibalisation sans intention distincte (service vs étude de cas).
+- Correctif : un mapping de mots-clés par page, et des études de cas nommées (commune, année, enjeux) sur Réalisations.
+
+### 4. Contenu, E-E-A-T et SEO local
+
+C1. NAP incohérent et adresse absente
+- Impact : élevé pour le local. Priorité : 2.
+- Preuves :
+  - `/contact` affiche `tel:+33676382568`, formaté « +33 676382568 ».
+  - `/entreprise` affiche `tel:+33665728130`, formaté « +33 6-65-72-81-30 ».
+  - Aucune adresse postale visible sur le site. Seul le JSON-LD commenté contient « 21 avenue de la Galine, 34170 Castelnau-le-Lez ».
+  - Le JSON-LD commenté contient aussi un e-mail sans rapport (c.castronovo.34@gmail.com, commenté) et un téléphone commenté différent (+33 6 15 43 51 99).
+- Correctif : un seul numéro au format homogène, et l'adresse (ou au moins la ville) dans le footer. Mêmes données sur la fiche Google Business Profile, LinkedIn et les annuaires.
+
+C2. Données structurées
+- Impact : moyen. Priorité : 2.
+- Constat : le JSON-LD est entièrement commenté, donc pas de schéma actif. Ce constat repose sur la lecture du code source, ce qui est fiable ici car il n'y a pas d'injection par un CMS.
+- Défauts du bloc prévu, à corriger avant de le réactiver :
+  - `additionalType: 'https://schema.org/Urbanist'` n'existe pas.
+  - `name: 'Raphaël Sinet'` au lieu du nom de l'entreprise (Novurba). Il faudrait `founder` pour la personne.
+  - Image hotlinkée depuis media.licdn.com (fragile).
+  - Insertion via `next/script` dans `<head>` : il faut une balise `<script type="application/ld+json">` simple dans un Server Component.
+  - `telephone` absent.
+- Recommandation : `ProfessionalService` (ou LocalBusiness) + `Organization` + `Person` (fondateur), avec `areaServed` Occitanie, validés dans le Rich Results Test.
+
+C3. Open Graph et Twitter
+- Impact : faible. Priorité : 3.
+- L'image OG prévue est un logo LinkedIn hotlinké de 200 px (déclaré 309x303), avec l'alt « Photographie de Raphaël Sinet », ce qui est faux.
+- Correctif : une image OG 1200x630 hébergée sur le site (`app/opengraph-image.png`).
+
+C4. Signaux de confiance et obligations légales
+- Impact : moyen. Priorité : 2.
+- Preuve : aucune page de mentions légales ni de politique de confidentialité (grep sans résultat). Les mentions légales sont obligatoires en France (LCEN, art. 6).
+- Points positifs à valoriser : références professionnelles (EPF Occitanie, Métropole de Montpellier, Altereo…), études en cours, photo et parcours du fondateur sur `/entreprise`. Ce sont de bons signaux d'expérience et d'expertise.
+- Correctif : ajouter une page mentions légales, la lier depuis le footer, et préciser diplôme et parcours du fondateur.
+
+C5. Profondeur du contenu
+- Impact : moyen. Priorité : 3.
+- Contenu assez mince :
+  - 3 cartes d'expertise d'environ un paragraphe chacune.
+  - Réalisations sans détails nommés (communes, chiffres, livrables).
+  - `/contact` presque vide de texte.
+- Correctif : une page par service (PLU / carte communale, stratégie foncière, SIG/cartographie, projet urbain), avec des études de cas détaillées. Penser aussi à des FAQ pour les collectivités (déroulé d'une révision de PLU, délais), utiles pour la recherche classique comme pour les réponses IA.
+
+C6. Autorité
+- Non vérifiable : pas d'accès Ahrefs/Semrush ni GSC.
+- Recommandations : fiche Google Business Profile, liens depuis LinkedIn, et citations par les partenaires listés.
+
+### 5. Checklist récapitulative
+
+| Point | Statut |
+|---|---|
+| robots.txt | présent, host à aligner |
+| Sitemap XML | présent, lastmod figé, host à aligner, non soumis (non vérifiable) |
+| Indexabilité | KO : barrière client + page parking OVH en noindex |
+| Canonical | absent ; config prévue erronée (global vers l'accueil) |
+| HTTPS / redirections | KO : 443 refusé, 302 au lieu de 301 |
+| Cohérence www / apex | KO |
+| Title / description | absents |
+| H1 unique par page | KO sur expertise (0) et réalisations (3) |
+| Alt images | partiel (vides ou génériques) |
+| Maillage | correct ; /contact quasi orpheline |
+| Données structurées | absentes (commentées) ; bloc prévu à corriger |
+| NAP | incohérent |
+| Mentions légales | absentes |
+| CWV mesurés | non vérifiable ; risques : preload multiples, images lourdes, H1 animé |
+| URL | OK |
+| International | sans objet |
+
+### 6. Plan d'action priorisé
+
+1. Bloquants de lancement :
+   - Retirer la barrière d'accès et 'use client' du layout.
+   - Repasser les pages en Server Components avec metadata par page et canonical auto-référent.
+   - Raccorder le domaine avec TLS, choisir le host canonique et poser des 301.
+   - Retirer la page parking OVH en noindex.
+   - S'assurer que l'hébergement exécute Next.js.
+2. Fort impact :
+   - H1 par page, titles et descriptions optimisés local.
+   - JSON-LD corrigé (ProfessionalService/Organization/Person).
+   - NAP unifié avec adresse.
+   - Page mentions légales.
+   - Soumission du sitemap dans GSC et Bing.
+   - Fiche Google Business Profile.
+3. Gains rapides :
+   - Alt descriptifs (logos clients, images réalisations).
+   - Lier `/contact` ou le supprimer.
+   - Un seul preload par page.
+   - Recompresser les PNG de plus de 2 Mo.
+   - `app/sitemap.js` et `app/robots.js` dynamiques.
+   - `not-found.jsx`.
+   - Image OG locale.
+4. Long terme :
+   - Pages par service et études de cas détaillées.
+   - FAQ collectivités.
+   - Stratégie de mots-clés locaux.
+   - Netlinking local et institutionnel.
+   - Suivi CWV et couverture GSC.
+
+### 7. Fichiers clés
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/layout.js (barrière, metadata et JSON-LD commentés)
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/robots.txt
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/sitemap.xml
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/notre-expertise/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/nos-realisations/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/entreprise/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/contact/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/_components/navbar.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/_components/footer.jsx
+
+Aucun fichier n'a été écrit ni modifié pendant cet audit.

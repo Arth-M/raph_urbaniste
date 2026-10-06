@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ArrowUp from "../_components/arrowUp.jsx";
+import { tel, email } from "../info.js";
 
 export default function Contact() {
   return (
@@ -23,10 +24,10 @@ export default function Contact() {
               />
             </div>
             <a
-              href="tel:+33676382568"
+              href={`tel:${tel}`}
               className="text-start text-xl select-all align-self-start"
             >
-              +33 676382568
+              {tel}
             </a>
 
             <div className="flex gap-x-2 justify-end">
@@ -40,10 +41,10 @@ export default function Contact() {
               />
             </div>
             <a
-              href="mailto:raphael.sinet@novurba.fr"
+              href={`mailto:${email}`}
               className="text-start text-xl select-all align-self-start"
             >
-              raphael.sinet@novurba.fr
+              {email}
             </a>
 
             <div className="flex gap-x-2 justify-end relative">

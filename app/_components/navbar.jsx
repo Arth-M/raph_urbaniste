@@ -55,7 +55,7 @@ export default function Navbar() {
              <div className="mr-9">
                 <Link
                   href="/entreprise#contact"
-                  className="inline-block px-4 py-2 border border-seagull-500 text-seagull-500 hover:-translate-y-0.5 hover:scale-105 hover:shadow hover:bg-seagull-400 hover:border-seagull-400 hover:text-white ease-in-out duration-100"
+                  className="inline-block px-4 py-2 border border-seagull-500 bg-seagull-500 text-white hover:-translate-y-0.5 hover:scale-105 hover:shadow hover:bg-seagull-400 hover:border-seagull-400 hover:text-white ease-in-out duration-100"
                 >
                   Contact
                 </Link>
@@ -81,28 +81,44 @@ export default function Navbar() {
               </svg>
               <span className="sr-only">LinkedIn profile</span>
             </a> */}
-            <div className="space-x-2 justify-end items-center text-copperfield-400">
+            <div className="space-x-2 justify-end items-center text-copperfield-500">
               <a
                 href="/"
-                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded-full font-light text-md hover:text-copperfield-400
+                   hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out
+                   duration-200 hover:scale-102 px-5 py-3
+                   ${pathname === '/'
+                    ? 'bg-copperfield-500 text-copperfield-50' : ''}`}
               >
                 Accueil
               </a>
               <a
                 href="/notre-expertise"
-                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/notre-expertise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded-full font-light text-md hover:text-copperfield-400
+                   hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out
+                   duration-200 hover:scale-102 px-5 py-3
+                   ${pathname === '/notre-expertise'
+                    ? 'bg-copperfield-500 text-copperfield-50' : ''}`}
               >
                 Notre expertise
               </a>
               <a
                 href="/nos-realisations"
-                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/nos-realisations' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded-full font-light text-md hover:text-copperfield-400
+                   hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out
+                   duration-200 hover:scale-102 px-5 py-3
+                   ${pathname === '/nos-realisations'
+                    ? 'bg-copperfield-500 text-copperfield-50' : ''}`}
               >
                 Nos réalisations
               </a>
               <a
                 href="/entreprise"
-                className={`rounded font-light text-md hover:text-copperfield-500 hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out duration-200 hover:scale-102 px-2 py-1 ${pathname === '/entreprise' ? 'bg-copperfield-300 text-copperfield-50' : ''}`}
+                className={`rounded-full font-light text-md hover:text-copperfield-400
+                   hover:bg-copperfield-100 hover:-translate-y-0.5 ease-in-out
+                   duration-200 hover:scale-102 px-5 py-3
+                   ${pathname === '/entreprise' ?
+                    'bg-copperfield-500 text-copperfield-50' : ''}`}
               >
                 L'entreprise
               </a>
@@ -113,7 +129,7 @@ export default function Navbar() {
             <div className="mr-7">
                 <Link
                   href="/entreprise#contact"
-                  className="px-4 py-2 border rounded border-seagull-500 text-seagull-500 "
+                  className="px-4 py-2 border rounded border-seagull-500 bg-seagull-500 text-white "
                 >
                   Contact
                 </Link>

@@ -1,0 +1,220 @@
+AUDIT RÉSILIENCE ET CONTINUITÉ D'ACTIVITÉ, raph_sinet_urbaniste (Novurba)
+Date : 2026-10-06. Mode : lecture seule (sous-agent audit-platform)
+Workspace : /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste
+
+PROJECT.md absent : /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/.cursor/PROJECT.md n'existe pas. Le contexte vient de l'exploration du repo.
+
+=====================================================================
+0. CARTOGRAPHIE DU CONTEXTE
+=====================================================================
+- Type de système : site vitrine Next.js 16 (App Router), React 19 et Tailwind 4. Six routes statiques : /, /contact, /entreprise, /nos-realisations, /notre-expertise, /sitemap. Il n'y a ni backend, ni base de données, ni formulaire, ni route API, ni appel `fetch`, ni variable d'environnement utilisée.
+- Criticité métier : faible à modérée. C'est un site de présentation d'un urbaniste indépendant, dont la fonction métier est d'être joignable (tel, mailto, LinkedIn). Une indisponibilité fait perdre de la visibilité, pas de données ni de transactions.
+- Données : aucune donnée dynamique. Le patrimoine à protéger est le code source et les images de public/images.
+- État actuel : le site est en pré-production. `app/layout.js` contient une barrière d'accès (« Site en construction », code vérifié côté client) et le commentaire « REMETTRE LES METADATA QUAND ON MET LE SITE EN LIGNE ET ENLEVER USE CLIENT ».
+- Dépendances externes :
+  - GitHub (git@github.com:Arth-M/raph_urbaniste.git), seule copie distante.
+  - Hébergeur : non identifiable dans le repo. `.vercel` figure dans .gitignore, ce qui suggère Vercel sans le prouver.
+  - Google Fonts via `next/font/google` (Quicksand, Oswald). Les polices sont téléchargées au build puis servies par le site lui-même : c'est une dépendance au build, pas à l'exécution.
+  - Registrar et DNS de `novurba.fr` : non vérifiable.
+  - Liens sortants LinkedIn et atuweb.fr : ils ne bloquent pas le rendu.
+- Aucune contrainte réglementaire n'impose de RTO/RPO.
+- Historique : 83 commits entre le 2025-10-20 et le 2026-08-31. Branches : main, design2, improve_design. Aucun tag.
+
+Approche : les recommandations sont proportionnées à un site vitrine de TPE. Un actif/actif, du chaos engineering ou une astreinte seraient de la sur-ingénierie ici.
+
+=====================================================================
+1. SYNTHÈSE EXÉCUTIVE
+=====================================================================
+Maturité globale : 2/5. Le profil du site (statique, sans état, sans dépendance à l'exécution) est naturellement résilient : il y a peu de choses à perdre et peu de dépendances qui peuvent tomber. En revanche, rien n'est documenté ni testé sur la reprise, et le code n'a aucun filet d'erreur côté client.
+
+Les 3 risques principaux :
+1. Pas d'error boundary, et root layout client. Une exception non capturée affiche une page blanche sur tout le site.
+2. Pas de fiche de reprise ou de rollback, et un hébergeur non documenté. La reprise dépend d'une seule personne.
+3. Des points de défaillance unique non formalisés : compte GitHub (seule copie distante), compte de l'hébergeur, domaine et DNS, et un site qui ne s'affiche qu'avec JS.
+
+Les 3 quick wins :
+1. Ajouter error.jsx, global-error.jsx et not-found.jsx avec les coordonnées de contact en repli.
+2. Écrire une fiche de reprise d'une page, gardée hors-ligne.
+3. Mettre en place un miroir du repo et un test de reconstruction depuis un clone propre.
+
+=====================================================================
+2. TABLEAU RÉCAPITULATIF
+=====================================================================
+| Section | Point | Statut | Criticité |
+|---|---|---|---|
+| 1 Stratégie | PRA/DRP | Non conforme | 🟡 Modéré |
+| 1 | PCA/BCP (mode dégradé métier) | Partiel, implicite (tel/mail hors site) | 🟢 Mineur |
+| 1 | RTO/RPO définis | Non conforme | 🟡 Modéré |
+| 1 | Matrice de criticité | Non conforme | 🟢 Mineur |
+| 1 | Identification des SPOF | Non conforme | 🟠 Majeur |
+| 1 | Revue périodique | Non conforme | 🟢 Mineur |
+| 2 Sauvegardes | Stratégie de backup (code et assets) | Partiel (git, GitHub seul hors-site) | 🟡 Modéré |
+| 2 | Test de restauration | Non vérifiable / non prouvé | 🟡 Modéré |
+| 2 | Immuabilité | Non conforme (rien en dehors de GitHub) | 🟡 Modéré |
+| 2 | Procédure de restauration | Partiel (readme générique, non spécifique) | 🟡 Modéré |
+| 3 Redondance | Redondance des composants | Non vérifiable (hébergeur inconnu) | 🟡 Modéré |
+| 3 | Failover testé / auto / indépendance | Non vérifiable | ⚪ / 🟢 |
+| 4 Patterns | Timeouts | N/A (aucun appel sortant à l'exécution) | ⚪ |
+| 4 | Circuit breakers / retry / idempotence / bulkheads / DLQ | N/A | ⚪ |
+| 4 | Graceful degradation | Non conforme (tout passe par JS) | 🟠 Majeur |
+| 4 | Cache fallback | N/A ou conforme par nature (statique, CDN probable) | ⚪ |
+| 4 | Gestion des erreurs | Non conforme (pas d'error boundary, effets sans garde) | 🟠 Majeur |
+| 4 | Back-pressure | N/A au niveau applicatif (relève de l'hébergeur) | ⚪ |
+| 5 Tests | Chaos / game days / tests de bascule | Absents, en partie N/A vu la taille | 🟢 Mineur |
+| 6 Incident | Runbooks | Non conforme | 🟡 Modéré |
+| 6 | Astreinte | N/A (TPE ; un contact de support suffit) | ⚪ |
+| 6 | Outil d'incident / communication de crise | Absent, pas nécessaire au-delà d'un contact client | 🟢 Mineur |
+| 6 | Rollback rapide | Non prouvé (pas de tags, pas de procédure) | 🟡 Modéré |
+| 6 | Post-mortem | Absent | 🟢 Mineur |
+
+=====================================================================
+3. DÉTAIL PAR POINT DE LA CHECKLIST
+=====================================================================
+
+--- 1. STRATÉGIE ET GOUVERNANCE ---
+
+1.1 PRA/DRP : NON CONFORME (🟡)
+Preuve : aucun document de reprise dans le repo. `readme.md` est un tutoriel générique d'installation de Next.js, pas une procédure propre au projet. Il ne nomme ni l'hébergeur, ni le domaine, ni les comptes.
+Constat : le scénario « l'hébergeur ou le compte devient inaccessible, comment remettre novurba.fr en ligne en moins de 4 h » n'a pas de réponse écrite.
+Recommandation : une fiche de reprise d'une page suffit. Elle doit contenir l'hébergeur et le compte propriétaire, le registrar et les enregistrements DNS, les commandes de build (`npm ci && npm run build`), la procédure de redéploiement et de rollback, un hébergeur de secours possible, et les contacts (dev ATU-Web, client). La garder aussi hors du repo (PDF partagé avec le client).
+
+1.2 PCA/BCP : PARTIEL (🟢)
+Constat : la fonction métier (être contacté) a un repli naturel, puisque le téléphone, l'email et LinkedIn existent en dehors du site. Rien ne le formalise.
+Recommandation : mentionner dans la fiche que, si le site est indisponible, le client continue d'être joignable par ces canaux. Aucune autre mesure n'est nécessaire.
+
+1.3 RTO/RPO : NON CONFORME (🟡)
+Constat : rien n'est défini. Vu le contenu statique versionné dans git, le RPO réel est proche de zéro (dernier push). Le RTO réel n'est pas connu.
+Recommandation : faire valider avec le client un objectif simple, par exemple RTO 24 h et RPO égal au dernier commit poussé, puis le vérifier par un test (voir 2.2).
+
+1.4 Matrice de criticité : NON CONFORME (🟢)
+Pour ce périmètre, une ligne dans la fiche suffit : « le site entier est un seul composant, criticité modérée ; la page /contact et le domaine sont prioritaires ».
+
+1.5 Identification des SPOF : NON CONFORME (🟠)
+SPOF identifiés pendant l'audit, aucun n'étant documenté ou mitigé :
+- Compte GitHub `Arth-M` : seule copie distante. En dehors, il n'existe que le poste local du développeur.
+- Compte de l'hébergeur : non identifié, accès et propriété non documentés.
+- Domaine et DNS de `novurba.fr` : registrar, titulaire et date d'expiration non vérifiables. Un domaine expiré met le site hors ligne et peut faire perdre le nom.
+- Exécution JS côté client : `app/layout.js` est `'use client'` et ne rend le contenu qu'après le `useEffect` qui lit `sessionStorage`. Sans JS, ou si le JS plante, aucun contenu n'est accessible.
+- Build dépendant de Google Fonts : `next/font/google` télécharge les polices au build. Si Google Fonts est indisponible, le build peut échouer (risque faible, mais à connaître lors d'un redéploiement d'urgence).
+- Personne : un seul développeur, un seul détenteur du savoir de déploiement.
+Recommandation : lister ces points dans la fiche, avec une mitigation pour chacun : miroir du repo, accès au compte de l'hébergeur partagé ou transmis au client, domaine au nom du client avec renouvellement automatique et alerte d'expiration, retrait de la barrière client au lancement (voir 4.6). Pour Google Fonts, il est possible de passer à `next/font/local`.
+
+1.6 Revue périodique : NON CONFORME (🟢)
+Recommandation : relire la fiche une fois par an et à chaque changement d'hébergeur ou de domaine.
+
+--- 2. SAUVEGARDES ET RESTAURATION ---
+
+2.1 Stratégie de backup : PARTIEL (🟡)
+Preuve : git avec remote GitHub, 83 commits, branches poussées (remotes/origin/main, design2, improve_design). Le code et les images sont versionnés (public/images/*). `package-lock.json` (lockfileVersion 3) est versionné, ce qui rend le build reproductible.
+Constat : la règle 3-2-1 n'est pas respectée. Il y a 2 copies (poste local et GitHub), aucune hors du fournisseur GitHub, et rien n'est formalisé. Les éventuels sources des visuels (fichiers originaux haute résolution, fichiers de design) ne sont pas dans le repo : non vérifiable.
+Recommandation : ajouter un second remote (GitLab, Codeberg, ou un `git bundle` périodique stocké dans le cloud du client). Coût quasi nul.
+
+2.2 Test de restauration : NON VÉRIFIABLE / NON PROUVÉ (🟡)
+Aucune trace de reconstruction depuis un clone propre. Je ne l'ai pas exécutée (mode lecture seule, pas d'install).
+Recommandation : `git clone` dans un dossier vierge, puis `npm ci && npm run build && npm start`. Chronométrer et noter la date et le temps dans la fiche. À refaire une fois par an.
+
+2.3 Immuabilité : NON CONFORME (🟡)
+Une suppression du repo GitHub ou un force-push sur main ne serait compensé que par le clone local. Recommandation : le miroir de 2.1 et une protection de branche sur `main` (interdire le force-push et la suppression). Les réglages GitHub ne sont pas vérifiables depuis le repo.
+
+2.4 Procédure de restauration : PARTIEL (🟡)
+Le readme explique comment lancer un projet Next.js en général, pas comment remettre ce site en ligne en production. Voir 1.1.
+
+--- 3. REDONDANCE ET TOLÉRANCE AUX PANNES ---
+
+3.1 à 3.4 : NON VÉRIFIABLE (🟡 / ⚪)
+L'hébergeur n'est pas identifiable : pas de next.config.*, vercel.json, netlify.toml, Dockerfile ni .github/workflows. Si c'est Vercel ou un équivalent, le service CDN et edge apporte une redondance que l'on n'a pas à gérer soi-même, et c'est suffisant pour ce niveau de criticité. Si c'est un VPS unique avec `next start`, c'est un point de défaillance unique.
+Indépendance : toute la chaîne dépend d'un seul fournisseur d'hébergement et d'un seul registrar et DNS. C'est acceptable pour un site vitrine, à condition de le noter comme risque accepté.
+Recommandation : documenter l'hébergeur. Le site étant statique, on peut envisager `output: 'export'` au lancement, ce qui permettrait de redéployer le dossier `out/` sur n'importe quel hébergeur statique de secours en quelques minutes. C'est la meilleure option de repli pour un coût minimal, mais il faut d'abord retirer le layout client.
+
+--- 4. PATTERNS DE RÉSILIENCE APPLICATIVE ---
+
+4.1 Timeouts, 4.2 Circuit breakers, 4.3 Retry, 4.4 Idempotence, 4.5 Bulkheads, 4.10 DLQ : NON APPLICABLE (⚪)
+Justification : aucun appel sortant à l'exécution (pas de `fetch`, pas d'API, pas de DB, pas de file). `grep` sur app/ ne trouve que des liens `<a href>` et des URLs en commentaire. Aucun traitement asynchrone ni opération rejouable.
+
+4.6 Graceful degradation : NON CONFORME (🟠)
+Preuve : `app/layout.js`. `'use client'`, `useState(false)` pour `codeTrue`, et le contenu (Navbar, children, Footer) n'est rendu qu'après la lecture de `sessionStorage` dans un `useEffect`. Le rendu serveur ou initial affiche toujours l'écran « Site en construction ».
+Constat : en production, sans JS, si le bundle JS ne charge pas, ou si `sessionStorage` est inaccessible (certains modes de navigation privée ou politiques de stockage), le visiteur ne voit jamais les coordonnées. Il n'y a pas de mode dégradé. Le commentaire du fichier montre que ce mécanisme est temporaire, mais rien ne garantit qu'il sera retiré avant la mise en ligne.
+Recommandation : au lancement, retirer la barrière et repasser le root layout en Server Component (ce qui réactive aussi les `metadata`). Les pages purement statiques (contact, entreprise) rendront alors leur HTML côté serveur et resteront lisibles même si le JS échoue. Voir l'audit SEO et l'audit frontend pour les autres aspects ; l'aspect sécurité de la barrière à code relève de l'audit sécurité.
+
+4.7 Cache fallback : NON APPLICABLE / conforme par nature (⚪)
+Le contenu est statique, avec des assets dans public/. Aucune dépendance de lecture dynamique.
+
+4.8 Gestion des erreurs : NON CONFORME (🟠)
+Preuves :
+- `find app -name "error.*" -o -name "global-error.*" -o -name "not-found.*"` ne renvoie rien. Il n'y a aucune error boundary de route ni globale.
+- `app/page.jsx`, dans un `useEffect` :
+    const el = document.querySelector("#typed");
+    const metro = document.querySelector("#metro")
+    el.classList.remove("translate-x-full");
+    setTimeout(() => { metro.classList.remove("invisible") }, 2500);
+  Il n'y a pas de garde contre `null`. Si le DOM change (un id renommé, l'animation commentée, ce qui s'est déjà produit avec Typed.js), le `TypeError` survient dans l'effet. Sans error boundary, React 19 démonte toute l'application et la page devient blanche. Le `setTimeout` n'est pas annulé au démontage (impact faible).
+- `app/_components/carousel.jsx` : `carouselData[activeItemIndex].text` sans garde. Un tableau vide fait planter le rendu.
+Recommandation : créer `app/global-error.jsx` et `app/error.jsx` avec un message sobre et les coordonnées en dur (tel, mail), plus `app/not-found.jsx`. Ajouter `if (!el || !metro) return;` et un `clearTimeout` en cleanup, et protéger le carousel contre un `carouselData` vide.
+
+4.9 Back-pressure : NON APPLICABLE au niveau applicatif (⚪)
+La charge est absorbée par l'hébergeur ou le CDN (hors périmètre, voir l'audit infra et performance).
+
+--- 5. TESTS DE RÉSILIENCE ---
+
+5.1 à 5.3 Chaos engineering, game days, tests de bascule : ABSENTS (🟢)
+Ces pratiques ne sont pas proportionnées pour un site vitrine. Équivalent pragmatique : un exercice annuel de 30 minutes, qui consiste à reconstruire depuis un clone propre (2.2), redéployer le commit N-1 (6.5) et vérifier le renouvellement du domaine. Noter les résultats dans la fiche.
+
+--- 6. GESTION D'INCIDENT ---
+
+6.1 Runbooks : NON CONFORME (🟡)
+Aucun runbook. Les scénarios minimaux à couvrir sont : site down (côté hébergeur), déploiement cassé (rollback), domaine ou DNS (expiration, mauvaise configuration), certificat TLS, perte d'accès au compte GitHub ou à l'hébergeur. Ils peuvent tenir dans la même fiche que 1.1.
+
+6.2 Astreinte : NON APPLICABLE (⚪)
+Structure d'une seule personne. Il suffit d'un engagement de support explicite entre ATU-Web et le client : qui appeler, sous quel délai.
+
+6.3 Outil d'incident, 6.4 Communication de crise : ABSENTS (🟢)
+Un canal de contact convenu entre le dev et le client suffit. Une page de statut n'est pas nécessaire.
+
+6.5 Rollback rapide : NON PROUVÉ (🟡)
+Preuve : aucun tag git (`git tag` est vide) et aucune procédure. Les déploiements passent apparemment par des merges de PR vers main (#12, #13). Si l'hébergeur garde l'historique des déploiements (Vercel « Promote to production », par exemple), le rollback est possible en théorie, mais il n'est ni documenté ni testé.
+Recommandation : taguer chaque mise en production (`v1.0.0`, etc.), écrire la procédure de rollback (via l'interface de l'hébergeur, ou un `git revert` suivi d'un redeploy), et la tester une fois. Le pipeline lui-même relève de l'audit CI/CD.
+
+6.6 Post-mortem : ABSENT (🟢)
+Après un incident visible par le client, rédiger une note courte (cause, durée, action), par exemple dans les issues GitHub.
+
+=====================================================================
+4. PLAN D'ACTION PRIORISÉ
+=====================================================================
+| # | Action | Effort | Impact résilience |
+|---|---|---|---|
+| 1 | Ajouter app/global-error.jsx, app/error.jsx, app/not-found.jsx avec les coordonnées en dur | S | Élevé : supprime le scénario page blanche |
+| 2 | Protéger contre null les querySelector de app/page.jsx (et ajouter clearTimeout), ainsi que carouselData dans carousel.jsx | S | Moyen-élevé |
+| 3 | Au lancement, retirer la barrière à code et repasser le root layout en Server Component (contenu rendu sans JS) | S-M | Élevé : mode dégradé natif |
+| 4 | Fiche de reprise d'une page (hébergeur, comptes, domaine, build, redeploy, rollback, contacts, SPOF acceptés), copie hors-ligne remise au client | S | Élevé : supprime la dépendance à une seule personne |
+| 5 | Miroir du repo (second remote ou git bundle périodique) et protection de branche main | S | Moyen |
+| 6 | Test de reconstruction depuis un clone propre, chronométré et daté | S | Moyen : rend le RTO mesurable |
+| 7 | Tags de release et test de rollback une fois | S | Moyen |
+| 8 | Domaine : titulaire = client, renouvellement automatique, alerte d'expiration, accès documenté | S | Moyen |
+| 9 | Envisager output: 'export' pour pouvoir redéployer vers un hébergeur statique de secours | M | Moyen |
+| 10 | Exercice annuel de 30 min (rebuild, rollback, vérification du domaine) | S | Faible-moyen (maturité) |
+
+=====================================================================
+5. INDICATEURS DE SUIVI
+=====================================================================
+- Date du dernier test de reconstruction depuis un clone propre, et temps mesuré (cible : moins de 12 mois et moins de 30 min).
+- Date du dernier test de rollback.
+- Date d'expiration du domaine, et renouvellement automatique actif (oui/non).
+- Nombre de copies distantes du repo (cible : 2 ou plus, chez des fournisseurs distincts).
+- Date de dernière revue de la fiche de reprise.
+- Présence des error boundaries (global-error, error, not-found) : oui/non.
+- Nombre d'incidents visibles par le client et MTTR, si des incidents surviennent.
+
+=====================================================================
+LIMITES DE L'AUDIT
+=====================================================================
+- L'hébergeur, la configuration de déploiement, les réglages GitHub (protection de branche), le registrar, le DNS et le TLS ne peuvent pas être vérifiés depuis le repo.
+- Je n'ai exécuté aucun build ni aucune installation (mode lecture seule). La reproductibilité du build est déduite de la présence de package-lock.json, pas testée.
+- Je n'ai interrogé personne (développeur ou client). Les points déclaratifs (sauvegardes hors repo, accès aux comptes) restent non prouvés.
+- Hors périmètre, à renvoyer vers les audits dédiés : la barrière à code côté client (audit sécurité), les metadata commentées (audit SEO), la mise à jour des dépendances (audit supply chain), le pipeline de déploiement (audit CI/CD).
+
+Fichiers clés :
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/layout.js
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/page.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/app/_components/carousel.jsx
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/readme.md
+- /Users/arthurmichalland/code/Arth-M/sites_clients/raph_sinet_urbaniste/package.json

@@ -53,12 +53,12 @@ export default function Home() {
           />
           <h1 className="z-10 w-fit text-center mx-auto text-6xl font-semibold tracking-wide px-5 delay-[0s,2s,4s]">
             <span className="inline-block animate-pulse-word delay-[0s]">L'urbanisme </span>{" "}<span className="inline-block animate-pulse-word [animation-delay:500ms]">par </span>{" "}<span className="inline-block animate-pulse-word [animation-delay:1.1s]">le</span>{" "}
-            <span className="inline-block text-copperfield-400 z-10 font-bold mb-1 animate-pulse-word2 [animation-delay:1.9s]">terrain</span>
+            <span className="inline-block text-copperfield-600 z-10 font-bold mb-1 animate-pulse-word2 [animation-delay:1.9s]">terrain</span>
           </h1>
         </div> */}
         {/* <div className="w-fit mx-auto mt-5">
         <h1 id="typed" className="z-10 mx-0 inline-block text-center text-6xl font-semibold tracking-wide px-5"></h1>
-        <h1 id="typed2" className="z-10 text-copperfield-500/90 -ml-5.5 inline-block text-center text-6xl font-semibold tracking-wide px-5"></h1>
+        <h1 id="typed2" className="z-10 text-copperfield-600/90 -ml-5.5 inline-block text-center text-6xl font-semibold tracking-wide px-5"></h1>
         </div> */}
         <div className="relative w-full overflow-hiddenw-fit mx-auto mt-5 text-center text-6xl font-semibold tracking-wide px-5">
           <div className="absolute sm:w-5 md:w-15 lg:w-45 sm:h-50 lg:h-20 bg-white right-0 z-50 hidden sm:block"></div>
@@ -78,13 +78,13 @@ export default function Home() {
                 }}
               />
             <h1 id="typed" className="z-10 inline-block translate-x-full transition-transform duration-[2500ms] ease-out">L'urbanisme par le&nbsp;
-            <span className="text-copperfield-500/90">terrain</span></h1>
+            <span className="text-copperfield-600">terrain</span></h1>
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-25 sm:mt-35 px-5 gap-y-5">
+        <div className="flex flex-wrap justify-center mx-auto w-fit mb-20 mt-25 sm:mt-35 px-8 gap-y-5">
           <span className="block max-w-200 text-wrap pt-10 pb-5 sm:px-1 sm:my-0 tracking-wide font-light my-auto text-2xl text-justify">
-            <span className="font-normal text-copperfield-500/90">NOVURBA</span>
+            <span className="font-normal text-copperfield-600">NOVURBA</span>
             , ce n'est pas qu'un bureau d'études qui vous propose de simples
             prestations en urbanisme et aménagement. À travers les prestations
             et compétences sur la{" "}
@@ -94,16 +94,16 @@ export default function Home() {
             c'est aussi et surtout du conseil dans une nouvelle façon de voir et
             concevoir l'urbanisme et l'aménagement, avec comme mots d'ordre :
             <span className="inline flex-wrap items-center gap-x-1 font-normal">
-              <span className="inline text-copperfield-500/90">
+              <span className="inline text-copperfield-600">
                 {" "}
                 résilience
               </span>
               <span className="inline-flex mx-1 w-2 h-2 mb-0.5 rounded-full bg-black flex-shrink-0"></span>
-              <span className="inline text-copperfield-500/90">
+              <span className="inline text-copperfield-600">
                 bas carbone
               </span>
               <span className="inline-flex mx-1 mb-0.5 w-2 h-2 rounded-full bg-black flex-shrink-0 mt-1"></span>
-              <span className="inline text-copperfield-500/90">sobriété</span>
+              <span className="inline text-copperfield-600">sobriété</span>
             </span>
           </span>
 
@@ -130,16 +130,16 @@ export default function Home() {
       <div className="w-full md:mt-30 mt-25">
         <div className="md:mr-0 md:ml-auto md:flex grid grid-cols-1 w-full gap-y-6 md:gap-y-0 h-fit">
           <div className="flex flex-col text-justify px-8 lg:pl-30 md:pr-7 lg:w-2/3 my-auto mx-auto">
-            <div className="rounded-full border-2 border-copperfield-400 w-40 h-40 py-14 mx-auto mb-3">
+            <div className="rounded-full border-2 border-copperfield-500/90 w-40 h-40 py-14 mx-auto mb-3">
               <h2 className="text-center text-3xl my-auto">
-                Nos <span className="font-semibold text-copperfield-500/90">valeurs</span>
+                Nos <span className="font-semibold text-copperfield-600">valeurs</span>
               </h2>
             </div>
             <p className="tracking-tight font-secondary font-light text-xl sm:min-w-[250px]">
-              <span className="font-normal font-secondary text-copperfield-500/90">NOVURBA</span> est une entreprise
+              <span className="font-normal font-secondary text-copperfield-600">NOVURBA</span> est une entreprise
               avant toute chose proche de la{" "}
               <span className="font-normal font-secondary text-seagull-500 text-shadow-[0.5px_0px_0px] text-shadow-seagull-400">réalité de chaque territoire</span>,
-              car nous sommes bien conscient des différences entre chaque
+              car nous sommes bien conscients des différences entre chaque
               département, intercommunalité, commune et même quartier. Par
               ailleurs, à l'heure du dérèglement climatique qui impacte
               durablement chaque mètre carré de notre planète, il est important
@@ -193,7 +193,7 @@ export default function Home() {
             <h2 className="inline font-secondary text-center text-shadow-[-1px_1px_0px] text-shadow-black/70 text-2xl md:text-4xl font-md tracking-tight">
               Ils font confiance à{" "}
             </h2>
-              <span className="inline font-secondary text-copperfield-500/90 text-shadow-[-1px_1px_0px] text-shadow-copperfield-500/70 font-bold text-3xl md:text-4xl font-md tracking-tight">
+              <span className="inline font-secondary text-copperfield-600 text-shadow-[-1px_1px_0px] text-shadow-copperfield-500/70 font-bold text-3xl md:text-4xl font-md tracking-tight">
                 Novurba
               </span>
             </div>
@@ -230,7 +230,7 @@ export default function Home() {
         <div className="md:hidden">
           <h2 className="text-center text-4xl md:text-4xl mt-20 font-md tracking-wide">
             Ils font confiance à{" "}
-            <span className="text-copperfield-500/90 font-bold">Novurba</span>
+            <span className="text-copperfield-600/90 font-bold">Novurba</span>
           </h2>
           <div className="w-full flex flex-wrap items-center gap-x-25 gap-y-5 justify-center mt-5">
             <Image

@@ -1,7 +1,6 @@
 'use client'
 import Image from "next/image";
 import { useEffect } from "react";
-import Typed from "typed.js";
 import ArrowUp from "./_components/arrowUp.jsx";
 
 export default function Home() {

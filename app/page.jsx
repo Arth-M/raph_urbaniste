@@ -5,27 +5,7 @@ import ArrowUp from "./_components/arrowUp.jsx";
 
 export default function Home() {
   useEffect(() => {
-    // const typed = new Typed("#typed", {
-    //   strings: ["L'urbanisme par le"],
-    //   typeSpeed: 65,
-    //   loop: false,
-    //   showCursor: false
-    // });
-    // setTimeout(() => {
-    //   const typed2 = new Typed("#typed2", {
-    //   strings: ["terrain"],
-    //   typeSpeed: 80,
-    //   loop: false,
-    //   showCursor: false,
-    //   // onComplete: () => {
-    //   //   document.querySelector("#typed2").classList.add("animate-pulse-word2");
-    //   // }
-    // });
-    // }, 1900);
 
-    // return () => {
-    //   typed.destroy(); // cleanup
-    // };
     const el = document.querySelector("#typed");
     const metro = document.querySelector("#metro")
   el.classList.remove("translate-x-full");
